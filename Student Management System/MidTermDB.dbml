@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="midtermdotnet" Class="MidTermDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(local)\SQLEXPRESS;Initial Catalog=midtermdotnet;User ID=MIDTERM" SettingsObjectName="Student_Management_System.Properties.Settings" SettingsPropertyName="midtermdotnetConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.certificates" Member="certificates">
+    <Type Name="certificate">
+      <Column Name="id" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="issue_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="expiry_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="organization_name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sid" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="imgPath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="createdAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="student_certificate" Member="student" ThisKey="sid" OtherKey="id" Type="student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dob" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="avatarPath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="createdAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="user_loginhistory" Member="loginhistories" ThisKey="email" OtherKey="email" Type="loginhistory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.students" Member="students">
+    <Type Name="student">
+      <Column Name="id" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dob" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="eduType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="classId" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="department" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="major" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="courseYear" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="createdAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="student_certificate" Member="certificates" ThisKey="id" OtherKey="sid" Type="certificate" />
+    </Type>
+  </Table>
+  <Table Name="dbo.loginhistory" Member="loginhistories">
+    <Type Name="loginhistory">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="history" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="user_loginhistory" Member="user" ThisKey="email" OtherKey="email" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -73,10 +73,10 @@ namespace Student_Management_System.Views
             // 
             this.labelAccount.AutoSize = true;
             this.labelAccount.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold);
-            this.labelAccount.Location = new System.Drawing.Point(90, 30);
+            this.labelAccount.Location = new System.Drawing.Point(86, 9);
             this.labelAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAccount.Name = "labelAccount";
-            this.labelAccount.Size = new System.Drawing.Size(156, 47);
+            this.labelAccount.Size = new System.Drawing.Size(196, 60);
             this.labelAccount.TabIndex = 0;
             this.labelAccount.Text = "Account";
             // 
@@ -106,16 +106,17 @@ namespace Student_Management_System.Views
             this.btnChangeAvatar.TabIndex = 2;
             this.btnChangeAvatar.Text = "CHANGE AVATAR";
             this.btnChangeAvatar.UseVisualStyleBackColor = true;
+            this.btnChangeAvatar.Click += new System.EventHandler(this.btnChangeAvatar_Click);
             // 
             // picBoxAvatar
             // 
             this.picBoxAvatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picBoxAvatar.Image = global::Student_Management_System.Properties.Resources.defaultAvatar;
-            this.picBoxAvatar.Location = new System.Drawing.Point(6, 22);
+            this.picBoxAvatar.Location = new System.Drawing.Point(6, 0);
             this.picBoxAvatar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.picBoxAvatar.Name = "picBoxAvatar";
-            this.picBoxAvatar.Size = new System.Drawing.Size(297, 248);
-            this.picBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picBoxAvatar.Size = new System.Drawing.Size(297, 270);
+            this.picBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxAvatar.TabIndex = 0;
             this.picBoxAvatar.TabStop = false;
             // 
@@ -205,7 +206,7 @@ namespace Student_Management_System.Views
             this.labelUpdatedAt.Location = new System.Drawing.Point(562, 265);
             this.labelUpdatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUpdatedAt.Name = "labelUpdatedAt";
-            this.labelUpdatedAt.Size = new System.Drawing.Size(127, 25);
+            this.labelUpdatedAt.Size = new System.Drawing.Size(160, 32);
             this.labelUpdatedAt.TabIndex = 14;
             this.labelUpdatedAt.Text = "UPDATED AT";
             // 
@@ -217,7 +218,7 @@ namespace Student_Management_System.Views
             this.labelCreatedAt.Location = new System.Drawing.Point(562, 200);
             this.labelCreatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCreatedAt.Name = "labelCreatedAt";
-            this.labelCreatedAt.Size = new System.Drawing.Size(121, 25);
+            this.labelCreatedAt.Size = new System.Drawing.Size(154, 32);
             this.labelCreatedAt.TabIndex = 12;
             this.labelCreatedAt.Text = "CREATED AT";
             // 
@@ -229,7 +230,7 @@ namespace Student_Management_System.Views
             this.labelStatus.Location = new System.Drawing.Point(562, 135);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(81, 25);
+            this.labelStatus.Size = new System.Drawing.Size(98, 32);
             this.labelStatus.TabIndex = 11;
             this.labelStatus.Text = "STATUS";
             // 
@@ -241,7 +242,7 @@ namespace Student_Management_System.Views
             this.labelRole.Location = new System.Drawing.Point(562, 70);
             this.labelRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(58, 25);
+            this.labelRole.Size = new System.Drawing.Size(73, 32);
             this.labelRole.TabIndex = 9;
             this.labelRole.Text = "ROLE";
             // 
@@ -253,7 +254,7 @@ namespace Student_Management_System.Views
             this.labelPhone.Location = new System.Drawing.Point(34, 265);
             this.labelPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPhone.Name = "labelPhone";
-            this.labelPhone.Size = new System.Drawing.Size(78, 25);
+            this.labelPhone.Size = new System.Drawing.Size(97, 32);
             this.labelPhone.TabIndex = 6;
             this.labelPhone.Text = "PHONE";
             // 
@@ -265,7 +266,7 @@ namespace Student_Management_System.Views
             this.labelEmail.Location = new System.Drawing.Point(34, 200);
             this.labelEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(69, 25);
+            this.labelEmail.Size = new System.Drawing.Size(87, 32);
             this.labelEmail.TabIndex = 4;
             this.labelEmail.Text = "EMAIL";
             // 
@@ -277,7 +278,7 @@ namespace Student_Management_System.Views
             this.labelDoB.Location = new System.Drawing.Point(34, 135);
             this.labelDoB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDoB.Name = "labelDoB";
-            this.labelDoB.Size = new System.Drawing.Size(50, 25);
+            this.labelDoB.Size = new System.Drawing.Size(62, 32);
             this.labelDoB.TabIndex = 2;
             this.labelDoB.Text = "DoB";
             // 
@@ -289,7 +290,7 @@ namespace Student_Management_System.Views
             this.labelName.Location = new System.Drawing.Point(34, 70);
             this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(68, 25);
+            this.labelName.Size = new System.Drawing.Size(86, 32);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "NAME";
             // 
@@ -345,7 +346,7 @@ namespace Student_Management_System.Views
             this.labelConfirmPassword.Location = new System.Drawing.Point(215, 140);
             this.labelConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelConfirmPassword.Name = "labelConfirmPassword";
-            this.labelConfirmPassword.Size = new System.Drawing.Size(209, 25);
+            this.labelConfirmPassword.Size = new System.Drawing.Size(265, 32);
             this.labelConfirmPassword.TabIndex = 2;
             this.labelConfirmPassword.Text = "CONFIRM PASSWORD";
             // 
@@ -357,7 +358,7 @@ namespace Student_Management_System.Views
             this.labelNewPassword.Location = new System.Drawing.Point(215, 74);
             this.labelNewPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNewPassword.Name = "labelNewPassword";
-            this.labelNewPassword.Size = new System.Drawing.Size(166, 25);
+            this.labelNewPassword.Size = new System.Drawing.Size(210, 32);
             this.labelNewPassword.TabIndex = 0;
             this.labelNewPassword.Text = "NEW PASSWORD";
             // 
@@ -375,7 +376,7 @@ namespace Student_Management_System.Views
             this.inputConfirmPassword.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
             this.inputConfirmPassword.PasswordChar = true;
             this.inputConfirmPassword.ReadOnly = false;
-            this.inputConfirmPassword.Size = new System.Drawing.Size(280, 36);
+            this.inputConfirmPassword.Size = new System.Drawing.Size(280, 43);
             this.inputConfirmPassword.TabIndex = 3;
             this.inputConfirmPassword.Texts = "";
             this.inputConfirmPassword.Underlined = true;
@@ -394,7 +395,7 @@ namespace Student_Management_System.Views
             this.inputNewPassword.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
             this.inputNewPassword.PasswordChar = true;
             this.inputNewPassword.ReadOnly = false;
-            this.inputNewPassword.Size = new System.Drawing.Size(280, 36);
+            this.inputNewPassword.Size = new System.Drawing.Size(280, 43);
             this.inputNewPassword.TabIndex = 1;
             this.inputNewPassword.Texts = "";
             this.inputNewPassword.Underlined = true;
@@ -414,7 +415,7 @@ namespace Student_Management_System.Views
             this.inputStatus.Padding = new System.Windows.Forms.Padding(5);
             this.inputStatus.PasswordChar = false;
             this.inputStatus.ReadOnly = true;
-            this.inputStatus.Size = new System.Drawing.Size(170, 36);
+            this.inputStatus.Size = new System.Drawing.Size(170, 43);
             this.inputStatus.TabIndex = 16;
             this.inputStatus.Texts = "Normal";
             this.inputStatus.Underlined = false;
@@ -434,7 +435,7 @@ namespace Student_Management_System.Views
             this.inputUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputUpdatedAt.PasswordChar = false;
             this.inputUpdatedAt.ReadOnly = true;
-            this.inputUpdatedAt.Size = new System.Drawing.Size(170, 36);
+            this.inputUpdatedAt.Size = new System.Drawing.Size(170, 43);
             this.inputUpdatedAt.TabIndex = 15;
             this.inputUpdatedAt.Texts = "10/10/2023";
             this.inputUpdatedAt.Underlined = false;
@@ -454,7 +455,7 @@ namespace Student_Management_System.Views
             this.inputCreatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputCreatedAt.PasswordChar = false;
             this.inputCreatedAt.ReadOnly = true;
-            this.inputCreatedAt.Size = new System.Drawing.Size(170, 36);
+            this.inputCreatedAt.Size = new System.Drawing.Size(170, 43);
             this.inputCreatedAt.TabIndex = 13;
             this.inputCreatedAt.Texts = "10/10/2023";
             this.inputCreatedAt.Underlined = false;
@@ -474,7 +475,7 @@ namespace Student_Management_System.Views
             this.inputRole.Padding = new System.Windows.Forms.Padding(5);
             this.inputRole.PasswordChar = false;
             this.inputRole.ReadOnly = true;
-            this.inputRole.Size = new System.Drawing.Size(170, 36);
+            this.inputRole.Size = new System.Drawing.Size(170, 43);
             this.inputRole.TabIndex = 10;
             this.inputRole.Texts = "Admin";
             this.inputRole.Underlined = false;
@@ -494,7 +495,7 @@ namespace Student_Management_System.Views
             this.inputDoB.Padding = new System.Windows.Forms.Padding(5);
             this.inputDoB.PasswordChar = false;
             this.inputDoB.ReadOnly = true;
-            this.inputDoB.Size = new System.Drawing.Size(246, 36);
+            this.inputDoB.Size = new System.Drawing.Size(246, 43);
             this.inputDoB.TabIndex = 8;
             this.inputDoB.Texts = "12/08/2003";
             this.inputDoB.Underlined = false;
@@ -514,7 +515,7 @@ namespace Student_Management_System.Views
             this.inputPhone.Padding = new System.Windows.Forms.Padding(5);
             this.inputPhone.PasswordChar = false;
             this.inputPhone.ReadOnly = true;
-            this.inputPhone.Size = new System.Drawing.Size(270, 36);
+            this.inputPhone.Size = new System.Drawing.Size(270, 43);
             this.inputPhone.TabIndex = 7;
             this.inputPhone.Texts = "0123456789";
             this.inputPhone.Underlined = false;
@@ -534,7 +535,7 @@ namespace Student_Management_System.Views
             this.inputEmail.Padding = new System.Windows.Forms.Padding(5);
             this.inputEmail.PasswordChar = false;
             this.inputEmail.ReadOnly = true;
-            this.inputEmail.Size = new System.Drawing.Size(270, 36);
+            this.inputEmail.Size = new System.Drawing.Size(270, 43);
             this.inputEmail.TabIndex = 5;
             this.inputEmail.Texts = "nguyenhoangduy@gmail.com";
             this.inputEmail.Underlined = false;
@@ -554,14 +555,14 @@ namespace Student_Management_System.Views
             this.inputName.Padding = new System.Windows.Forms.Padding(5);
             this.inputName.PasswordChar = false;
             this.inputName.ReadOnly = true;
-            this.inputName.Size = new System.Drawing.Size(270, 36);
+            this.inputName.Size = new System.Drawing.Size(270, 43);
             this.inputName.TabIndex = 1;
             this.inputName.Texts = "Nguyen Hoang Duy";
             this.inputName.Underlined = false;
             // 
             // ProfileForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 761);
             this.Controls.Add(this.grBoxSercurity);
@@ -574,6 +575,7 @@ namespace Student_Management_System.Views
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ProfileForm";
             this.Text = "ProfileForm";
+            this.Load += new System.EventHandler(this.ProfileForm_Load);
             this.grBoxAvatar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).EndInit();
             this.grBoxAdmin.ResumeLayout(false);
