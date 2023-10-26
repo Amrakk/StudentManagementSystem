@@ -1,4 +1,4 @@
-﻿//using Student_Management_System.Models;
+﻿using BCrypt.Net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,33 +51,44 @@ namespace Student_Management_System.Views.Auth
                 return;
             }
 
-            //var user = new User();
-            //var userFound = user.FindByEmail(email);
+            user loginUser;
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                loginUser = (from u in db.users
+                            where u.email == email
+                            select u).FirstOrDefault();
 
-            //if (userFound == null)
-            //{
-            //    labelErrorMessage.Text = "Email not found";
-            //    return;
-            //}
+                if (loginUser == null)
+                {
+                    labelErrorMessage.Text = "Invalid email or password";
+                    return;
+                }
 
-            //if (userFound.Password != password)
-            //{
-            //    labelErrorMessage.Text = "Password is incorrect";
-            //    return;
-            //}
+                bool isCorrectedPassword = BCrypt.Net.BCrypt.Verify(password, loginUser.password);
+                if (!isCorrectedPassword)
+                {
+                    labelErrorMessage.Text = "Invalid email or password";
+                    return;
+                }
 
-            //if (userFound.Status == false)
-            //{
-            //    labelErrorMessage.Text = "Account is locked";
-            //    return;
-            //}
+                if (loginUser.status == "Locked")
+                {
+                    labelErrorMessage.Text = "Account is locked";
+                    return;
+                }
 
-            //var loginHistory = new Models.Loginhistory();
-            //loginHistory.UserId = userFound.Id;
-            //loginHistory.LoginTime = DateTime.Now;
-            //loginHistory.Save();
+                var loginHis = new loginhistory()
+                {
+                    email = loginUser.email,
+                    history = DateTime.Now
+                };
 
-            var mainForm = new MainForm();
+                db.loginhistories.InsertOnSubmit(loginHis);
+                db.SubmitChanges();
+                MessageBox.Show("Log in successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            var mainForm = new MainForm(loginUser);
             mainForm.Show();
             this.Hide();
         }

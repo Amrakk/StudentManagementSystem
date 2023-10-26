@@ -14,18 +14,17 @@ namespace Student_Management_System.Views
 {
     public partial class MainForm : Form
     {
-        //private User user;
+        private user _user;
         private Form currentChildForm;
-
-        public MainForm()
+        public MainForm(user user)
         {
             InitializeComponent();
-            //this.user = user;
+            _user = user;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //btnProfile.Text = user.Name;
+            btnProfile.Text = _user.name;
             openChildForm(new Students.StudentForm());
         }
 
@@ -56,7 +55,7 @@ namespace Student_Management_System.Views
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            openChildForm(new ProfileForm());
+            openChildForm(new ProfileForm(_user));
         }
 
         private void btnIcon_Click(object sender, EventArgs e)
