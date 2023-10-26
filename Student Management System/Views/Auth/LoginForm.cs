@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BCrypt.Net;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -57,8 +58,14 @@ namespace Student_Management_System.Views.Auth
                             where u.email == email
                             select u).FirstOrDefault();
 
-                bool isCorrectPassword = BCrypt.Net.BCrypt.Verify(password, loginUser.password);
-                if (loginUser == null || !isCorrectPassword)
+                if (loginUser == null)
+                {
+                    labelErrorMessage.Text = "Invalid email or password";
+                    return;
+                }
+
+                bool isCorrectedPassword = BCrypt.Net.BCrypt.Verify(password, loginUser.password);
+                if (!isCorrectedPassword)
                 {
                     labelErrorMessage.Text = "Invalid email or password";
                     return;
