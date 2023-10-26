@@ -50,18 +50,27 @@ namespace Student_Management_System.Views
                         string selectedFilePath = openFileDialog.FileName;
                         using (FileStream fileStream = new FileStream(selectedFilePath, FileMode.Open, FileAccess.Read))
                         {
+                            if (picBoxAvatar.Image != null)
+                            {
+                                picBoxAvatar.Image.Dispose();
+                            }
+
                             picBoxAvatar.Image = Image.FromStream(fileStream);
                             string rootDirectory = "Resources";
                             string avatarPath = Path.Combine(rootDirectory, _user.email);
                             string folderPath = Path.Combine(workingDir, avatarPath);
-                            
+
                             try
                             {
                                 Directory.CreateDirectory(folderPath);
                                 string fileUploadedExtension = Path.GetExtension(selectedFilePath);
-                                string imagePath = Path.Combine(folderPath, "avatar" + "." + fileUploadedExtension);
+                                string imagePath = Path.Combine(folderPath, "avatar" + fileUploadedExtension);
 
-                                _user.avatarPath = avatarPath;
+                                if (File.Exists(imagePath))
+                                {
+                                    File.Delete(imagePath);
+                                }
+
                                 picBoxAvatar.Image.Save(imagePath);
                             }
                             catch (Exception ex)
@@ -97,6 +106,14 @@ namespace Student_Management_System.Views
             string rootDirectory = "Resources";
             string avatarPath = Path.Combine(rootDirectory, _user.email);
             string folderPath = Path.Combine(workingDir, avatarPath);
+
+            if (!Directory.Exists(folderPath))
+            {
+                string defaultAvatar = Path.Combine(workingDir, rootDirectory, "defaultAvatar.png");
+                picBoxAvatar.Image = Image.FromFile(defaultAvatar);
+                return;
+            }
+
             string[] matchingFiles = Directory.GetFiles(folderPath, "avatar.*");
 
             if (matchingFiles.Length > 0)
