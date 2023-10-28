@@ -30,9 +30,7 @@ namespace Student_Management_System
         {
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
-                var loginUser = db.users.FirstOrDefault(u => u.email == _user.email);
-
-                string userRole = loginUser?.role.ToLower() ?? "";
+                string userRole = _user.role?.ToLower() ?? "";
                 if (!userRole.Equals("admin"))
                 {
                     MessageBox.Show("You have no priority", "Unauthorization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -89,7 +87,7 @@ namespace Student_Management_System
                     if (pbAvatar.Image != null)
                     {
                         string rootDirectory = "Resources";
-                        string avatarPath = Path.Combine(rootDirectory, loginUser.email);
+                        string avatarPath = Path.Combine(rootDirectory, _user.email);
                         string folderPath = Path.Combine(workingDir, avatarPath);
 
                         try
@@ -107,10 +105,17 @@ namespace Student_Management_System
                             MessageBox.Show(ex.Message);
                         }
                     }
-
-                    db.users.InsertOnSubmit(newUser);
-                    db.SubmitChanges();
-                    MessageBox.Show("User added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    try
+                    {
+                        db.users.InsertOnSubmit(newUser);
+                        db.SubmitChanges();
+                        MessageBox.Show("User added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } 
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
                 else
                 {
@@ -157,7 +162,7 @@ namespace Student_Management_System
             cbbRole.Items.Add("Manager");
             cbbRole.Items.Add("Employee");
 
-            cbbRole.DisplayMember = "Name";
+            cbbRole.SelectedIndex = 0;
         }
     }
 }

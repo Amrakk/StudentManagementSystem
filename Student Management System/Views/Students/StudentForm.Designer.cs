@@ -31,35 +31,65 @@ namespace Student_Management_System.Views.Students
         /// </summary>
         private void InitializeComponent()
         {
-            labelStudent = new Label();
-            SuspendLayout();
+            this.labelStudent = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnDelete = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
             // 
             // labelStudent
             // 
-            labelStudent.AutoSize = true;
-            labelStudent.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
-            labelStudent.ForeColor = SystemColors.ControlText;
-            labelStudent.Location = new Point(90, 30);
-            labelStudent.Name = "labelStudent";
-            labelStudent.Size = new Size(150, 47);
-            labelStudent.TabIndex = 0;
-            labelStudent.Text = "Student";
+            this.labelStudent.AutoSize = true;
+            this.labelStudent.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold);
+            this.labelStudent.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelStudent.Location = new System.Drawing.Point(12, 9);
+            this.labelStudent.Name = "labelStudent";
+            this.labelStudent.Size = new System.Drawing.Size(188, 60);
+            this.labelStudent.TabIndex = 0;
+            this.labelStudent.Text = "Student";
             // 
-            // StudentForms
+            // dataGridView1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1484, 761);
-            Controls.Add(labelStudent);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "StudentForms";
-            Text = "StudentForms";
-            ResumeLayout(false);
-            PerformLayout();
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(22, 91);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(1647, 655);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(22, 762);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(113, 38);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // StudentForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1696, 812);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.labelStudent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "StudentForm";
+            this.Text = "StudentForms";
+            this.Load += new System.EventHandler(this.StudentForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
         private Label labelStudent;
+        private DataGridView dataGridView1;
+        private Button btnDelete;
     }
 }

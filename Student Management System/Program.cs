@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Student_Management_System.Views.Admin;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -18,8 +19,8 @@ namespace Student_Management_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Views.Auth.LoginForm());
-            // Application.Run(new AddUserForm(new user() { email = "admin@gmail.com" }));
+            //Application.Run(new Views.Auth.LoginForm());
+            Application.Run(new AddStudentForm(new user() { email = "admin@gmail.com", role = "admin" }));
         }
     }
 }

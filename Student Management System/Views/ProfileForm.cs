@@ -32,7 +32,7 @@ namespace Student_Management_System.Views
 
         private void btnLoginHistory_Click(object sender, EventArgs e)
         {
-            Admin.LoginHistoryForm form = new Admin.LoginHistoryForm();
+            Admin.LoginHistoryForm form = new Admin.LoginHistoryForm(_user);
             form.ShowDialog();
         }
 

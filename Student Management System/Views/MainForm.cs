@@ -25,7 +25,7 @@ namespace Student_Management_System.Views
         private void MainForm_Load(object sender, EventArgs e)
         {
             btnProfile.Text = _user.name;
-            openChildForm(new Students.StudentForm());
+            openChildForm(new Students.StudentForm(_user));
         }
 
         #region Utils
@@ -51,8 +51,6 @@ namespace Student_Management_System.Views
         #endregion
 
 
-
-
         private void btnProfile_Click(object sender, EventArgs e)
         {
             openChildForm(new ProfileForm(_user));
@@ -60,7 +58,7 @@ namespace Student_Management_System.Views
 
         private void btnIcon_Click(object sender, EventArgs e)
         {
-            openChildForm(new Students.StudentForm());
+            openChildForm(new Students.StudentForm(_user));
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
