@@ -71,6 +71,7 @@ namespace Student_Management_System.Views
             // btnProfile
             // 
             this.btnProfile.AutoSize = true;
+            this.btnProfile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnProfile.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnProfile.FlatAppearance.BorderSize = 0;
             this.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -79,9 +80,10 @@ namespace Student_Management_System.Views
             this.btnProfile.Location = new System.Drawing.Point(1165, 44);
             this.btnProfile.Margin = new System.Windows.Forms.Padding(0);
             this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Size = new System.Drawing.Size(210, 40);
+            this.btnProfile.Size = new System.Drawing.Size(200, 35);
             this.btnProfile.TabIndex = 3;
             this.btnProfile.Text = "Nguyen Hoang Duy";
+            this.btnProfile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProfile.UseVisualStyleBackColor = false;
             this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
