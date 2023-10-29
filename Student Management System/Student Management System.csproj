@@ -43,6 +43,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -83,6 +84,12 @@
     <Compile Include="Views\Admin\LoginHistoryForm.Designer.cs">
       <DependentUpon>LoginHistoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\UserDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\UserDetailForm.Designer.cs">
+      <DependentUpon>UserDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +123,12 @@
     <Compile Include="Views\ProfileForm.Designer.cs">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Students\StudentDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Students\StudentDetailForm.Designer.cs">
+      <DependentUpon>StudentDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Students\StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +151,9 @@
     <EmbeddedResource Include="Views\Admin\LoginHistoryForm.resx">
       <DependentUpon>LoginHistoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\UserDetailForm.resx">
+      <DependentUpon>UserDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +166,9 @@
     <EmbeddedResource Include="Views\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Students\StudentDetailForm.resx">
+      <DependentUpon>StudentDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="MidTermDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>MidTermDB.designer.cs</LastGenOutput>
@@ -159,6 +178,7 @@
       <DependentUpon>MidTermDB.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\user.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -183,6 +203,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\searchIcon.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
