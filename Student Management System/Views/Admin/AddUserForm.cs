@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Student_Management_System.Controllers;
+using Student_Management_System.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +19,7 @@ namespace Student_Management_System
 {
     public partial class AddUserForm : Form
     {
+        private UserController userController;
         private string selectedFilePath;
         private readonly string workingDir = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.FullName ?? "";
         private user _user;
@@ -24,22 +27,20 @@ namespace Student_Management_System
         {
             InitializeComponent();
             _user = user;
+            userController = new UserController();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role?.ToLower() ?? "";
+            if (!userRole.Equals("admin"))
+            {
+                MessageBox.Show("You have no priority", "Unauthorization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
-                var loginUser = db.users.FirstOrDefault(u => u.email == _user.email);
-
-                string userRole = loginUser?.role.ToLower() ?? "";
-                if (!userRole.Equals("admin"))
-                {
-                    MessageBox.Show("You have no priority", "Unauthorization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
                 Regex emailEx = new Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
                 string email = tbEmail.Text;
 
@@ -65,7 +66,7 @@ namespace Student_Management_System
                     phoneEx.IsMatch(phone) &&
                     !string.IsNullOrEmpty(role))
                 {
-                    var existingUser = db.users.Where(u => u.email == email).FirstOrDefault();
+                    var existingUser = userController.Get(email);
 
                     if (existingUser != null)
                     {
@@ -73,12 +74,11 @@ namespace Student_Management_System
                         return;
                     }
 
-                    string hashPassword = BCrypt.Net.BCrypt.HashPassword(password, 10);
                     var newUser = new user
                     {
                         email = email,
                         name = name,
-                        password = hashPassword,
+                        password = password,
                         phone = phone.Replace(" ", "").Replace("-", ""),
                         role = role,
                         dob = dtpDob.Value.Date,
@@ -89,7 +89,7 @@ namespace Student_Management_System
                     if (pbAvatar.Image != null)
                     {
                         string rootDirectory = "Resources";
-                        string avatarPath = Path.Combine(rootDirectory, loginUser.email);
+                        string avatarPath = Path.Combine(rootDirectory, _user.email);
                         string folderPath = Path.Combine(workingDir, avatarPath);
 
                         try
@@ -98,8 +98,6 @@ namespace Student_Management_System
                             string fileUploadedExtension = Path.GetExtension(selectedFilePath);
                             string imagePath = Path.Combine(folderPath, "avatar" + "." + fileUploadedExtension);
 
-                            MessageBox.Show(avatarPath);
-                            newUser.avatarPath = avatarPath;
                             pbAvatar.Image.Save(imagePath);
                         }
                         catch (Exception ex)
@@ -108,9 +106,15 @@ namespace Student_Management_System
                         }
                     }
 
-                    db.users.InsertOnSubmit(newUser);
-                    db.SubmitChanges();
-                    MessageBox.Show("User added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bool isAdded = userController.Add(newUser);
+                    if (isAdded)
+                    {
+                        MessageBox.Show("Added");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed");
+                    }
                 }
                 else
                 {
@@ -157,7 +161,7 @@ namespace Student_Management_System
             cbbRole.Items.Add("Manager");
             cbbRole.Items.Add("Employee");
 
-            cbbRole.DisplayMember = "Name";
+            cbbRole.SelectedIndex = 0;
         }
     }
 }

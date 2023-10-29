@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//using Student_Management_System.Models;
+using Student_Management_System.Database;
 
 namespace Student_Management_System.Views
 {
@@ -25,7 +25,7 @@ namespace Student_Management_System.Views
         private void MainForm_Load(object sender, EventArgs e)
         {
             btnProfile.Text = _user.name;
-            openChildForm(new Students.StudentForm());
+            openChildForm(new Students.StudentForm(_user));
         }
 
         #region Utils
@@ -46,11 +46,9 @@ namespace Student_Management_System.Views
 
         public void openUserForm()
         {
-            openChildForm(new Admin.UserForm());
+            openChildForm(new Admin.UserForm(_user));
         }
         #endregion
-
-
 
 
         private void btnProfile_Click(object sender, EventArgs e)
@@ -60,7 +58,7 @@ namespace Student_Management_System.Views
 
         private void btnIcon_Click(object sender, EventArgs e)
         {
-            openChildForm(new Students.StudentForm());
+            openChildForm(new Students.StudentForm(_user));
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {

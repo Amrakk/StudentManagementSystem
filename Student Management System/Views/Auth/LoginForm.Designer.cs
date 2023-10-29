@@ -47,7 +47,7 @@ namespace Student_Management_System.Views.Auth
             this.labelHeader.Location = new System.Drawing.Point(65, 48);
             this.labelHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHeader.Name = "labelHeader";
-            this.labelHeader.Size = new System.Drawing.Size(329, 65);
+            this.labelHeader.Size = new System.Drawing.Size(412, 81);
             this.labelHeader.TabIndex = 9;
             this.labelHeader.Text = "Login to SMS";
             // 
@@ -58,7 +58,7 @@ namespace Student_Management_System.Views.Auth
             this.labelEmail.Location = new System.Drawing.Point(65, 159);
             this.labelEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(58, 25);
+            this.labelEmail.Size = new System.Drawing.Size(71, 32);
             this.labelEmail.TabIndex = 8;
             this.labelEmail.Text = "Email";
             // 
@@ -69,7 +69,7 @@ namespace Student_Management_System.Views.Auth
             this.labelPassword.Location = new System.Drawing.Point(65, 228);
             this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(91, 25);
+            this.labelPassword.Size = new System.Drawing.Size(111, 32);
             this.labelPassword.TabIndex = 7;
             this.labelPassword.Text = "Password";
             // 
@@ -79,7 +79,7 @@ namespace Student_Management_System.Views.Auth
             this.txtEmail.Location = new System.Drawing.Point(181, 156);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(229, 33);
+            this.txtEmail.Size = new System.Drawing.Size(229, 39);
             this.txtEmail.TabIndex = 0;
             this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
             // 
@@ -90,7 +90,7 @@ namespace Student_Management_System.Views.Auth
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
-            this.txtPassword.Size = new System.Drawing.Size(229, 33);
+            this.txtPassword.Size = new System.Drawing.Size(229, 39);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
@@ -120,7 +120,8 @@ namespace Student_Management_System.Views.Auth
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AcceptButton = this.btnLogin;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 405);
             this.Controls.Add(this.labelErrorMessage);
