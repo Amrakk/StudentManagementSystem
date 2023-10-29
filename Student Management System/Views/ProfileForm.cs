@@ -11,6 +11,8 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Student_Management_System.Controllers;
+using Student_Management_System.Database;
 
 namespace Student_Management_System.Views
 {
@@ -32,7 +34,7 @@ namespace Student_Management_System.Views
 
         private void btnLoginHistory_Click(object sender, EventArgs e)
         {
-            Admin.LoginHistoryForm form = new Admin.LoginHistoryForm();
+            Admin.LoginHistoryForm form = new Admin.LoginHistoryForm(_user);
             form.ShowDialog();
         }
 
@@ -60,23 +62,8 @@ namespace Student_Management_System.Views
                             string avatarPath = Path.Combine(rootDirectory, _user.email);
                             string folderPath = Path.Combine(workingDir, avatarPath);
 
-                            try
-                            {
-                                Directory.CreateDirectory(folderPath);
-                                string fileUploadedExtension = Path.GetExtension(selectedFilePath);
-                                string imagePath = Path.Combine(folderPath, "avatar" + fileUploadedExtension);
-
-                                if (File.Exists(imagePath))
-                                {
-                                    File.Delete(imagePath);
-                                }
-
-                                picBoxAvatar.Image.Save(imagePath);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
+                            string imagePath = SystemStudentUtils.SaveAvatars(_user.email, selectedFilePath);
+                            picBoxAvatar.Image.Save(imagePath);
                         }
                     }
                     catch (Exception ex)

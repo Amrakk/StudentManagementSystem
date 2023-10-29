@@ -60,7 +60,7 @@ namespace Student_Management_System.Views.Admin
             this.labelUser.Location = new System.Drawing.Point(90, 30);
             this.labelUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(93, 47);
+            this.labelUser.Size = new System.Drawing.Size(118, 60);
             this.labelUser.TabIndex = 0;
             this.labelUser.Text = "User";
             // 
@@ -246,7 +246,7 @@ namespace Student_Management_System.Views.Admin
             // 
             // UserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 761);
             this.Controls.Add(this.panelFilter);

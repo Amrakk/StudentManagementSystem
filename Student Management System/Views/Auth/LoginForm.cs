@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Student_Management_System.Database;
+
 namespace Student_Management_System.Views.Auth
 {
     public partial class LoginForm : Form
@@ -54,6 +56,7 @@ namespace Student_Management_System.Views.Auth
             user loginUser;
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
+                db.DeferredLoadingEnabled = false;
                 loginUser = (from u in db.users
                             where u.email == email
                             select u).FirstOrDefault();
