@@ -235,7 +235,7 @@ namespace Student_Management_System.Views
             this.inputUpdatedAt.ReadOnly = true;
             this.inputUpdatedAt.Size = new System.Drawing.Size(215, 36);
             this.inputUpdatedAt.TabIndex = 15;
-            this.inputUpdatedAt.Texts = "10/10/2023";
+            this.inputUpdatedAt.Texts = "10-10-2023";
             this.inputUpdatedAt.Underlined = false;
             // 
             // labelUpdatedAt
@@ -267,7 +267,7 @@ namespace Student_Management_System.Views
             this.inputCreatedAt.ReadOnly = true;
             this.inputCreatedAt.Size = new System.Drawing.Size(215, 36);
             this.inputCreatedAt.TabIndex = 13;
-            this.inputCreatedAt.Texts = "10/10/2023";
+            this.inputCreatedAt.Texts = "10-10-2023";
             this.inputCreatedAt.Underlined = false;
             // 
             // labelCreatedAt
@@ -343,7 +343,7 @@ namespace Student_Management_System.Views
             this.inputDoB.ReadOnly = true;
             this.inputDoB.Size = new System.Drawing.Size(246, 36);
             this.inputDoB.TabIndex = 8;
-            this.inputDoB.Texts = "12/08/2003";
+            this.inputDoB.Texts = "12-08-2003";
             this.inputDoB.Underlined = false;
             // 
             // inputPhone

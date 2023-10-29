@@ -1,5 +1,4 @@
-﻿//using Student_Management_System.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +22,7 @@ namespace Student_Management_System.Views
         public ProfileForm(user user)
         {
             InitializeComponent();
-            this._user = user;
+            _user = user;
         }
 
         private void btnUserManagement_Click(object sender, EventArgs e)
@@ -113,5 +112,7 @@ namespace Student_Management_System.Views
                 picBoxAvatar.Image = Image.FromFile(defaultAvatar);
             }
         }
+
+        // TODO: Implement change password
     }
 }
