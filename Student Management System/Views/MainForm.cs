@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//using Student_Management_System.Models;
+using Student_Management_System.Database;
 
 namespace Student_Management_System.Views
 {
@@ -46,7 +46,7 @@ namespace Student_Management_System.Views
 
         public void openUserForm()
         {
-            openChildForm(new Admin.UserForm());
+            openChildForm(new Admin.UserForm(_user));
         }
         #endregion
 

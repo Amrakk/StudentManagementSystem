@@ -1,8 +1,10 @@
-﻿using DevExpress.XtraEditors.Filtering.Templates;
+﻿using Student_Management_System.Controllers;
+using Student_Management_System.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,10 +17,18 @@ namespace Student_Management_System
     public partial class AddStudentForm : Form
     {
         private user _user;
+        StudentController stdController;
+        DepartmentController departController;
+        ClassController classController;
+        MajorController majorController;
         public AddStudentForm(user user)
         {
             InitializeComponent();
             _user = user;
+            stdController = new StudentController();
+            departController = new DepartmentController();
+            classController = new ClassController();
+            majorController = new MajorController();
         }
 
         private void AddStudentForm_Load(object sender, EventArgs e)
@@ -29,10 +39,10 @@ namespace Student_Management_System
 
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
-                var departments = (from dp in db.Departments select dp).ToList();
+                var departments = departController.GetAll();
                 cbbDepartment.DataSource = departments;
                 
-                var classes = (from c in db.Classes select c).ToList();
+                var classes = classController.GetAll();
                 cbbClass.DataSource = classes;
             }
 
@@ -75,40 +85,37 @@ namespace Student_Management_System
                 return;
             }
 
-            try
+            int count = stdController.TotalStudents();
+            string EduTypeCode = (EduType.Equals("Standard")) ? "" : "H";
+            string Last2Digit = (parsedYear % 100).ToString();
+            string formattedCount = count.ToString("D4");
+
+            string SID = $"{Major}{Last2Digit}{EduTypeCode}{formattedCount}";
+            var student = new student()
             {
-                using (var db = new MidTermDBDataContext(Program.ConnectionString))
-                {
-                    int count = (from row in db.students select row).Count();
-                    string EduTypeCode = (EduType.Equals("Standard")) ? "" : "H";
-                    string Last2Digit = (parsedYear % 100).ToString();
-                    string formattedCount = count.ToString("D4");
+                id = SID,
+                name = StudentName,
+                gender = Gender,
+                eduType = EduType,
+                className = ClassName,
+                department = Department,
+                major = Major,
+                dob = Dob,
+                courseYear = CourseYear,
+                createdAt = DateTime.Now
+            };
 
-                    string SID = $"{Major}{Last2Digit}{EduTypeCode}{formattedCount}";
-                    var student = new student()
-                    {
-                        id = SID,
-                        name = StudentName,
-                        gender = Gender,
-                        eduType = EduType,
-                        className = ClassName,
-                        department = Department,
-                        major = Major,
-                        dob = Dob,
-                        courseYear = CourseYear,
-                        createdAt = DateTime.Now
-                    };
+            bool isAdded = stdController.Add(student);
 
-                    db.students.InsertOnSubmit(student);
-                    db.SubmitChanges();
-
-                    MessageBox.Show("Inserted");
-                }
-            }
-            catch (Exception ex)
+            if (isAdded)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Added");
             }
+            else
+            {
+                MessageBox.Show("Failed to delete");
+            }
+
         }
 
         private void cbbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,7 +126,7 @@ namespace Student_Management_System
                 {
                     string selectedDepartmentId = cbbDepartment.SelectedValue.ToString();
 
-                    var majors = (from m in db.Majors where m.department == selectedDepartmentId select m).ToList();
+                    var majors = majorController.GetAllByDepartment(selectedDepartmentId);
 
                     cbbMajor.ValueMember = "majorId";
                     cbbMajor.DisplayMember = "majorName";

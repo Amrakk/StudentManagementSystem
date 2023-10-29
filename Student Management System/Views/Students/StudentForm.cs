@@ -2,31 +2,48 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Student_Management_System.Controllers;
+using Student_Management_System.Database;
 
 namespace Student_Management_System.Views.Students
 {
     public partial class StudentForm : Form
     {
         private user _user;
+        StudentController stdController;
         public StudentForm(user user)
         {
             InitializeComponent();
             _user = user;
+            stdController = new StudentController();
         }
 
         private void StudentForm_Load(object sender, EventArgs e)
         {
-            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            var gettedStudents = stdController.GetAll();
+            var studentData = gettedStudents.Select(s => new
             {
-                var users = (from u in db.students select u).ToList();
+                SID = s.id,
+                Name = s.name,
+                Gender = s.gender,
+                Dob = s.dob,
+                Class = s.className,
+                Type = s.eduType,
+                Department = s.Department1.departName,
+                Major = s.Major1.majorName,
+                CourseYear = s.courseYear,
+                Created = s.createdAt,
+                Updated = s.updatedAt,
+            }).ToList();
 
-                dataGridView1.DataSource = users;
-            }
+            dataGridView1.DataSource = studentData;
+            dataGridView1.Columns["courseYear"].HeaderText = "Course Year";
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -52,32 +69,33 @@ namespace Student_Management_System.Views.Students
                 return;
             }
 
-            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            var studentToDel = stdController.Get(selectedId);
+            if (studentToDel == null)
             {
-                student existingStudent = db.students.FirstOrDefault(p => p.id == selectedId);
+                MessageBox.Show("There is no student");
+                return;
+            }
 
-                if (existingStudent == null)
+            var confirmResult = MessageBox.Show("Are you sure you want to delete this student?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmResult == DialogResult.Yes)
+            {
+                bool isDeleted = stdController.Delete(studentToDel);
+
+                if (isDeleted)
                 {
-                    MessageBox.Show("There is no student");
-                    return;
+                    MessageBox.Show("Deleted");
                 }
-
-                var confirmResult = MessageBox.Show("Are you sure you want to delete this student?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirmResult == DialogResult.Yes)
+                else
                 {
-                    try
-                    {
-                        db.students.DeleteOnSubmit(existingStudent);
-                        db.SubmitChanges();
-
-                        MessageBox.Show("Deleted student");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    MessageBox.Show("Failed to delete");
                 }
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddStudentForm addStdForm = new AddStudentForm(_user);
+            addStdForm.Show();
         }
     }
 }
