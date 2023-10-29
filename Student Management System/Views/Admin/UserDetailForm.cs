@@ -12,9 +12,19 @@ namespace Student_Management_System.Views.Admin
 {
     public partial class UserDetailForm : Form
     {
+
+        // Add new user
         public UserDetailForm()
         {
             InitializeComponent();
+            inputNewPassword.Texts = "User Phone number";
         }
+
+        // Edit user
+        public UserDetailForm(String userID)
+        {
+            InitializeComponent();
+        }
+
     }
 }

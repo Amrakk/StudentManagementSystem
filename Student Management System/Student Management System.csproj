@@ -102,6 +102,9 @@
     <Compile Include="Views\Auth\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomControls\ComboBoxInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Views\CustomControls\DateTimeInput.cs">
       <SubType>Component</SubType>
     </Compile>
