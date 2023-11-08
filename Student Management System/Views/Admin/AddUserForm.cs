@@ -20,7 +20,7 @@ namespace Student_Management_System
     public partial class AddUserForm : Form
     {
         private UserController userController;
-        private string selectedFilePath;
+        private string selectedFilePath = "";
         private readonly string workingDir = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.FullName ?? "";
         private user _user;
         public AddUserForm(user user)

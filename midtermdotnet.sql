@@ -14,7 +14,6 @@ CREATE TABLE certificates (
   organization_name VARCHAR(255),
   isValid BIT,
   sid VARCHAR(255),
-  imgPath VARCHAR(255),
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
   updatedAt DATETIME
 );
@@ -33,7 +32,7 @@ CREATE TABLE students (
   dob DATE,
   gender VARCHAR(255),
   eduType INT,
-  classId VARCHAR(255),
+  className VARCHAR(255),
   department VARCHAR(255),
   major VARCHAR(255),
   courseYear VARCHAR(255),
@@ -51,7 +50,6 @@ CREATE TABLE users (
   phone VARCHAR(255),
   status VARCHAR(255) DEFAULT 'Normal',
   role VARCHAR(255) DEFAULT 'Employee',
-  avatarPath VARCHAR(255),
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
   updatedAt DATETIME
 );
@@ -70,3 +68,62 @@ ALTER TABLE loginhistory
 ADD CONSTRAINT loginhistory_fk_email
 FOREIGN KEY (email)
 REFERENCES users (email);
+
+GO
+CREATE TABLE Department (
+	departId VARCHAR(255) PRIMARY KEY,
+	departName VARCHAR(255),
+	departmentCode VARCHAR(255)
+);
+
+GO
+CREATE TABLE Class (
+	classId VARCHAR(255) PRIMARY KEY,
+	numOfStudents int,
+	department VARCHAR(255),
+	eduType VARCHAR(255),
+	FOREIGN KEY (department)
+	REFERENCES Department (departId)
+);
+GO
+CREATE TABLE Major (
+	majorId VARCHAR(255) PRIMARY KEY,
+	majorName VARCHAR(255),
+	department VARCHAR(255),
+	FOREIGN KEY (department)
+	REFERENCES Department (departId)
+);
+
+GO
+ALTER TABLE students
+ADD CONSTRAINT students_fk_department
+FOREIGN KEY (department)
+REFERENCES Department (departId);
+GO
+ALTER TABLE students
+ADD CONSTRAINT students_fk_major
+FOREIGN KEY (major)
+REFERENCES Major (majorId);
+
+GO
+
+INSERT INTO Department (departId, departName, departmentCode)
+VALUES ('IT', 'Information Techonology', '5'), ('F&B', 'Finace and Banking', '3'), ('E&EE', 'Electrical & Electronic Enigeering', '2'); 
+
+GO
+
+INSERT INTO Major (majorId, majorName, department)
+VALUES
+    ('CS', 'Computer Science', 'IT'),
+    ('SE', 'Software Engineering', 'IT'),
+	('NE', 'Networking Engineering', 'IT'),
+	('MKT', 'Marketing', 'F&B')
+GO
+
+INSERT INTO Class (classId, numOfStudents, department)
+VALUES
+    ('C1', 30, 'IT'),
+    ('C2', 25, 'F&B'),
+	('C3', 30, 'E&EE')
+
+GO

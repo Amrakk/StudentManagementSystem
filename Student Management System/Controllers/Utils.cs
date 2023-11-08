@@ -1,11 +1,16 @@
-﻿using System;
+﻿using CsvHelper.Configuration;
+using CsvHelper;
+using Student_Management_System.Database;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DevExpress.Skins.SolidColorHelper;
+using OfficeOpenXml;
 
 namespace Student_Management_System.Controllers
 {
@@ -39,6 +44,57 @@ namespace Student_Management_System.Controllers
             }
 
             return imagePath;
+        }
+
+        public static List<T> ImportCsvFile<T>(string filePath)
+        {
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
+            {
+                var records = csv.GetRecords<T>().ToList();
+                return records;
+            }
+
+        }
+
+        public static void ExportCsvFile<T>(string filePath, List<T> list)
+        {
+            using (var writer = new StreamWriter(filePath))
+            using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)))
+            {
+                csv.WriteRecords(list);
+            }
+        }
+
+        public static void ExportToExcel<T>(string filePath, List<T> list)
+        {
+            FileInfo file = new FileInfo(filePath);
+
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                Type type = typeof(T);
+
+                var properties = type.GetProperties();
+                // Set headers
+                for (int col = 1; col <= properties.Length; col++)
+                {
+                    worksheet.Cells[1, col].Value = properties[col - 1].Name;
+                }
+
+                // Set values
+                for (int row = 2; row <= list.Count + 1; row++)
+                {
+                    for (int col = 1; col <= properties.Length; col++)
+                    {
+                        var propertyValue = properties[col - 1].GetValue(list[row - 2], null);
+                        worksheet.Cells[row, col].Value = propertyValue;
+                    }
+                }
+
+                package.Save();
+            }
         }
 
     }

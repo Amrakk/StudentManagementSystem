@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Linq;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,7 +27,7 @@ namespace Student_Management_System.Views.Students
 
         private void StudentForm_Load(object sender, EventArgs e)
         {
-            var gettedStudents = stdController.GetAll();
+            var gettedStudents = stdController.GetAll().ToList();
             var studentData = gettedStudents.Select(s => new
             {
                 SID = s.id,
@@ -41,6 +42,18 @@ namespace Student_Management_System.Views.Students
                 Created = s.createdAt,
                 Updated = s.updatedAt,
             }).ToList();
+
+            // Test export
+            // SystemStudentUtils.ExportCsvFile("exported_students.csv", gettedStudents);
+            // End test
+
+            // Test import
+            // var importedStudents = SystemStudentUtils.ImportCsvFile<student>("exported_students.csv");
+            // dataGridView1.DataSource = importedStudents;
+            // End test
+
+            //Test excel
+            SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", studentData);
 
             dataGridView1.DataSource = studentData;
             dataGridView1.Columns["courseYear"].HeaderText = "Course Year";
