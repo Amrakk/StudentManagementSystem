@@ -242,6 +242,7 @@
       <DependentUpon>MidTermDB.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Student_Management_System.Database.student.datasource" />
     <None Include="Properties\DataSources\Student_Management_System.Database.user.datasource" />
     <None Include="Properties\DataSources\user.datasource" />
     <None Include="Properties\Settings.settings">

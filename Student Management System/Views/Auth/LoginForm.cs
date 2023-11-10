@@ -32,8 +32,8 @@ namespace Student_Management_System.Views.Auth
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var email = txtEmail.Text;
-            var password = txtPassword.Text;
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
 
             if (email == "")
             {

@@ -1,4 +1,5 @@
-﻿using Student_Management_System.Database;
+﻿using DevExpress.XtraPrinting;
+using Student_Management_System.Database;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Student_Management_System.Controllers
@@ -20,18 +23,19 @@ namespace Student_Management_System.Controllers
                 return false;
             }
 
+            Regex phoneEx = new Regex("^[0-9]{10,}$");
+            Regex passEx = new Regex("^[a-zA-Z0-9]{8,}$");
             Regex emailEx = new Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
-            Regex passEx = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
-            Regex phoneEx = new Regex("^(?:\\d{10}|\\d{3}[-\\s]?\\d{3}[-\\s]?\\d{4})$");
-
+            
             if (!string.IsNullOrEmpty(entity.email) &&
-                emailEx.IsMatch(entity.email) &&
-                !string.IsNullOrEmpty(entity.name) &&
-                !string.IsNullOrEmpty(entity.password) &&
-                passEx.IsMatch(entity.password) &&
-                !string.IsNullOrEmpty(entity.phone) &&
-                phoneEx.IsMatch(entity.phone) &&
                 !string.IsNullOrEmpty(entity.role) &&
+                !string.IsNullOrEmpty(entity.name) &&
+                !string.IsNullOrEmpty(entity.phone) &&
+                !string.IsNullOrEmpty(entity.status) &&
+                !string.IsNullOrEmpty(entity.password) &&
+                emailEx.IsMatch(entity.email) &&
+                phoneEx.IsMatch(entity.phone) &&
+                passEx.IsMatch(entity.password) &&
                 (entity.age >= 0 && entity.age <= 100))
             {
                 string hashPassword = BCrypt.Net.BCrypt.HashPassword(entity.password, 10);
@@ -44,7 +48,9 @@ namespace Student_Management_System.Controllers
                     role = entity.role,
                     dob = entity.dob,
                     status = entity.status,
-                    age = entity.age
+                    age = entity.age,
+                    createdAt = DateTime.Now,
+                    updatedAt = DateTime.Now
                 };
 
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
@@ -58,7 +64,7 @@ namespace Student_Management_System.Controllers
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -78,7 +84,6 @@ namespace Student_Management_System.Controllers
                 try
                 {
                     bool isDeletedAllLoginHistory = new LoginHistoryController().DeleteAllSameEmail(entity.email);
-
                     if (isDeletedAllLoginHistory)
                     {
                         db.users.DeleteOnSubmit(entity);
@@ -88,7 +93,7 @@ namespace Student_Management_System.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
 
                 return false;
