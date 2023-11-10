@@ -27,21 +27,8 @@ namespace Student_Management_System.Views.Students
 
         private void StudentForm_Load(object sender, EventArgs e)
         {
-            var gettedStudents = stdController.GetAll().ToList();
-            var studentData = gettedStudents.Select(s => new
-            {
-                SID = s.id,
-                Name = s.name,
-                Gender = s.gender,
-                Dob = s.dob,
-                Class = s.className,
-                Type = s.eduType,
-                Department = s.Department1.departName,
-                Major = s.Major1.majorName,
-                CourseYear = s.courseYear,
-                Created = s.createdAt,
-                Updated = s.updatedAt,
-            }).ToList();
+            var students = stdController.GetAll();
+            
 
             // Test export
             // SystemStudentUtils.ExportCsvFile("exported_students.csv", gettedStudents);
@@ -55,8 +42,7 @@ namespace Student_Management_System.Views.Students
             //Test excel
             //SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", studentData);
 
-            dataGridView1.DataSource = studentData;
-            dataGridView1.Columns["courseYear"].HeaderText = "Course Year";
+            gridViewStudent.DataSource = students;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -68,13 +54,13 @@ namespace Student_Management_System.Views.Students
                 return;
             }
 
-            if (dataGridView1.SelectedCells.Count == 0)
+            if (gridViewStudent.SelectedCells.Count == 0)
             {
                 MessageBox.Show("No cell is selected", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string selectedId = dataGridView1.SelectedCells[0].Value?.ToString();
+            string selectedId = gridViewStudent.SelectedCells[0].Value?.ToString();
 
             if (string.IsNullOrEmpty(selectedId))
             {
@@ -109,6 +95,31 @@ namespace Student_Management_System.Views.Students
         {
             AddStudentForm addStdForm = new AddStudentForm(_user);
             addStdForm.Show();
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCreate_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnImport_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
