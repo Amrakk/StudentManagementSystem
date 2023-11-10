@@ -275,8 +275,7 @@
             this.labelErrorMessage.Name = "labelErrorMessage";
             this.labelErrorMessage.Size = new System.Drawing.Size(270, 31);
             this.labelErrorMessage.TabIndex = 33;
-            this.labelErrorMessage.Text = "Password include (A-Z), (a-z), (1-9), (#?!@$%^&*-) and must be at least 8 charact" +
-    "ers";
+            this.labelErrorMessage.Text = "Password only include (A-Z), (a-z), (1-9) and must be at least 8 characters";
             this.labelErrorMessage.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnChangePassword
@@ -374,7 +373,7 @@
             this.inputNewPassword.ReadOnly = false;
             this.inputNewPassword.Size = new System.Drawing.Size(270, 36);
             this.inputNewPassword.TabIndex = 9;
-            this.inputNewPassword.Texts = "MyPhoneNumberIfAdding";
+            this.inputNewPassword.Texts = "";
             this.inputNewPassword.Underlined = false;
             this.inputNewPassword.Enter += new System.EventHandler(this.inputNewPassword_Enter);
             this.inputNewPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputNewPassword_KeyDown);

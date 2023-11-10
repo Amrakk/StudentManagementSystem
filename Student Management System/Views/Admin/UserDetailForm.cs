@@ -1,4 +1,5 @@
-﻿using Student_Management_System.Controllers;
+﻿using DevExpress.Office.Crypto;
+using Student_Management_System.Controllers;
 using Student_Management_System.Database;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,12 @@ namespace Student_Management_System.Views.Admin
             userController = new UserController();
 
             btnSave.Text = "ADD";
+            inputEmail.Enabled = true;
             labelFormStatus.Text = "Adding ...";
         }
 
         // Edit user
-        public UserDetailForm(user user, String userEmail)
+        public UserDetailForm(user user, string userEmail)
         {
             InitializeComponent();
             _user = user;
@@ -42,6 +44,7 @@ namespace Student_Management_System.Views.Admin
             selectedUser = userController.Get(userEmail);
 
             btnSave.Text = "EDIT";
+            inputEmail.Enabled = false;
             labelFormStatus.Text = "Editing ...";
         }
 
@@ -80,7 +83,7 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-        //TODO: Test delete button
+        //TODO: Test delete button (not working) (detail: cause "Cannot remove an entity that not been attached")
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure you want to delete this user?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -109,15 +112,15 @@ namespace Student_Management_System.Views.Admin
         }
 
 
-        // TODO: Test change password button
+        // TODO: Test change password button (not working) (detail: return change password successfully but not change password in database)
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
             string newPassword = inputNewPassword.Texts;
-            Regex passEx = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+            Regex passEx = new Regex("^[a-zA-Z0-9]{8,}$");
 
-            if(!passEx.IsMatch(newPassword))
+            if (!passEx.IsMatch(newPassword))
             {
-                labelErrorMessage.Text = "Password must contain at least 8 characters, including (A-Z), (a-z), (1-9), (#?!@$%^&*-)";
+                labelErrorMessage.Text = "Password must contain at least 8 characters, including (A-Z), (a-z), (1-9)";
                 labelErrorMessage.Visible = true;
                 return;
             }
@@ -125,7 +128,7 @@ namespace Student_Management_System.Views.Admin
             try
             {
                 selectedUser.password = BCrypt.Net.BCrypt.HashPassword(newPassword, 10);
-                selectedUser.updatedAt = DateTime.Now; 
+                selectedUser.updatedAt = DateTime.Now;
 
                 bool isUpdated = userController.Update(selectedUser);
 
@@ -157,7 +160,6 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-        //TODO: test change avatar button
         private void btnChangeAvatar_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("Are you sure want to reset avatar?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -203,10 +205,122 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-        // TODO: implement save button (edit, add features)
+        // TODO: implement save button (edit, add features) (edit not working) (detail: not update user in database)
         private void btnSave_Click(object sender, EventArgs e)
         {
+            Regex phoneEx = new Regex("^[0-9]{10,}$");
+            Regex emailEx = new Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
 
+            string name = inputName.Texts;
+            string email = inputEmail.Texts;
+            string phone = inputPhone.Texts;
+            string role = inputRole.Texts;
+            string password = phone;
+            string status = inputStatus.Texts;
+            DateTime dob = inputDoB.Value.Date;
+
+            if (string.IsNullOrEmpty(email) &&
+                string.IsNullOrEmpty(role) &&
+                string.IsNullOrEmpty(name) &&
+                string.IsNullOrEmpty(phone) &&
+                string.IsNullOrEmpty(status) &&
+                string.IsNullOrEmpty(password)
+            )
+            {
+                MessageBox.Show("Please fill in all fields", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!emailEx.IsMatch(email))
+            {
+                MessageBox.Show("Email is not valid", "Invalid email", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!phoneEx.IsMatch(phone))
+            {
+                MessageBox.Show("Phone number is not valid", "Invalid phone number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var existingUser = userController.Get(email);
+
+            // Add
+            if (selectedUser == null)
+            {
+                if (existingUser != null)
+                {
+                    MessageBox.Show("This email has been used", "Not acceptable email", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var newUser = new user
+                {
+                    email = email,
+                    name = name,
+                    password = password,
+                    phone = phone.Replace(" ", "").Replace("-", ""),
+                    role = role,
+                    dob = dob,
+                    status = status,
+                    age = DateTime.Now.Year - dob.Year,
+                    createdAt = DateTime.Now,
+                    updatedAt = DateTime.Now
+                };
+
+                SystemStudentUtils.SaveAvatars(email, "defaultAvatar.png");
+
+                try
+                {
+                    bool isAdded = userController.Add(newUser);
+
+                    if (isAdded)
+                    {
+                        MessageBox.Show("Added successfully", "Added user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UserForm_Reload();
+                        this.Close();
+                    }
+                    else MessageBox.Show("Failed to add");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while adding the user: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            // Edit
+            else
+            {
+                selectedUser.name = name;
+                selectedUser.phone = phone;
+                selectedUser.role = role;
+                selectedUser.status = status;
+                selectedUser.dob = dob;
+                selectedUser.age = DateTime.Now.Year - dob.Year;
+                selectedUser.updatedAt = DateTime.Now;
+
+                try
+                {
+                    bool isUpdated = userController.Update(selectedUser);
+
+                    if (isUpdated)
+                    {
+                        MessageBox.Show("Updated successfully", "Updated user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UserForm_Reload();
+                    }
+                    else MessageBox.Show("Failed to update");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while updating the user: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void UserForm_Reload()
+        {
+            if (Application.OpenForms["UserForm"] is UserForm userForm)
+                userForm.RefreshGridView();
         }
     }
 }

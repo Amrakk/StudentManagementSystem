@@ -46,7 +46,7 @@ namespace Student_Management_System
 
                 string name = tbName.Text;
 
-                Regex passEx = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+                Regex passEx = new Regex("^[a-zA-Z0-9]{8,}$");
                 string password = tbPassword.Text;
                 string confirmed = tbConfirmPassword.Text;
 

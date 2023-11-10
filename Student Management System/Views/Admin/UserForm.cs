@@ -47,13 +47,6 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-        private void btnFilter_Click(object sender, EventArgs e)
-        {
-            //panelFilter.Show();
-            //_user = user;
-            //userController = new UserController();
-        }
-
         private void UserForm_Load(object sender, EventArgs e)
         {
             if (!_user.role.Equals("Admin"))
@@ -68,6 +61,7 @@ namespace Student_Management_System.Views.Admin
 
         private void gridViewUser_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             string email = gridViewUser.Rows[e.RowIndex].Cells[0].Value.ToString();
             UserDetailForm userDetailForm = new UserDetailForm(_user, email);
             userDetailForm.Show();
@@ -78,5 +72,29 @@ namespace Student_Management_System.Views.Admin
             UserDetailForm userDetailForm = new UserDetailForm(_user);
             userDetailForm.Show();
         }
+
+        public void RefreshGridView()
+        {
+            var users = userController.GetAll();
+            gridViewUser.DataSource = users;
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            if (panelFilter.Visible == true) panelFilter.Hide();
+            else panelFilter.Show();
+        }
+
+        // TODO: Export and Import (Find)
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -55,8 +55,8 @@ CREATE TABLE users (
 );
 
 -- Insert data into 'users' table
-INSERT INTO users (email, password, name, age, dob, phone, status, role, avatarPath, createdAt, updatedAt)
-VALUES ('admin@gmail.com', '$2a$10$JRgRBsQYUrgocwjkVISZ4eTS6eryy9XEM5hhQ2dF9GRW6XBvhDCrC', 'Admin', 20, '2003-12-05', '1234567890', NULL, 'Admin', NULL, GETDATE(), NULL);
+INSERT INTO users (email, password, name, age, dob, phone, status, role, createdAt, updatedAt)
+VALUES ('admin@gmail.com', '$2a$10$JRgRBsQYUrgocwjkVISZ4eTS6eryy9XEM5hhQ2dF9GRW6XBvhDCrC', 'Admin', 20, '2003-12-05', '1234567890', NULL, 'Admin', GETDATE(), NULL);
 
 -- Add foreign key constraints
 ALTER TABLE certificates
