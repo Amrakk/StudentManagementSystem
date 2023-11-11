@@ -55,8 +55,7 @@ namespace Student_Management_System.Views.Admin
                 return;
             }
 
-            var users = userController.GetAll();
-            gridViewUser.DataSource = users;
+            RefreshGridView();
         }
 
         private void gridViewUser_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -96,5 +95,19 @@ namespace Student_Management_System.Views.Admin
 
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inputSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(sender, e);
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
     }
 }

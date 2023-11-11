@@ -14,10 +14,26 @@ namespace Student_Management_System.Controllers
     {
         public bool Add(student entity)
         {
-            if (entity == null || string.IsNullOrEmpty(entity.id))
+            if (entity == null ||
+                entity.dob == null ||
+                string.IsNullOrEmpty(entity.name) ||
+                string.IsNullOrEmpty(entity.major) ||
+                string.IsNullOrEmpty(entity.gender) ||
+                string.IsNullOrEmpty(entity.eduType) ||
+                string.IsNullOrEmpty(entity.className) ||
+                string.IsNullOrEmpty(entity.courseYear)||
+                string.IsNullOrEmpty(entity.department) )
             {
                 return false;
             }
+
+            int count = TotalStudents();
+            string EduTypeCode = (entity.eduType.Equals("Standard")) ? "" : "H";
+            string Last2Digit = (Int32.Parse(entity.courseYear) % 100).ToString();
+            string formattedCount = count.ToString("D4");
+
+            string SID = $"{entity.major}{Last2Digit}{EduTypeCode}{formattedCount}";
+            entity.id = SID;
 
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
@@ -29,7 +45,7 @@ namespace Student_Management_System.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
                     return false;
                 }
             }
@@ -99,6 +115,7 @@ namespace Student_Management_System.Controllers
                                                   createdAt = s.createdAt,
                                                   updatedAt = s.updatedAt
                                               }).ToList();
+
                     return students;
                 }
                 catch (Exception ex)

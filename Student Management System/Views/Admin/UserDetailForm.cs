@@ -1,5 +1,4 @@
-﻿using DevExpress.Office.Crypto;
-using Student_Management_System.Controllers;
+﻿using Student_Management_System.Controllers;
 using Student_Management_System.Database;
 using System;
 using System.Collections.Generic;
@@ -29,6 +28,9 @@ namespace Student_Management_System.Views.Admin
             InitializeComponent();
             _user = user;
             userController = new UserController();
+
+            grBoxSercurity.Hide();
+            grBoxSercurity.Enabled = false;
 
             btnSave.Text = "ADD";
             inputEmail.Enabled = true;

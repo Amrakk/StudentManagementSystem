@@ -1,5 +1,7 @@
 ﻿using Student_Management_System.Controllers;
 using Student_Management_System.Database;
+using Student_Management_System.Views.Admin;
+using Student_Management_System.Views.Students;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,72 +36,76 @@ namespace Student_Management_System
         private void AddStudentForm_Load(object sender, EventArgs e)
         {
             rbtnMale.Checked = true;
-            cbbEduType.Items.Add("Standard");
-            cbbEduType.Items.Add("High Quality");
+            inputEduType.Items.Add("Standard");
+            inputEduType.Items.Add("High Quality");
 
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
                 var departments = departController.GetAll();
-                cbbDepartment.DataSource = departments;
+                inputDepartment.DataSource = departments;
                 
                 var classes = classController.GetAll();
-                cbbClass.DataSource = classes;
+                inputClass.DataSource = classes;
             }
 
-            cbbDepartment.ValueMember = "departId";
-            cbbDepartment.DisplayMember = "departName";
+            inputDepartment.ValueMember = "departId";
+            inputDepartment.DisplayMember = "departName";
 
-            cbbMajor.ValueMember = "majorId";
-            cbbMajor.DisplayMember = "majorName";
-
-            cbbClass.ValueMember = "classId";
-            cbbClass.DisplayMember = "classId";
-            
-            cbbEduType.SelectedIndex = 0;
+            inputClass.ValueMember = "classId";
+            inputClass.DisplayMember = "classId";
+                
+            btnReset_Click(sender, e);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string userRole = _user.role?.ToLower() ?? "";
-            if (!userRole.Equals("admin") && !userRole.Equals("manager"))
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
             {
-                MessageBox.Show("There is no authorization");
+                MessageBox.Show("You are not authorized");
                 return;
             }
 
-            string StudentName = tbName.Text;
-            string EduType = cbbEduType.SelectedItem as string;
-            string Department = cbbDepartment.SelectedValue as string;
-            string ClassName = cbbClass.SelectedValue as string;
-            string Major = cbbMajor.SelectedValue as string;
-            
+            string StudentName = inputName.Texts;
+            string EduType = inputEduType.SelectedItem as string;
+            Department Department = inputDepartment.SelectedItem as Department;
+            Class ClassName = inputClass.SelectedItem as Class;
+            Major Major = inputMajor.SelectedItem as Major;
+
             Regex yearRegEx = new Regex(@"^\d{4}$");
-            string CourseYear = tbCourseYear.Text;
+            string CourseYear = inputCourseYear.Texts;
             string Gender = (rbtnMale.Checked) ? "Male" : "Female";
             DateTime Dob = inputDoB.Value.Date;
 
             int.TryParse(CourseYear, out int parsedYear);
-            if (string.IsNullOrEmpty(StudentName) || !yearRegEx.IsMatch(CourseYear) || parsedYear > DateTime.Now.Year)
+
+            if (Dob == null||
+                Major == null||
+                ClassName == null ||
+                Department == null ||
+                string.IsNullOrEmpty(EduType) ||
+                string.IsNullOrEmpty(StudentName) ||
+                string.IsNullOrEmpty(parsedYear.ToString()) )
             {
-                MessageBox.Show("Check inputs again");
+                MessageBox.Show("Please fill all fields");
                 return;
             }
 
-            int count = stdController.TotalStudents();
-            string EduTypeCode = (EduType.Equals("Standard")) ? "" : "H";
-            string Last2Digit = (parsedYear % 100).ToString();
-            string formattedCount = count.ToString("D4");
 
-            string SID = $"{Major}{Last2Digit}{EduTypeCode}{formattedCount}";
+            if (!yearRegEx.IsMatch(CourseYear) || parsedYear > DateTime.Now.Year)
+            {
+                MessageBox.Show("Invalid course year");
+                return;
+            }
+
             var student = new student()
             {
-                id = SID,
                 name = StudentName,
                 gender = Gender,
                 eduType = EduType,
-                className = ClassName,
-                department = Department,
-                major = Major,
+                className = ClassName.classId,
+                department = Department.departId,
+                major = Major.majorId,
                 dob = Dob,
                 courseYear = CourseYear,
                 createdAt = DateTime.Now
@@ -107,33 +113,43 @@ namespace Student_Management_System
 
             bool isAdded = stdController.Add(student);
 
-            if (isAdded)
-            {
-                MessageBox.Show("Added");
-            }
-            else
-            {
-                MessageBox.Show("Failed to delete");
-            }
-
+            if (isAdded) { MessageBox.Show("Student Added"); StudentForm_Reload(); this.Close(); }
+            else MessageBox.Show("Failed to add");
         }
 
-        private void cbbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        private void inputDepartment_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
-                if (cbbDepartment.SelectedValue != null)
+                if (inputDepartment.SelectedItem != null)
                 {
-                    string selectedDepartmentId = cbbDepartment.SelectedValue.ToString();
+                    Department department = inputDepartment.SelectedItem as Department;
+                    var majors = majorController.GetAllByDepartment(department.departId);
+                    inputMajor.Texts = "";
+                    
+                    inputMajor.ValueMember = "majorId";
+                    inputMajor.DisplayMember = "majorName";
 
-                    var majors = majorController.GetAllByDepartment(selectedDepartmentId);
-
-                    cbbMajor.ValueMember = "majorId";
-                    cbbMajor.DisplayMember = "majorName";
-
-                    cbbMajor.DataSource = majors;
+                    inputMajor.DataSource = majors;
                 }
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            inputName.Texts = "";
+            rbtnMale.Checked = true;
+            inputCourseYear.Texts = "";
+            inputDoB.Value = DateTime.Now;
+            inputClass.SelectedIndex = 0;
+            inputEduType.SelectedIndex = 0;
+            inputDepartment.SelectedIndex = 0;
+        }
+
+        private void StudentForm_Reload()
+        {
+            if (Application.OpenForms["StudentForm"] is StudentForm studentForm)
+                studentForm.RefreshGridView();
         }
     }
 }

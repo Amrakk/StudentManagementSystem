@@ -21,7 +21,18 @@ namespace Student_Management_System.Controllers
 
         public Major Get(string id)
         {
-            throw new NotImplementedException();
+            using(var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    return db.Majors.SingleOrDefault(m => m.majorId == id);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
         }
 
         public ICollection<Major> GetAll()

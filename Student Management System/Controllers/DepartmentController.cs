@@ -21,7 +21,18 @@ namespace Student_Management_System.Controllers
 
         public Department Get(string id)
         {
-            throw new NotImplementedException();
+            using(var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    return (from dp in db.Departments where dp.departId == id select dp).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
         }
 
         public ICollection<Department> GetAll()

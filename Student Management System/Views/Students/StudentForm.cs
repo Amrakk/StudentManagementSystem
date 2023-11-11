@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Student_Management_System.Controllers;
 using Student_Management_System.Database;
+using Student_Management_System.Views.Admin;
 
 namespace Student_Management_System.Views.Students
 {
@@ -23,13 +24,16 @@ namespace Student_Management_System.Views.Students
             InitializeComponent();
             _user = user;
             stdController = new StudentController();
+
+            panelFilter.Hide();
+            inputSearch.ForeColor = Color.Silver;
+            inputSearch.Texts = "Search by Name";
+            gridViewStudent.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         }
 
         private void StudentForm_Load(object sender, EventArgs e)
         {
-            var students = stdController.GetAll();
-            
-
+            RefreshGridView();
             // Test export
             // SystemStudentUtils.ExportCsvFile("exported_students.csv", gettedStudents);
             // End test
@@ -42,9 +46,8 @@ namespace Student_Management_System.Views.Students
             //Test excel
             //SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", studentData);
 
-            gridViewStudent.DataSource = students;
         }
-
+        // Template 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string userRole = _user.role.ToLower() ?? "";
@@ -91,10 +94,48 @@ namespace Student_Management_System.Views.Students
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnCreate_Click(object sender, EventArgs e)
         {
-            AddStudentForm addStdForm = new AddStudentForm(_user);
-            addStdForm.Show();
+            AddStudentForm addStudentForm = new AddStudentForm(_user);
+            addStudentForm.Show();
+        }
+
+        public void RefreshGridView()
+        {
+            var students = stdController.GetAll();
+            gridViewStudent.DataSource = students;
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            if (panelFilter.Visible == true) panelFilter.Hide();
+            else panelFilter.Show();
+        }
+
+        private void inputSearch_Enter(object sender, EventArgs e)
+        {
+            if (inputSearch.Texts == "Search by Name")
+            {
+                inputSearch.Texts = "";
+                inputSearch.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void inputSearch_Leave(object sender, EventArgs e)
+        {
+            if (inputSearch.Texts == "")
+            {
+                inputSearch.Texts = "Search by Name";
+                inputSearch.ForeColor = Color.Silver;
+            }
+        }
+
+
+
+        // TODO: Export and Import (Find)
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -102,24 +143,27 @@ namespace Student_Management_System.Views.Students
 
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void inputSearch_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(sender, e);
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
         }
 
-        private void btnCreate_Click_1(object sender, EventArgs e)
+        private void gridViewStudent_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private void btnImport_Click_1(object sender, EventArgs e)
-        {
-
+            if (e.RowIndex < 0) return;
+            string SID = gridViewStudent.Rows[e.RowIndex].Cells[0].Value.ToString();
+            StudentDetailForm studentDetailForm = new StudentDetailForm(_user, SID);
+            studentDetailForm.Show();
         }
     }
 }
