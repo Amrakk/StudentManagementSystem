@@ -32,24 +32,30 @@ namespace Student_Management_System.Views.Students
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelStudent = new System.Windows.Forms.Label();
             this.gridViewStudent = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.majorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.courseYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelFilter = new System.Windows.Forms.Panel();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.inputSearch = new Student_Management_System.Views.CustomControls.Input();
-            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.classNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.majorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.courseYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -76,8 +82,7 @@ namespace Student_Management_System.Views.Students
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.dobDataGridViewTextBoxColumn,
-            this.genderDataGridViewTextBoxColumn,
-            this.classNameDataGridViewTextBoxColumn,
+            this.gender,
             this.departmentDataGridViewTextBoxColumn,
             this.majorDataGridViewTextBoxColumn,
             this.courseYearDataGridViewTextBoxColumn});
@@ -88,6 +93,80 @@ namespace Student_Management_System.Views.Students
             this.gridViewStudent.RowTemplate.Height = 24;
             this.gridViewStudent.Size = new System.Drawing.Size(1278, 524);
             this.gridViewStudent.TabIndex = 1;
+            this.gridViewStudent.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewStudent_CellDoubleClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.idDataGridViewTextBoxColumn.HeaderText = "Student ID";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 235;
+            // 
+            // dobDataGridViewTextBoxColumn
+            // 
+            this.dobDataGridViewTextBoxColumn.DataPropertyName = "dob";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dobDataGridViewTextBoxColumn.HeaderText = "Date of Birth";
+            this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
+            this.dobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dobDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // gender
+            // 
+            this.gender.DataPropertyName = "gender";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.gender.DefaultCellStyle = dataGridViewCellStyle4;
+            this.gender.HeaderText = "Gender";
+            this.gender.Name = "gender";
+            this.gender.ReadOnly = true;
+            // 
+            // departmentDataGridViewTextBoxColumn
+            // 
+            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "department";
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.departmentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
+            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
+            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
+            this.departmentDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // majorDataGridViewTextBoxColumn
+            // 
+            this.majorDataGridViewTextBoxColumn.DataPropertyName = "major";
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.majorDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.majorDataGridViewTextBoxColumn.HeaderText = "Major";
+            this.majorDataGridViewTextBoxColumn.Name = "majorDataGridViewTextBoxColumn";
+            this.majorDataGridViewTextBoxColumn.ReadOnly = true;
+            this.majorDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // courseYearDataGridViewTextBoxColumn
+            // 
+            this.courseYearDataGridViewTextBoxColumn.DataPropertyName = "courseYear";
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.courseYearDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.courseYearDataGridViewTextBoxColumn.HeaderText = "Course Year";
+            this.courseYearDataGridViewTextBoxColumn.Name = "courseYearDataGridViewTextBoxColumn";
+            this.courseYearDataGridViewTextBoxColumn.ReadOnly = true;
+            this.courseYearDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // studentBindingSource
+            // 
+            this.studentBindingSource.DataSource = typeof(Student_Management_System.Database.student);
             // 
             // panelFilter
             // 
@@ -109,6 +188,7 @@ namespace Student_Management_System.Views.Students
             this.btnFilter.TabIndex = 11;
             this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = false;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // btnSearch
             // 
@@ -123,6 +203,7 @@ namespace Student_Management_System.Views.Students
             this.btnSearch.TabIndex = 10;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // inputSearch
             // 
@@ -142,10 +223,9 @@ namespace Student_Management_System.Views.Students
             this.inputSearch.TabIndex = 9;
             this.inputSearch.Texts = "";
             this.inputSearch.Underlined = false;
-            // 
-            // studentBindingSource
-            // 
-            this.studentBindingSource.DataSource = typeof(Student_Management_System.Database.student);
+            this.inputSearch.Enter += new System.EventHandler(this.inputSearch_Enter);
+            this.inputSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputSearch_KeyDown);
+            this.inputSearch.Leave += new System.EventHandler(this.inputSearch_Leave);
             // 
             // btnCreate
             // 
@@ -161,7 +241,7 @@ namespace Student_Management_System.Views.Students
             this.btnCreate.TabIndex = 7;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = false;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click_1);
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnImport
             // 
@@ -176,7 +256,7 @@ namespace Student_Management_System.Views.Students
             this.btnImport.TabIndex = 6;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = false;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click_1);
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnExport
             // 
@@ -192,67 +272,6 @@ namespace Student_Management_System.Views.Students
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Student ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 225;
-            // 
-            // dobDataGridViewTextBoxColumn
-            // 
-            this.dobDataGridViewTextBoxColumn.DataPropertyName = "dob";
-            this.dobDataGridViewTextBoxColumn.HeaderText = "Date of Birth";
-            this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
-            this.dobDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dobDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // genderDataGridViewTextBoxColumn
-            // 
-            this.genderDataGridViewTextBoxColumn.DataPropertyName = "gender";
-            this.genderDataGridViewTextBoxColumn.HeaderText = "Gender";
-            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
-            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // classNameDataGridViewTextBoxColumn
-            // 
-            this.classNameDataGridViewTextBoxColumn.DataPropertyName = "className";
-            this.classNameDataGridViewTextBoxColumn.HeaderText = "Class";
-            this.classNameDataGridViewTextBoxColumn.Name = "classNameDataGridViewTextBoxColumn";
-            this.classNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // departmentDataGridViewTextBoxColumn
-            // 
-            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "department";
-            this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
-            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
-            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
-            this.departmentDataGridViewTextBoxColumn.Width = 225;
-            // 
-            // majorDataGridViewTextBoxColumn
-            // 
-            this.majorDataGridViewTextBoxColumn.DataPropertyName = "major";
-            this.majorDataGridViewTextBoxColumn.HeaderText = "Major";
-            this.majorDataGridViewTextBoxColumn.Name = "majorDataGridViewTextBoxColumn";
-            this.majorDataGridViewTextBoxColumn.ReadOnly = true;
-            this.majorDataGridViewTextBoxColumn.Width = 225;
-            // 
-            // courseYearDataGridViewTextBoxColumn
-            // 
-            this.courseYearDataGridViewTextBoxColumn.DataPropertyName = "courseYear";
-            this.courseYearDataGridViewTextBoxColumn.HeaderText = "Course Year";
-            this.courseYearDataGridViewTextBoxColumn.Name = "courseYearDataGridViewTextBoxColumn";
-            this.courseYearDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // StudentForm
             // 
@@ -296,8 +315,7 @@ namespace Student_Management_System.Views.Students
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dobDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn classNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn gender;
         private DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn majorDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn courseYearDataGridViewTextBoxColumn;

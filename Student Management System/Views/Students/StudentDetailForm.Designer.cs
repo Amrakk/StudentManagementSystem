@@ -34,21 +34,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(194, 170);
+            this.label1.Location = new System.Drawing.Point(249, 238);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(521, 15);
+            this.label1.Size = new System.Drawing.Size(686, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Use to RUD Student, CRUD Certificates (CRUD for Certificates might be divided int" +
     "o another form)";
             // 
             // StudentDetailForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 519);
+            this.ClientSize = new System.Drawing.Size(1296, 579);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "StudentDetailForm";
             this.Text = "StudentDetailForm";
             this.ResumeLayout(false);

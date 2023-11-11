@@ -32,18 +32,18 @@ namespace Student_Management_System.Views.Admin
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelUser = new System.Windows.Forms.Label();
             this.gridViewUser = new System.Windows.Forms.DataGridView();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,10 +51,10 @@ namespace Student_Management_System.Views.Admin
             this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
-            this.inputSearch = new Student_Management_System.Views.CustomControls.Input();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.panelFilter = new System.Windows.Forms.Panel();
+            this.inputSearch = new Student_Management_System.Views.CustomControls.Input();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -74,14 +74,14 @@ namespace Student_Management_System.Views.Admin
             // 
             this.gridViewUser.AllowUserToAddRows = false;
             this.gridViewUser.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridViewUser.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewUser.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridViewUser.AutoGenerateColumns = false;
             this.gridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.emailDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.dobDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
             this.phoneDataGridViewTextBoxColumn,
             this.statusDataGridViewTextBoxColumn,
             this.roleDataGridViewTextBoxColumn});
@@ -93,21 +93,11 @@ namespace Student_Management_System.Views.Admin
             this.gridViewUser.TabIndex = 1;
             this.gridViewUser.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewUser_CellDoubleClick);
             // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            this.emailDataGridViewTextBoxColumn.Width = 310;
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
@@ -116,18 +106,28 @@ namespace Student_Management_System.Views.Admin
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "dob";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.dobDataGridViewTextBoxColumn.HeaderText = "Date of Birth";
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
             this.dobDataGridViewTextBoxColumn.Width = 180;
             // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.Width = 310;
+            // 
             // phoneDataGridViewTextBoxColumn
             // 
             this.phoneDataGridViewTextBoxColumn.DataPropertyName = "phone";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
             this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
             this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -136,8 +136,8 @@ namespace Student_Management_System.Views.Admin
             // statusDataGridViewTextBoxColumn
             // 
             this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
             this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
             this.statusDataGridViewTextBoxColumn.ReadOnly = true;
@@ -146,8 +146,8 @@ namespace Student_Management_System.Views.Admin
             // roleDataGridViewTextBoxColumn
             // 
             this.roleDataGridViewTextBoxColumn.DataPropertyName = "role";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.roleDataGridViewTextBoxColumn.HeaderText = "Role";
             this.roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
             this.roleDataGridViewTextBoxColumn.ReadOnly = true;
@@ -203,27 +203,6 @@ namespace Student_Management_System.Views.Admin
             this.btnCreate.UseVisualStyleBackColor = false;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // inputSearch
-            // 
-            this.inputSearch.BorderColor = System.Drawing.Color.DimGray;
-            this.inputSearch.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputSearch.BorderSize = 1;
-            this.inputSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputSearch.ForeColor = System.Drawing.Color.DimGray;
-            this.inputSearch.Location = new System.Drawing.Point(98, 119);
-            this.inputSearch.Margin = new System.Windows.Forms.Padding(5);
-            this.inputSearch.Multiline = false;
-            this.inputSearch.Name = "inputSearch";
-            this.inputSearch.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-            this.inputSearch.PasswordChar = false;
-            this.inputSearch.ReadOnly = false;
-            this.inputSearch.Size = new System.Drawing.Size(412, 32);
-            this.inputSearch.TabIndex = 5;
-            this.inputSearch.Texts = "";
-            this.inputSearch.Underlined = false;
-            this.inputSearch.Enter += new System.EventHandler(this.inputSearch_Enter);
-            this.inputSearch.Leave += new System.EventHandler(this.inputSearch_Leave);
-            // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -237,6 +216,7 @@ namespace Student_Management_System.Views.Admin
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnFilter
             // 
@@ -259,6 +239,28 @@ namespace Student_Management_System.Views.Admin
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Size = new System.Drawing.Size(224, 84);
             this.panelFilter.TabIndex = 8;
+            // 
+            // inputSearch
+            // 
+            this.inputSearch.BorderColor = System.Drawing.Color.DimGray;
+            this.inputSearch.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputSearch.BorderSize = 1;
+            this.inputSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputSearch.ForeColor = System.Drawing.Color.DimGray;
+            this.inputSearch.Location = new System.Drawing.Point(98, 119);
+            this.inputSearch.Margin = new System.Windows.Forms.Padding(5);
+            this.inputSearch.Multiline = false;
+            this.inputSearch.Name = "inputSearch";
+            this.inputSearch.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            this.inputSearch.PasswordChar = false;
+            this.inputSearch.ReadOnly = false;
+            this.inputSearch.Size = new System.Drawing.Size(412, 32);
+            this.inputSearch.TabIndex = 5;
+            this.inputSearch.Texts = "";
+            this.inputSearch.Underlined = false;
+            this.inputSearch.Enter += new System.EventHandler(this.inputSearch_Enter);
+            this.inputSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputSearch_KeyDown);
+            this.inputSearch.Leave += new System.EventHandler(this.inputSearch_Leave);
             // 
             // UserForm
             // 
@@ -299,9 +301,9 @@ namespace Student_Management_System.Views.Admin
         private Button btnFilter;
         private Panel panelFilter;
         private BindingSource userBindingSource;
-        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dobDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;

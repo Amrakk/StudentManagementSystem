@@ -230,6 +230,9 @@
     <EmbeddedResource Include="Views\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Students\StudentDetailForm.resx">
+      <DependentUpon>StudentDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Students\StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,6 +245,7 @@
       <DependentUpon>MidTermDB.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Student_Management_System.Database.Major.datasource" />
     <None Include="Properties\DataSources\Student_Management_System.Database.student.datasource" />
     <None Include="Properties\DataSources\Student_Management_System.Database.user.datasource" />
     <None Include="Properties\DataSources\user.datasource" />

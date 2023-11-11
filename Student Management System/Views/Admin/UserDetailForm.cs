@@ -30,6 +30,9 @@ namespace Student_Management_System.Views.Admin
             _user = user;
             userController = new UserController();
 
+            grBoxSercurity.Hide();
+            grBoxSercurity.Enabled = false;
+
             btnSave.Text = "ADD";
             inputEmail.Enabled = true;
             labelFormStatus.Text = "Adding ...";
