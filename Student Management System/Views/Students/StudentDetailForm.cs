@@ -25,5 +25,10 @@ namespace Student_Management_System.Views.Students
             stdController = new StudentController();
             _student = stdController.Get(SID);
         }
+
+        private void grBoxProfile_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -56,7 +56,7 @@ CREATE TABLE users (
 
 -- Insert data into 'users' table
 INSERT INTO users (email, password, name, age, dob, phone, status, role, createdAt, updatedAt)
-VALUES ('admin@gmail.com', '$2a$10$OLpsmv5Jpd6PdJfkGFOMSOPICFC0N/xXez4FzxNKLk243DKKhmXqa', 'Admin', 20, '2003-12-05', '1234567890', "Normal", 'Admin', GETDATE(), NULL);
+VALUES ('admin@gmail.com', '$2a$10$OLpsmv5Jpd6PdJfkGFOMSOPICFC0N/xXez4FzxNKLk243DKKhmXqa', 'Admin', 20, '2003-12-05', '1234567890', 'Normal', 'Admin', GETDATE(), NULL);
 -- password: 123123123
 
 -- Add foreign key constraints

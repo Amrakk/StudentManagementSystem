@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.Skins.SolidColorHelper;
 using OfficeOpenXml;
 
 namespace Student_Management_System.Controllers
