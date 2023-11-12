@@ -35,6 +35,7 @@ namespace Student_Management_System.Views.Students
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,12 +57,13 @@ namespace Student_Management_System.Views.Students
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1647, 249);
             this.dataGridView1.TabIndex = 1;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(158, 362);
+            this.btnDelete.Location = new System.Drawing.Point(315, 362);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(113, 38);
             this.btnDelete.TabIndex = 2;
@@ -79,11 +81,22 @@ namespace Student_Management_System.Views.Students
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(170, 362);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(113, 38);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1696, 432);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dataGridView1);
@@ -104,5 +117,6 @@ namespace Student_Management_System.Views.Students
         private DataGridView dataGridView1;
         private Button btnDelete;
         private Button btnAdd;
+        private Button btnUpdate;
     }
 }

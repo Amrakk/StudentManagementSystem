@@ -72,28 +72,38 @@ namespace Student_Management_System.Controllers
 
             using (ExcelPackage package = new ExcelPackage(file))
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+                string newWorksheetName = "Sheet1";
 
-                Type type = typeof(T);
-
-                var properties = type.GetProperties();
-                // Set headers
-                for (int col = 1; col <= properties.Length; col++)
+                if (package.Workbook.Worksheets.Any(sheet => sheet.Name == newWorksheetName))
                 {
-                    worksheet.Cells[1, col].Value = properties[col - 1].Name;
+                    throw new InvalidOperationException($"Worksheet with the name '{newWorksheetName}' already exists in the workbook.");
                 }
-
-                // Set values
-                for (int row = 2; row <= list.Count + 1; row++)
+                else
                 {
+                    ExcelWorksheet newWorksheet = package.Workbook.Worksheets.Add(newWorksheetName);
+
+                    Type type = typeof(T);
+                    var properties = type.GetProperties();
+
+                    // Set headers
                     for (int col = 1; col <= properties.Length; col++)
                     {
-                        var propertyValue = properties[col - 1].GetValue(list[row - 2], null);
-                        worksheet.Cells[row, col].Value = propertyValue;
+                        newWorksheet.Cells[1, col].Value = properties[col - 1].Name;
                     }
-                }
 
-                package.Save();
+                    // Set values
+                    for (int row = 2; row <= list.Count + 1; row++)
+                    {
+                        for (int col = 1; col <= properties.Length; col++)
+                        {
+                            var propertyValue = properties[col - 1].GetValue(list[row - 2], null);
+                            newWorksheet.Cells[row, col].Value = propertyValue;
+                        }
+                    }
+
+                    // Save the package
+                    package.Save();
+                }
             }
         }
 

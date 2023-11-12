@@ -4,115 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Linq;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DevExpress.XtraEditors.Mask.MaskSettings;
 
-namespace Student_Management_System
+namespace Student_Management_System.Views.Students
 {
-    public partial class AddStudentForm : Form
+    public partial class UpdateStudentForm : Form
     {
-        private user _user;
+        private student _student;
         StudentController stdController;
         DepartmentController departController;
         ClassController classController;
         MajorController majorController;
-        public AddStudentForm(user user)
+        public UpdateStudentForm(student student)
         {
             InitializeComponent();
-            _user = user;
+            _student = student;
             stdController = new StudentController();
             departController = new DepartmentController();
             classController = new ClassController();
             majorController = new MajorController();
-        }
-
-        private void AddStudentForm_Load(object sender, EventArgs e)
-        {
-            rbtnMale.Checked = true;
-            cbbEduType.Items.Add("Standard");
-            cbbEduType.Items.Add("High Quality");
-
-            var departments = departController.GetAll();
-            cbbDepartment.DataSource = departments;
-
-            var classes = classController.GetAll();
-            cbbClass.DataSource = classes;
-
-            cbbDepartment.ValueMember = "departId";
-            cbbDepartment.DisplayMember = "departName";
-
-            cbbMajor.ValueMember = "majorId";
-            cbbMajor.DisplayMember = "majorName";
-
-            cbbClass.ValueMember = "classId";
-            cbbClass.DisplayMember = "className";
-            
-            cbbEduType.SelectedIndex = 0;
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            string userRole = _user.role?.ToLower() ?? "";
-            if (!userRole.Equals("admin") && !userRole.Equals("manager"))
-            {
-                MessageBox.Show("There is no authorization");
-                return;
-            }
-
-            string StudentName = tbName.Text;
-            string EduType = cbbEduType.SelectedItem as string;
-            string Department = cbbDepartment.SelectedValue as string;
-            string ClassName = cbbClass.SelectedValue as string;
-            string Major = cbbMajor.SelectedValue as string;
-            
-            Regex yearRegEx = new Regex(@"^\d{4}$");
-            string CourseYear = tbCourseYear.Text;
-            string Gender = (rbtnMale.Checked) ? "Male" : "Female";
-            DateTime Dob = inputDoB.Value.Date;
-
-            int.TryParse(CourseYear, out int parsedYear);
-            if (string.IsNullOrEmpty(StudentName) || !yearRegEx.IsMatch(CourseYear) || parsedYear > DateTime.Now.Year)
-            {
-                MessageBox.Show("Check inputs again");
-                return;
-            }
-
-            int count = stdController.TotalStudents();
-            string EduTypeCode = (EduType.Equals("Standard")) ? "" : "H";
-            string Last2Digit = (parsedYear % 100).ToString();
-            string formattedCount = count.ToString("D4");
-
-            string SID = $"{Major}{Last2Digit}{EduTypeCode}{formattedCount}";
-            var student = new student()
-            {
-                id = SID,
-                name = StudentName,
-                gender = Gender,
-                eduType = EduType,
-                className = ClassName,
-                department = Department,
-                major = Major,
-                dob = Dob,
-                courseYear = CourseYear,
-                createdAt = DateTime.Now
-            };
-
-            bool isAdded = stdController.Add(student);
-
-            if (isAdded)
-            {
-                MessageBox.Show("Added");
-            }
-            else
-            {
-                MessageBox.Show("Failed to delete");
-            }
-
         }
 
         private void cbbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,6 +46,96 @@ namespace Student_Management_System
 
                     cbbMajor.DataSource = majors;
                 }
+            }
+        }
+
+        private void UpdateStudentForm_Load(object sender, EventArgs e)
+        {
+            tbName.Text = _student.name;
+            tbCourseYear.Text = _student.courseYear;
+            inputDoB.Value = _student.dob.Value;
+
+            if (_student.gender.ToLower().Equals("male")) 
+            {
+                rbtnMale.Checked = true;
+            } else
+            {
+                rbtnFemale.Checked = true;
+            }
+
+            cbbEduType.Items.Add("Standard");
+            cbbEduType.Items.Add("High Quality");
+
+            var departments = departController.GetAll();
+            cbbDepartment.DataSource = departments;
+
+            var classes = classController.GetAll();
+            cbbClass.DataSource = classes;
+
+            cbbDepartment.ValueMember = "departId";
+            cbbDepartment.DisplayMember = "departName";
+
+            cbbMajor.ValueMember = "majorId";
+            cbbMajor.DisplayMember = "majorName";
+
+            cbbClass.ValueMember = "classId";
+            cbbClass.DisplayMember = "className";
+
+            cbbDepartment.SelectedValue = _student.department;
+            cbbClass.SelectedValue = _student.className;
+            cbbMajor.SelectedValue = _student.major;
+
+            if (_student.eduType.ToLower().Equals("standard"))
+            {
+                cbbEduType.SelectedIndex = 0;
+            }
+            else
+            {
+                cbbEduType.SelectedIndex = 1;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string StudentName = tbName.Text;
+            string EduType = cbbEduType.SelectedItem as string;
+            string Department = cbbDepartment.SelectedValue as string;
+            string ClassName = cbbClass.SelectedValue as string;
+            string Major = cbbMajor.SelectedValue as string;
+
+            Regex yearRegEx = new Regex(@"^\d{4}$");
+            string CourseYear = tbCourseYear.Text;
+            string Gender = (rbtnMale.Checked) ? "Male" : "Female";
+            DateTime Dob = inputDoB.Value.Date;
+
+            if (!yearRegEx.IsMatch(CourseYear))
+            {
+                MessageBox.Show("Check input again");
+                return;
+            }
+
+            var updatedStudent = new student
+            {
+                id = _student.id,
+                name = StudentName,
+                eduType = EduType,
+                department = Department,
+                className = ClassName,
+                major = Major,
+                dob = Dob,
+                courseYear = CourseYear,
+                gender = Gender,
+            };
+
+            bool isUpdated = stdController.Update(updatedStudent);
+
+            if (isUpdated)
+            {
+                MessageBox.Show("Updated");
+            }
+            else
+            {
+                MessageBox.Show("Failed to update");
             }
         }
     }

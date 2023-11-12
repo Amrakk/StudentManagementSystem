@@ -39,7 +39,6 @@ namespace Student_Management_System.Controllers
         {
             if (entity == null || string.IsNullOrEmpty(entity.id))
             {
-                Console.WriteLine("There is no student");
                 return false;
             }
 
@@ -47,15 +46,26 @@ namespace Student_Management_System.Controllers
             {
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
-                    db.students.DeleteOnSubmit(entity);
-                    db.SubmitChanges();
+                    try
+                    {
+                        var entityToDelete = Get(entity.id);
+                        if (entityToDelete != null)
+                        {
+                            db.students.DeleteOnSubmit(entityToDelete);
+                            db.SubmitChanges();
+                            return true;
+                        }
 
-                    return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
             return false;
@@ -121,56 +131,66 @@ namespace Student_Management_System.Controllers
             {
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
-                    student updatedStudent = Get(entity.id);
-
-                    if (updatedStudent == null)
+                    try
                     {
-                        return false;
-                    }
+                        student updatedStudent = db.students.FirstOrDefault(s => s.id.Equals(entity.id));
+                        
+                        if (updatedStudent == null)
+                        {
+                            return false;
+                        }
 
-                    if (!string.IsNullOrEmpty(entity.name))
+                        if (!string.IsNullOrEmpty(entity.name))
+                        {
+                            updatedStudent.name = entity.name;
+                        }
+
+                        if (!string.IsNullOrEmpty(entity.gender))
+                        {
+                            updatedStudent.gender = entity.gender;
+                        }
+
+                        if (!string.IsNullOrEmpty(entity.eduType))
+                        {
+                            updatedStudent.eduType = entity.eduType;
+                        }
+
+                        if (!string.IsNullOrEmpty(entity.className))
+                        {
+                            updatedStudent.className = entity.className;
+                        }
+
+                        if (!string.IsNullOrEmpty(entity.courseYear))
+                        {
+                            updatedStudent.courseYear = entity.courseYear;
+                        }
+
+                        if (entity.dob != null)
+                        {
+                            updatedStudent.dob = entity.dob;
+                        }
+
+                        if (!string.IsNullOrEmpty(entity.department))
+                        {
+                            updatedStudent.department = entity.department;
+                        }
+
+                        if (!string.IsNullOrEmpty(entity.major))
+                        {
+                            updatedStudent.major = entity.major;
+                        }
+
+                        updatedStudent.updatedAt = DateTime.Now;
+
+                        MessageBox.Show("ID: " + updatedStudent.id + " - Name: " + updatedStudent.name + " - depart: " + updatedStudent.department + " class: " + updatedStudent.className + " gender: " + updatedStudent.gender + " - edu type: " + updatedStudent.eduType + " - course year: " + updatedStudent.courseYear);
+
+                        db.SubmitChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
                     {
-                        updatedStudent.name = entity.name;
+                        MessageBox.Show(ex.Message);
                     }
-
-                    if (!string.IsNullOrEmpty(entity.gender))
-                    {
-                        updatedStudent.gender = entity.gender;
-                    }
-
-                    if (!string.IsNullOrEmpty(entity.eduType))
-                    {
-                        updatedStudent.eduType = entity.eduType;
-                    }
-
-                    if (!string.IsNullOrEmpty(entity.className))
-                    {
-                        updatedStudent.eduType = entity.className;
-                    }
-
-                    if (!string.IsNullOrEmpty(entity.courseYear))
-                    {
-                        updatedStudent.eduType = entity.courseYear;
-                    }
-
-                    if (entity.dob != null)
-                    {
-                        updatedStudent.dob = entity.dob;
-                    }
-
-                    if (!string.IsNullOrEmpty(entity.department))
-                    {
-                        updatedStudent.department = entity.department;
-                    }
-
-                    if (!string.IsNullOrEmpty(entity.major))
-                    {
-                        updatedStudent.major = entity.major;
-                    }
-
-                    updatedStudent.updatedAt = DateTime.Now;
-                    db.SubmitChanges();
-                    return true;
                 }
             }
             catch (Exception ex)

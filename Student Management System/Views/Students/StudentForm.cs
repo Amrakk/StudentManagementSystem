@@ -52,8 +52,8 @@ namespace Student_Management_System.Views.Students
             // dataGridView1.DataSource = importedStudents;
             // End test
 
-            //Test excel
-            SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", studentData);
+            // Test excel
+            // SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", studentData);
 
             dataGridView1.DataSource = studentData;
             dataGridView1.Columns["courseYear"].HeaderText = "Course Year";
@@ -64,7 +64,7 @@ namespace Student_Management_System.Views.Students
             string userRole = _user.role.ToLower() ?? "";
             if (!userRole.Equals("admin") && !userRole.Equals("manager")) 
             {
-                MessageBox.Show("You have no priority");
+                MessageBox.Show("You have no permission");
                 return;
             }
 
@@ -109,6 +109,34 @@ namespace Student_Management_System.Views.Students
         {
             AddStudentForm addStdForm = new AddStudentForm(_user);
             addStdForm.Show();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string userRole = _user.role.ToLower() ?? "";
+            if (!userRole.Equals("admin") && !userRole.Equals("manager"))
+            {
+                MessageBox.Show("You have no priority");
+                return;
+            }
+
+            string selectedId = dataGridView1.SelectedCells[0].Value?.ToString();
+
+            if (string.IsNullOrEmpty(selectedId))
+            {
+                MessageBox.Show("The selected cell does not contain a valid Student ID", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var studentToUpdate = stdController.Get(selectedId);
+            if (studentToUpdate == null)
+            {
+                MessageBox.Show("There is no student");
+                return;
+            }
+
+            UpdateStudentForm updateStudentForm = new UpdateStudentForm(studentToUpdate);
+            updateStudentForm.Show();
         }
     }
 }
