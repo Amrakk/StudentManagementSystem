@@ -81,7 +81,7 @@ namespace Student_Management_System.Controllers
 
                     if (isDeletedAllLoginHistory)
                     {
-                        var entityToDelete = Get(entity.email);
+                        var entityToDelete = db.users.FirstOrDefault(u => u.email.Equals(entity.email));
 
                         if (entityToDelete != null)
                         {
@@ -145,7 +145,7 @@ namespace Student_Management_System.Controllers
             {
                 try
                 {
-                    var userToUpdate = Get(entity.email);
+                    var userToUpdate = db.users.FirstOrDefault(u => u.email.Equals(entity.email));
                     if (userToUpdate != null)
                     {
                         if (!string.IsNullOrEmpty(entity.email))

@@ -48,7 +48,7 @@ namespace Student_Management_System.Controllers
                 {
                     try
                     {
-                        var entityToDelete = Get(entity.id);
+                        var entityToDelete = db.students.FirstOrDefault(s => s.id.Equals(entity.id));
                         if (entityToDelete != null)
                         {
                             db.students.DeleteOnSubmit(entityToDelete);
@@ -77,7 +77,7 @@ namespace Student_Management_System.Controllers
             {
                 try
                 {
-                    return db.students.FirstOrDefault(s => s.id == id);
+                    return db.students.FirstOrDefault(s => s.id.Equals(id));
                 }
                 catch (Exception ex)
                 {
@@ -181,8 +181,6 @@ namespace Student_Management_System.Controllers
                         }
 
                         updatedStudent.updatedAt = DateTime.Now;
-
-                        MessageBox.Show("ID: " + updatedStudent.id + " - Name: " + updatedStudent.name + " - depart: " + updatedStudent.department + " class: " + updatedStudent.className + " gender: " + updatedStudent.gender + " - edu type: " + updatedStudent.eduType + " - course year: " + updatedStudent.courseYear);
 
                         db.SubmitChanges();
                         return true;
