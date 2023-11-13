@@ -39,13 +39,6 @@
     <Reference Include="CsvHelper, Version=30.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.30.0.1\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v23.1, Version=23.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v23.1, Version=23.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Drawing.v23.1, Version=23.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v23.1.Core, Version=23.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v23.1.Core, Version=23.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v23.1, Version=23.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v23.1, Version=23.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EPPlus, Version=7.0.0.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.7.0.0\lib\net462\EPPlus.dll</HintPath>
     </Reference>
@@ -120,12 +113,6 @@
       <DependentUpon>AddStudentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Views\Admin\AddUserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Admin\AddUserForm.Designer.cs">
-      <DependentUpon>AddUserForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\DAL.cs" />
     <Compile Include="Controllers\LoginHistoryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -205,9 +192,6 @@
     <EmbeddedResource Include="Views\Students\AddStudentForm.resx">
       <DependentUpon>AddStudentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Admin\AddUserForm.resx">
-      <DependentUpon>AddUserForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -236,6 +220,9 @@
     <EmbeddedResource Include="Views\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Students\StudentDetailForm.resx">
+      <DependentUpon>StudentDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Students\StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +238,10 @@
       <DependentUpon>MidTermDB.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Student_Management_System.Database.certificate.datasource" />
+    <None Include="Properties\DataSources\Student_Management_System.Database.loginhistory.datasource" />
+    <None Include="Properties\DataSources\Student_Management_System.Database.Major.datasource" />
+    <None Include="Properties\DataSources\Student_Management_System.Database.student.datasource" />
     <None Include="Properties\DataSources\Student_Management_System.Database.user.datasource" />
     <None Include="Properties\DataSources\user.datasource" />
     <None Include="Properties\Settings.settings">

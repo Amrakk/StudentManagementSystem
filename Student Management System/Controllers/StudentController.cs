@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq.Dynamic.Core;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data;
 
 namespace Student_Management_System.Controllers
 {
@@ -14,10 +16,26 @@ namespace Student_Management_System.Controllers
     {
         public bool Add(student entity)
         {
-            if (entity == null || string.IsNullOrEmpty(entity.id))
+            if (entity == null ||
+                entity.dob == null ||
+                string.IsNullOrEmpty(entity.name) ||
+                string.IsNullOrEmpty(entity.major) ||
+                string.IsNullOrEmpty(entity.gender) ||
+                string.IsNullOrEmpty(entity.eduType) ||
+                string.IsNullOrEmpty(entity.className) ||
+                string.IsNullOrEmpty(entity.courseYear)||
+                string.IsNullOrEmpty(entity.department) )
             {
                 return false;
             }
+
+            int count = TotalStudents();
+            string EduTypeCode = (entity.eduType.Equals("Standard")) ? "" : "H";
+            string Last2Digit = (Int32.Parse(entity.courseYear) % 100).ToString();
+            string formattedCount = count.ToString("D4");
+
+            string SID = $"{entity.major}{Last2Digit}{EduTypeCode}{formattedCount}";
+            entity.id = SID;
 
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
@@ -29,7 +47,7 @@ namespace Student_Management_System.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
                     return false;
                 }
             }
@@ -87,6 +105,60 @@ namespace Student_Management_System.Controllers
             }
         }
 
+        public ICollection<student> GetStudentByName(string text)
+        {
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    return db.students.Where(u => u.name.Contains(text)).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        public ICollection<student> GetStudentByCriteria(string gender = "", string eduType = "", string department = "", string major = "")
+        {
+            MessageBox.Show(gender + ", " + eduType + ", " + department + ", " + major);
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    var students = db.students.AsQueryable();
+                    if (!string.IsNullOrEmpty(gender))
+                    {
+                        students = students.Where(s => s.gender.Equals(gender)); 
+                    }
+
+                    if (!string.IsNullOrEmpty(eduType))
+                    {
+                        students = students.Where(s => s.eduType.Equals(eduType));
+                    }
+
+                    if (!string.IsNullOrEmpty(department))
+                    {
+                        students = students.Where(s => s.department.Equals(department));
+                    }
+
+                    if (!string.IsNullOrEmpty(major))
+                    {
+                        students = students.Where(s => s.major.Equals(major));
+                    }
+
+                    return students.ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
         public ICollection<student> GetAll()
         {
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
@@ -109,6 +181,7 @@ namespace Student_Management_System.Controllers
                                                   createdAt = s.createdAt,
                                                   updatedAt = s.updatedAt
                                               }).ToList();
+
                     return students;
                 }
                 catch (Exception ex)

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.Skins.SolidColorHelper;
 using OfficeOpenXml;
 
 namespace Student_Management_System.Controllers
@@ -54,7 +53,11 @@ namespace Student_Management_System.Controllers
                 var records = csv.GetRecords<T>().ToList();
                 return records;
             }
+        }
 
+        public static string EncryptPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password,10);
         }
 
         public static void ExportCsvFile<T>(string filePath, List<T> list)
@@ -72,38 +75,32 @@ namespace Student_Management_System.Controllers
 
             using (ExcelPackage package = new ExcelPackage(file))
             {
-                string newWorksheetName = "Sheet1";
 
-                if (package.Workbook.Worksheets.Any(sheet => sheet.Name == newWorksheetName))
+                if (package.Workbook.Worksheets["Sheet1"] != null)
+                    package.Workbook.Worksheets.Delete("Sheet1");
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                Type type = typeof(T);
+                var properties = type.GetProperties();
+
+                // Set headers
+                for (int col = 1; col <= properties.Length; col++)
                 {
-                    throw new InvalidOperationException($"Worksheet with the name '{newWorksheetName}' already exists in the workbook.");
+                    newWorksheet.Cells[1, col].Value = properties[col - 1].Name;
                 }
-                else
+
+                // Set values
+                for (int row = 2; row <= list.Count + 1; row++)
                 {
-                    ExcelWorksheet newWorksheet = package.Workbook.Worksheets.Add(newWorksheetName);
-
-                    Type type = typeof(T);
-                    var properties = type.GetProperties();
-
-                    // Set headers
                     for (int col = 1; col <= properties.Length; col++)
                     {
-                        newWorksheet.Cells[1, col].Value = properties[col - 1].Name;
+                        var propertyValue = properties[col - 1].GetValue(list[row - 2], null);
+                        newWorksheet.Cells[row, col].Value = propertyValue;
                     }
-
-                    // Set values
-                    for (int row = 2; row <= list.Count + 1; row++)
-                    {
-                        for (int col = 1; col <= properties.Length; col++)
-                        {
-                            var propertyValue = properties[col - 1].GetValue(list[row - 2], null);
-                            newWorksheet.Cells[row, col].Value = propertyValue;
-                        }
-                    }
-
-                    // Save the package
-                    package.Save();
                 }
+
+                package.Save();
             }
         }
 

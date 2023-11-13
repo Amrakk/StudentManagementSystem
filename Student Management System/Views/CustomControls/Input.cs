@@ -139,6 +139,11 @@ namespace Student_Management_System.Views.CustomControls
             this.OnKeyPress(e);
         }
 
+        private void txtInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.OnKeyDown(e);
+        }
+
         private void txtInput_Enter(object sender, EventArgs e)
         {
             isFocused = true;
