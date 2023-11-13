@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grBoxProfile = new System.Windows.Forms.GroupBox();
             this.labelStuUpdatedAt = new System.Windows.Forms.Label();
             this.labelStuCreatedAt = new System.Windows.Forms.Label();
@@ -59,18 +56,14 @@
             this.labelStuWarningMessage = new System.Windows.Forms.Label();
             this.btnDeleteStudent = new System.Windows.Forms.Button();
             this.grBoxCertificate = new System.Windows.Forms.GroupBox();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.gridViewCertificate = new System.Windows.Forms.DataGridView();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.organizationnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isValidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.issue_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiry_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.certificateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnCertReset = new System.Windows.Forms.Button();
-            this.btnCertEdit = new System.Windows.Forms.Button();
+            this.btnCertSave = new System.Windows.Forms.Button();
             this.labelDescription = new System.Windows.Forms.Label();
             this.inputCertIsValid = new System.Windows.Forms.CheckBox();
             this.labelIsValid = new System.Windows.Forms.Label();
@@ -83,6 +76,12 @@
             this.panelDeleteCertificate = new System.Windows.Forms.Panel();
             this.labelCertWarningMessage = new System.Windows.Forms.Label();
             this.btnDeleteCertificate = new System.Windows.Forms.Button();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.organizationnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isValidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.issue_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiry_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelDeleteCertificate = new Student_Management_System.Views.CustomControls.Input();
             this.inputCertDescription = new Student_Management_System.Views.CustomControls.Input();
             this.inputCertOrganization = new Student_Management_System.Views.CustomControls.Input();
@@ -416,13 +415,14 @@
             // 
             // grBoxCertificate
             // 
+            this.grBoxCertificate.Controls.Add(this.labelStatus);
             this.grBoxCertificate.Controls.Add(this.gridViewCertificate);
             this.grBoxCertificate.Controls.Add(this.btnCreate);
             this.grBoxCertificate.Controls.Add(this.btnImport);
             this.grBoxCertificate.Controls.Add(this.btnExport);
             this.grBoxCertificate.Controls.Add(this.btnCertReset);
             this.grBoxCertificate.Controls.Add(this.inputCertDescription);
-            this.grBoxCertificate.Controls.Add(this.btnCertEdit);
+            this.grBoxCertificate.Controls.Add(this.btnCertSave);
             this.grBoxCertificate.Controls.Add(this.labelDescription);
             this.grBoxCertificate.Controls.Add(this.inputCertIsValid);
             this.grBoxCertificate.Controls.Add(this.labelIsValid);
@@ -451,98 +451,39 @@
             this.grBoxCertificate.TabStop = false;
             this.grBoxCertificate.Text = "Certificate";
             // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.labelStatus.Location = new System.Drawing.Point(656, 43);
+            this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(90, 25);
+            this.labelStatus.TabIndex = 71;
+            this.labelStatus.Text = "Editing...";
+            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // gridViewCertificate
             // 
             this.gridViewCertificate.AllowUserToAddRows = false;
             this.gridViewCertificate.AllowUserToDeleteRows = false;
             this.gridViewCertificate.AutoGenerateColumns = false;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridViewCertificate.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.gridViewCertificate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewCertificate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.titleDataGridViewTextBoxColumn,
             this.organizationnameDataGridViewTextBoxColumn,
             this.isValidDataGridViewTextBoxColumn,
             this.issue_date,
-            this.expiry_date});
+            this.expiry_date,
+            this.id});
             this.gridViewCertificate.DataSource = this.certificateBindingSource;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridViewCertificate.DefaultCellStyle = dataGridViewCellStyle27;
             this.gridViewCertificate.Location = new System.Drawing.Point(29, 460);
             this.gridViewCertificate.Name = "gridViewCertificate";
             this.gridViewCertificate.ReadOnly = true;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridViewCertificate.RowHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.gridViewCertificate.Size = new System.Drawing.Size(717, 336);
             this.gridViewCertificate.TabIndex = 70;
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            this.titleDataGridViewTextBoxColumn.Width = 139;
-            // 
-            // organizationnameDataGridViewTextBoxColumn
-            // 
-            this.organizationnameDataGridViewTextBoxColumn.DataPropertyName = "organization_name";
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.organizationnameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
-            this.organizationnameDataGridViewTextBoxColumn.HeaderText = "Organization";
-            this.organizationnameDataGridViewTextBoxColumn.Name = "organizationnameDataGridViewTextBoxColumn";
-            this.organizationnameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.organizationnameDataGridViewTextBoxColumn.Width = 175;
-            // 
-            // isValidDataGridViewTextBoxColumn
-            // 
-            this.isValidDataGridViewTextBoxColumn.DataPropertyName = "isValid";
-            this.isValidDataGridViewTextBoxColumn.HeaderText = "Valid";
-            this.isValidDataGridViewTextBoxColumn.Name = "isValidDataGridViewTextBoxColumn";
-            this.isValidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.isValidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isValidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isValidDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // issue_date
-            // 
-            this.issue_date.DataPropertyName = "issue_date";
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.issue_date.DefaultCellStyle = dataGridViewCellStyle25;
-            this.issue_date.HeaderText = "Issue Date";
-            this.issue_date.Name = "issue_date";
-            this.issue_date.ReadOnly = true;
-            this.issue_date.Width = 145;
-            // 
-            // expiry_date
-            // 
-            this.expiry_date.DataPropertyName = "expiry_date";
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.expiry_date.DefaultCellStyle = dataGridViewCellStyle26;
-            this.expiry_date.HeaderText = "Expired Date";
-            this.expiry_date.Name = "expiry_date";
-            this.expiry_date.ReadOnly = true;
-            this.expiry_date.Width = 145;
+            this.gridViewCertificate.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewCertificate_CellClick);
             // 
             // certificateBindingSource
             // 
@@ -562,6 +503,7 @@
             this.btnCreate.TabIndex = 69;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnImport
             // 
@@ -576,6 +518,7 @@
             this.btnImport.TabIndex = 68;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnExport
             // 
@@ -590,6 +533,7 @@
             this.btnExport.TabIndex = 67;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnCertReset
             // 
@@ -603,21 +547,23 @@
             this.btnCertReset.TabIndex = 55;
             this.btnCertReset.Text = "RESET";
             this.btnCertReset.UseVisualStyleBackColor = false;
+            this.btnCertReset.Click += new System.EventHandler(this.btnCertReset_Click);
             // 
-            // btnCertEdit
+            // btnCertSave
             // 
-            this.btnCertEdit.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnCertEdit.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnCertEdit.FlatAppearance.BorderSize = 0;
-            this.btnCertEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCertEdit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCertEdit.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCertEdit.Location = new System.Drawing.Point(616, 280);
-            this.btnCertEdit.Name = "btnCertEdit";
-            this.btnCertEdit.Size = new System.Drawing.Size(130, 36);
-            this.btnCertEdit.TabIndex = 8;
-            this.btnCertEdit.Text = "EDIT";
-            this.btnCertEdit.UseVisualStyleBackColor = false;
+            this.btnCertSave.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnCertSave.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnCertSave.FlatAppearance.BorderSize = 0;
+            this.btnCertSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCertSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCertSave.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCertSave.Location = new System.Drawing.Point(616, 280);
+            this.btnCertSave.Name = "btnCertSave";
+            this.btnCertSave.Size = new System.Drawing.Size(130, 36);
+            this.btnCertSave.TabIndex = 8;
+            this.btnCertSave.Text = "EDIT";
+            this.btnCertSave.UseVisualStyleBackColor = false;
+            this.btnCertSave.Click += new System.EventHandler(this.btnCertSave_Click);
             // 
             // labelDescription
             // 
@@ -762,6 +708,65 @@
             this.btnDeleteCertificate.TabIndex = 37;
             this.btnDeleteCertificate.Text = "Delete Certificate";
             this.btnDeleteCertificate.UseVisualStyleBackColor = false;
+            this.btnDeleteCertificate.Click += new System.EventHandler(this.btnDeleteCertificate_Click);
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.titleDataGridViewTextBoxColumn.Width = 139;
+            // 
+            // organizationnameDataGridViewTextBoxColumn
+            // 
+            this.organizationnameDataGridViewTextBoxColumn.DataPropertyName = "organization_name";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.organizationnameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.organizationnameDataGridViewTextBoxColumn.HeaderText = "Organization";
+            this.organizationnameDataGridViewTextBoxColumn.Name = "organizationnameDataGridViewTextBoxColumn";
+            this.organizationnameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.organizationnameDataGridViewTextBoxColumn.Width = 175;
+            // 
+            // isValidDataGridViewTextBoxColumn
+            // 
+            this.isValidDataGridViewTextBoxColumn.DataPropertyName = "isValid";
+            this.isValidDataGridViewTextBoxColumn.HeaderText = "Valid";
+            this.isValidDataGridViewTextBoxColumn.Name = "isValidDataGridViewTextBoxColumn";
+            this.isValidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.isValidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isValidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isValidDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // issue_date
+            // 
+            this.issue_date.DataPropertyName = "issue_date";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.issue_date.DefaultCellStyle = dataGridViewCellStyle3;
+            this.issue_date.HeaderText = "Issue Date";
+            this.issue_date.Name = "issue_date";
+            this.issue_date.ReadOnly = true;
+            this.issue_date.Width = 145;
+            // 
+            // expiry_date
+            // 
+            this.expiry_date.DataPropertyName = "expiry_date";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.expiry_date.DefaultCellStyle = dataGridViewCellStyle4;
+            this.expiry_date.HeaderText = "Expired Date";
+            this.expiry_date.Name = "expiry_date";
+            this.expiry_date.ReadOnly = true;
+            this.expiry_date.Width = 145;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // labelDeleteCertificate
             // 
@@ -852,7 +857,7 @@
             this.inputCertCreatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertCreatedAt.PasswordChar = false;
             this.inputCertCreatedAt.ReadOnly = true;
-            this.inputCertCreatedAt.Size = new System.Drawing.Size(73, 25);
+            this.inputCertCreatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputCertCreatedAt.TabIndex = 27;
             this.inputCertCreatedAt.Texts = "29-10-2023";
             this.inputCertCreatedAt.Underlined = false;
@@ -891,7 +896,7 @@
             this.inputCertUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertUpdatedAt.PasswordChar = false;
             this.inputCertUpdatedAt.ReadOnly = true;
-            this.inputCertUpdatedAt.Size = new System.Drawing.Size(73, 25);
+            this.inputCertUpdatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputCertUpdatedAt.TabIndex = 28;
             this.inputCertUpdatedAt.Texts = "29-10-2023";
             this.inputCertUpdatedAt.Underlined = false;
@@ -986,7 +991,7 @@
             this.inputStuCreatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputStuCreatedAt.PasswordChar = false;
             this.inputStuCreatedAt.ReadOnly = true;
-            this.inputStuCreatedAt.Size = new System.Drawing.Size(73, 25);
+            this.inputStuCreatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputStuCreatedAt.TabIndex = 68;
             this.inputStuCreatedAt.Texts = "29-10-2023";
             this.inputStuCreatedAt.Underlined = false;
@@ -1006,7 +1011,7 @@
             this.inputStuUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputStuUpdatedAt.PasswordChar = false;
             this.inputStuUpdatedAt.ReadOnly = true;
-            this.inputStuUpdatedAt.Size = new System.Drawing.Size(73, 25);
+            this.inputStuUpdatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputStuUpdatedAt.TabIndex = 69;
             this.inputStuUpdatedAt.Texts = "29-10-2023";
             this.inputStuUpdatedAt.Underlined = false;
@@ -1229,7 +1234,7 @@
         private System.Windows.Forms.Label labelDescription;
         private CustomControls.Input inputCertDescription;
         private System.Windows.Forms.Button btnCertReset;
-        private System.Windows.Forms.Button btnCertEdit;
+        private System.Windows.Forms.Button btnCertSave;
         private System.Windows.Forms.Label labelStuUpdatedAt;
         private System.Windows.Forms.Label labelStuCreatedAt;
         private CustomControls.Input inputStuCreatedAt;
@@ -1244,10 +1249,12 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.BindingSource certificateBindingSource;
+        private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn organizationnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isValidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn issue_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn expiry_date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
     }
 }

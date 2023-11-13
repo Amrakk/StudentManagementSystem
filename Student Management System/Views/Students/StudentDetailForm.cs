@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,13 +18,20 @@ namespace Student_Management_System.Views.Students
     {
         private user _user;
         private student _student;
+        private CertificateController certController;
         private StudentController stdController;
+
+        private certificate _selectedCert = null;
 
         public StudentDetailForm(user user, string SID)
         {
             InitializeComponent();
+
             this._user = user;
+
             stdController = new StudentController();
+            certController = new CertificateController();
+
             _student = stdController.Get(SID);
             gridViewCertificate.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         }
@@ -46,8 +54,13 @@ namespace Student_Management_System.Views.Students
                 inputClass.ValueMember = "classId";
                 inputClass.DisplayMember = "classId";
             }
+
+            RefreshGridView();
             btnStuReset_Click(sender, e);
+            btnCertReset_Click(sender, e);
         }
+
+        #region Student
 
         private void btnStuReset_Click(object sender, EventArgs e)
         {
@@ -206,6 +219,237 @@ namespace Student_Management_System.Views.Students
         {
             if (Application.OpenForms["StudentForm"] is StudentForm studentForm)
                 studentForm.RefreshGridView("");
+        }
+        #endregion
+
+
+        #region Certificate
+        private void btnCertSave_Click(object sender, EventArgs e)
+        {
+
+            var certID = inputCertID.Texts;
+            var title = inputCertTitle.Texts;
+            var description = inputCertDescription.Texts;
+            var issueDate = inputCertIssueDate.Value.Date;
+            var expiredDate = inputCertExpiredDate.Value.Date;
+            var organization = inputCertOrganization.Texts;
+            var isValid = inputCertIsValid.Checked;
+            var createdAt = DateTime.Now;
+
+            if(
+                issueDate == null ||
+                expiredDate == null ||
+                string.IsNullOrEmpty(certID) ||
+                string.IsNullOrEmpty(title) ||
+                string.IsNullOrEmpty(description) ||
+                string.IsNullOrEmpty(organization)
+                                                                        )
+            {
+                MessageBox.Show("Please fill in all fields!", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(issueDate > expiredDate)
+            {
+                MessageBox.Show("Issue date must be less than expired date!", "Invalid date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            certificate cert = new certificate
+            {
+                id = certID,
+                title = title,
+                description = description,
+                issue_date = issueDate,
+                expiry_date = expiredDate,
+                organization_name = organization,
+                isValid = isValid,
+                sid = _student.id,
+                createdAt = createdAt,
+                updatedAt = null
+            };
+
+            if (_selectedCert == null)
+            {
+                var existCert = certController.Get(certID);
+                if (existCert != null)
+                {
+                    MessageBox.Show("This certificate ID already exists!", "Invalid certificate ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                try
+                {
+                    certController.Add(cert);
+                    MessageBox.Show("Add certificate successfully!");
+                    RefreshGridView();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Add certificate failed!");
+                }
+            }
+            else
+            {
+                cert.updatedAt = DateTime.Now;
+                try
+                {
+                    certController.Update(cert);
+                    MessageBox.Show("Update certificate successfully!");
+                    RefreshGridView();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Update certificate failed!");
+                }
+            }
+        }
+
+        private void RefreshGridView()
+        {
+            var certificates = certController.GetAllByStudent(_student);
+            gridViewCertificate.DataSource = certificates;
+        }
+
+        private void btnCertReset_Click(object sender, EventArgs e)
+        {
+            if(_selectedCert == null)
+            {
+                labelStatus.Text = "Adding...";
+                btnCertSave.Text = "ADD";
+
+                inputCertID.Enabled = true;
+                inputCertID.Texts = "";
+                inputCertTitle.Texts = "";
+                inputCertDescription.Texts = "";
+                inputCertIssueDate.Value = DateTime.Now;
+                inputCertExpiredDate.Value = DateTime.Now;
+                inputCertOrganization.Texts = "";
+                inputCertIsValid.Checked = false;
+                inputCertCreatedAt.Texts = DateTime.Now.ToString("dd-MM-yyyy");
+                inputCertUpdatedAt.Texts = "";
+            }
+            else
+            {
+                labelStatus.Text = "Editing...";
+                btnCertSave.Text = "EDIT";
+
+                inputCertID.Enabled = false;
+                inputCertID.Texts = _selectedCert.id;
+                inputCertTitle.Texts = _selectedCert.title;
+                inputCertDescription.Texts = _selectedCert.description;
+                inputCertIssueDate.Value = _selectedCert.issue_date.Value.Date;
+                inputCertExpiredDate.Value = _selectedCert.expiry_date.Value.Date;
+                inputCertOrganization.Texts = _selectedCert.organization_name;
+                inputCertIsValid.Checked = _selectedCert.isValid.Value;
+                inputCertCreatedAt.Texts = _selectedCert.createdAt?.ToString("dd-MM-yyyy");
+                inputCertUpdatedAt.Texts = _selectedCert.updatedAt?.ToString("dd-MM-yyyy");
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            inputCertID.Focus();
+            _selectedCert = null;
+            btnCertReset_Click(sender, e);
+        }
+
+        private void gridViewCertificate_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            string certID = gridViewCertificate.Rows[e.RowIndex].Cells["id"].Value.ToString();
+            _selectedCert = certController.Get(certID);
+            btnCertReset_Click(sender, e);
+        }
+
+        private void btnDeleteCertificate_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure you want to delete this certificate?", "Confirm Deletion", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    certController.Delete(_selectedCert);
+                    MessageBox.Show("Delete certificate successfully!");
+                    RefreshGridView();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Delete certificate failed!");
+                }
+            }
+        }
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+            saveFileDialog.Title = "Export to";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+            {
+                string extension = Path.GetExtension(saveFileDialog.FileName);
+                using (var db = new MidTermDBDataContext(Program.ConnectionString))
+                {
+                    var certificates = db.certificates.ToList();
+
+                    // TODO: Remove unnecessary data
+
+
+                    if (extension.Equals(".xlsx"))
+                    {
+                        SystemStudentUtils.ExportToExcel<certificate>(saveFileDialog.FileName, certificates);
+                    }
+                    else if (extension.Equals(".csv"))
+                    {
+                        SystemStudentUtils.ExportCsvFile<certificate>(saveFileDialog.FileName, certificates);
+                    }
+                }
+
+                MessageBox.Show("Export successfully", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        #endregion
+
+
+        // TODO: Import
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            //if (MessageBox.Show("Are you sure to import?\nThis will remove all students from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            //    return;
+
+            //using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            //{
+            //    openFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+            //    openFileDialog.Title = "Import from";
+            //    openFileDialog.ShowDialog();
+
+            //    if (openFileDialog.FileName != "")
+            //    {
+            //        string extension = Path.GetExtension(openFileDialog.FileName);
+            //        using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            //        {
+            //            if (extension.Equals(".xlsx"))
+            //            {
+            //                //    var users = SystemStudentUtils.ImportExcelFile<user>(openFileDialog.FileName);
+            //                //    users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
+            //                //    db.users.InsertAllOnSubmit(users);
+            //                //    db.SubmitChanges();
+            //            }
+            //            if (extension.Equals(".csv"))
+            //            {
+                            
+            //            }
+            //        }
+            //    }
+            //}
+
+            MessageBox.Show("this feature is not available yet!");
         }
     }
 }
