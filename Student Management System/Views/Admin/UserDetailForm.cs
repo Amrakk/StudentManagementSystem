@@ -52,12 +52,6 @@ namespace Student_Management_System.Views.Admin
 
         private void UserDetailForm_Load(object sender, EventArgs e)
         {
-            if (!_user.role.Equals("Admin"))
-            {
-                MessageBox.Show("You have no authorization", "Unauthorization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             btnReset_Click(sender, e);
             labelErrorMessage.Visible = false;
 
@@ -235,13 +229,28 @@ namespace Student_Management_System.Views.Admin
 
             if (!emailEx.IsMatch(email))
             {
-                MessageBox.Show("Email is not valid", "Invalid email", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Email is not valid", "Invalid email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!phoneEx.IsMatch(phone))
             {
-                MessageBox.Show("Phone number is not valid", "Invalid phone number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Phone number is not valid", "Invalid phone number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var roleList = inputRole.Items;
+            var statusList = inputStatus.Items;
+
+            if(!roleList.Contains(role))
+            {
+                MessageBox.Show("Role is not valid", "Invalid role", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!statusList.Contains(status))
+            {
+                MessageBox.Show("Status is not valid", "Invalid status", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -252,7 +261,7 @@ namespace Student_Management_System.Views.Admin
             {
                 if (existingUser != null)
                 {
-                    MessageBox.Show("This email has been used", "Not acceptable email", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("This email has been used by another user", "Email already exist", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -278,7 +287,7 @@ namespace Student_Management_System.Views.Admin
 
                     if (isAdded)
                     {
-                        MessageBox.Show("Added successfully", "Added user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Added successfully\n\nUser's password will be: {phone}", "Added user", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         UserForm_Reload();
                         this.Close();
                     }
@@ -322,7 +331,7 @@ namespace Student_Management_System.Views.Admin
         private void UserForm_Reload()
         {
             if (Application.OpenForms["UserForm"] is UserForm userForm)
-                userForm.RefreshGridView();
+                userForm.RefreshGridView("");
         }
     }
 }

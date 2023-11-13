@@ -27,12 +27,24 @@ namespace Student_Management_System.Views
 
         private void btnUserManagement_Click(object sender, EventArgs e)
         {
+            if (!_user.role.Equals("Admin"))
+            {
+                MessageBox.Show("You have no authorization to do this operation", "Unauthorization", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             MainForm mainForm = this.ParentForm as MainForm;
             mainForm.openUserForm();
         }
 
         private void btnLoginHistory_Click(object sender, EventArgs e)
         {
+            if (!_user.role.Equals("Admin"))
+            {
+                MessageBox.Show("You have no authorization to do this operation", "Unauthorization", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Admin.LoginHistoryForm form = new Admin.LoginHistoryForm(_user);
             form.ShowDialog();
         }

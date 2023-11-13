@@ -76,7 +76,7 @@ namespace Student_Management_System.Views.Auth
 
                 if (loginUser.status == "Locked")
                 {
-                    labelErrorMessage.Text = "Account is locked";
+                    labelErrorMessage.Text = "This account is locked";
                     return;
                 }
 
@@ -88,7 +88,6 @@ namespace Student_Management_System.Views.Auth
 
                 db.loginhistories.InsertOnSubmit(loginHis);
                 db.SubmitChanges();
-                MessageBox.Show("Log in successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             var mainForm = new MainForm(loginUser);
@@ -100,9 +99,9 @@ namespace Student_Management_System.Views.Auth
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnLogin_Click(sender, e);
-                e.SuppressKeyPress = true;
                 e.Handled = true;
+                e.SuppressKeyPress = true;
+                btnLogin_Click(sender, e);
             }
         }
     }

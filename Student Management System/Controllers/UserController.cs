@@ -115,6 +115,54 @@ namespace Student_Management_System.Controllers
             }
         }
 
+        public ICollection<user> GetUserByName(string text)
+        {
+            using(var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    return db.users.Where(u => u.name.Contains(text)).ToList();
+                } catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        public ICollection<user> GetUserByCriteria(int age = 0, string status = "", string role = "")
+        {
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    var users = db.users.AsQueryable();
+                    if (age > 0)
+                    {
+                        users = users.Where(u => u.age >= age);
+                    }
+
+                    if (!string.IsNullOrEmpty(status))
+                    {
+                        users = users.Where(u => u.status == status);
+                    }
+
+                    if (!string.IsNullOrEmpty(role))
+                    {
+                        users = users.Where(u => u.role == role);
+                    }
+
+                    return users.ToList();
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
         public ICollection<user> GetAll()
         {
             ICollection<user> users = new List<user>();

@@ -168,6 +168,9 @@
             this.inputEduType.Font = new System.Drawing.Font("Segoe UI", 14.25F);
             this.inputEduType.ForeColor = System.Drawing.Color.DimGray;
             this.inputEduType.IconColor = System.Drawing.Color.DimGray;
+            this.inputEduType.Items.AddRange(new object[] {
+            "Standard",
+            "High Quality"});
             this.inputEduType.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.inputEduType.ListTextColor = System.Drawing.Color.DimGray;
             this.inputEduType.Location = new System.Drawing.Point(700, 160);

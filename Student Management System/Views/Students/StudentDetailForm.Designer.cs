@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grBoxProfile = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelStuUpdatedAt = new System.Windows.Forms.Label();
+            this.labelStuCreatedAt = new System.Windows.Forms.Label();
             this.labelStuID = new System.Windows.Forms.Label();
             this.btnStuReset = new System.Windows.Forms.Button();
             this.btnStuAdd = new System.Windows.Forms.Button();
@@ -52,11 +54,21 @@
             this.labelName = new System.Windows.Forms.Label();
             this.labelCertUpdatedAt = new System.Windows.Forms.Label();
             this.labelCertCreatedAt = new System.Windows.Forms.Label();
-            this.grBoxSercurity = new System.Windows.Forms.GroupBox();
+            this.grBoxDeleteStudent = new System.Windows.Forms.GroupBox();
             this.panelDeleteAccount = new System.Windows.Forms.Panel();
-            this.labelWarningMessage = new System.Windows.Forms.Label();
+            this.labelStuWarningMessage = new System.Windows.Forms.Label();
             this.btnDeleteStudent = new System.Windows.Forms.Button();
             this.grBoxCertificate = new System.Windows.Forms.GroupBox();
+            this.gridViewCertificate = new System.Windows.Forms.DataGridView();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.organizationnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isValidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.issue_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiry_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.certificateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnCertReset = new System.Windows.Forms.Button();
             this.btnCertEdit = new System.Windows.Forms.Button();
             this.labelDescription = new System.Windows.Forms.Label();
@@ -67,11 +79,11 @@
             this.labelCertID = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.labelIssueDate = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.grBoxDeleteCertificate = new System.Windows.Forms.GroupBox();
+            this.panelDeleteCertificate = new System.Windows.Forms.Panel();
+            this.labelCertWarningMessage = new System.Windows.Forms.Label();
             this.btnDeleteCertificate = new System.Windows.Forms.Button();
-            this.input3 = new Student_Management_System.Views.CustomControls.Input();
+            this.labelDeleteCertificate = new Student_Management_System.Views.CustomControls.Input();
             this.inputCertDescription = new Student_Management_System.Views.CustomControls.Input();
             this.inputCertOrganization = new Student_Management_System.Views.CustomControls.Input();
             this.inputCertExpiredDate = new Student_Management_System.Views.CustomControls.DateTimeInput();
@@ -82,8 +94,8 @@
             this.inputCertIssueDate = new Student_Management_System.Views.CustomControls.DateTimeInput();
             this.labelDeleteStudent = new Student_Management_System.Views.CustomControls.Input();
             this.inputStuID = new Student_Management_System.Views.CustomControls.Input();
-            this.input1 = new Student_Management_System.Views.CustomControls.Input();
-            this.input2 = new Student_Management_System.Views.CustomControls.Input();
+            this.inputStuCreatedAt = new Student_Management_System.Views.CustomControls.Input();
+            this.inputStuUpdatedAt = new Student_Management_System.Views.CustomControls.Input();
             this.inputCourseYear = new Student_Management_System.Views.CustomControls.Input();
             this.inputMajor = new Student_Management_System.Views.CustomControls.ComboBoxInput();
             this.inputClass = new Student_Management_System.Views.CustomControls.ComboBoxInput();
@@ -91,34 +103,24 @@
             this.inputEduType = new Student_Management_System.Views.CustomControls.ComboBoxInput();
             this.inputDoB = new Student_Management_System.Views.CustomControls.DateTimeInput();
             this.inputName = new Student_Management_System.Views.CustomControls.Input();
-            this.btnCreate = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.certificateBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.organizationnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isValidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.issue_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiry_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grBoxProfile.SuspendLayout();
-            this.grBoxSercurity.SuspendLayout();
+            this.grBoxDeleteStudent.SuspendLayout();
             this.panelDeleteAccount.SuspendLayout();
             this.grBoxCertificate.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCertificate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.certificateBindingSource)).BeginInit();
+            this.grBoxDeleteCertificate.SuspendLayout();
+            this.panelDeleteCertificate.SuspendLayout();
             this.SuspendLayout();
             // 
             // grBoxProfile
             // 
-            this.grBoxProfile.Controls.Add(this.label1);
+            this.grBoxProfile.Controls.Add(this.labelStuUpdatedAt);
             this.grBoxProfile.Controls.Add(this.inputStuID);
-            this.grBoxProfile.Controls.Add(this.label2);
-            this.grBoxProfile.Controls.Add(this.input1);
+            this.grBoxProfile.Controls.Add(this.labelStuCreatedAt);
+            this.grBoxProfile.Controls.Add(this.inputStuCreatedAt);
             this.grBoxProfile.Controls.Add(this.labelStuID);
-            this.grBoxProfile.Controls.Add(this.input2);
+            this.grBoxProfile.Controls.Add(this.inputStuUpdatedAt);
             this.grBoxProfile.Controls.Add(this.btnStuReset);
             this.grBoxProfile.Controls.Add(this.btnStuAdd);
             this.grBoxProfile.Controls.Add(this.inputCourseYear);
@@ -148,31 +150,30 @@
             this.grBoxProfile.TabIndex = 1;
             this.grBoxProfile.TabStop = false;
             this.grBoxProfile.Text = "Profile";
-            this.grBoxProfile.Enter += new System.EventHandler(this.grBoxProfile_Enter);
             // 
-            // label1
+            // labelStuUpdatedAt
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label1.Location = new System.Drawing.Point(33, 335);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 71;
-            this.label1.Text = "UPDATED AT";
+            this.labelStuUpdatedAt.AutoSize = true;
+            this.labelStuUpdatedAt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStuUpdatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelStuUpdatedAt.Location = new System.Drawing.Point(33, 335);
+            this.labelStuUpdatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStuUpdatedAt.Name = "labelStuUpdatedAt";
+            this.labelStuUpdatedAt.Size = new System.Drawing.Size(73, 13);
+            this.labelStuUpdatedAt.TabIndex = 71;
+            this.labelStuUpdatedAt.Text = "UPDATED AT";
             // 
-            // label2
+            // labelStuCreatedAt
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(33, 310);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 70;
-            this.label2.Text = "CREATED AT";
+            this.labelStuCreatedAt.AutoSize = true;
+            this.labelStuCreatedAt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStuCreatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelStuCreatedAt.Location = new System.Drawing.Point(33, 310);
+            this.labelStuCreatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStuCreatedAt.Name = "labelStuCreatedAt";
+            this.labelStuCreatedAt.Size = new System.Drawing.Size(70, 13);
+            this.labelStuCreatedAt.TabIndex = 70;
+            this.labelStuCreatedAt.Text = "CREATED AT";
             // 
             // labelStuID
             // 
@@ -198,6 +199,7 @@
             this.btnStuReset.TabIndex = 43;
             this.btnStuReset.Text = "RESET";
             this.btnStuReset.UseVisualStyleBackColor = false;
+            this.btnStuReset.Click += new System.EventHandler(this.btnStuReset_Click);
             // 
             // btnStuAdd
             // 
@@ -213,6 +215,7 @@
             this.btnStuAdd.TabIndex = 11;
             this.btnStuAdd.Text = "EDIT";
             this.btnStuAdd.UseVisualStyleBackColor = false;
+            this.btnStuAdd.Click += new System.EventHandler(this.btnStuAdd_Click);
             // 
             // labelCourseYear
             // 
@@ -360,20 +363,20 @@
             this.labelCertCreatedAt.TabIndex = 29;
             this.labelCertCreatedAt.Text = "CREATED AT";
             // 
-            // grBoxSercurity
+            // grBoxDeleteStudent
             // 
-            this.grBoxSercurity.Controls.Add(this.panelDeleteAccount);
-            this.grBoxSercurity.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grBoxSercurity.ForeColor = System.Drawing.Color.DimGray;
-            this.grBoxSercurity.Location = new System.Drawing.Point(30, 450);
-            this.grBoxSercurity.Name = "grBoxSercurity";
-            this.grBoxSercurity.Size = new System.Drawing.Size(439, 194);
-            this.grBoxSercurity.TabIndex = 31;
-            this.grBoxSercurity.TabStop = false;
+            this.grBoxDeleteStudent.Controls.Add(this.panelDeleteAccount);
+            this.grBoxDeleteStudent.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grBoxDeleteStudent.ForeColor = System.Drawing.Color.DimGray;
+            this.grBoxDeleteStudent.Location = new System.Drawing.Point(30, 450);
+            this.grBoxDeleteStudent.Name = "grBoxDeleteStudent";
+            this.grBoxDeleteStudent.Size = new System.Drawing.Size(439, 194);
+            this.grBoxDeleteStudent.TabIndex = 31;
+            this.grBoxDeleteStudent.TabStop = false;
             // 
             // panelDeleteAccount
             // 
-            this.panelDeleteAccount.Controls.Add(this.labelWarningMessage);
+            this.panelDeleteAccount.Controls.Add(this.labelStuWarningMessage);
             this.panelDeleteAccount.Controls.Add(this.labelDeleteStudent);
             this.panelDeleteAccount.Controls.Add(this.btnDeleteStudent);
             this.panelDeleteAccount.Location = new System.Drawing.Point(52, 45);
@@ -381,18 +384,18 @@
             this.panelDeleteAccount.Size = new System.Drawing.Size(335, 119);
             this.panelDeleteAccount.TabIndex = 38;
             // 
-            // labelWarningMessage
+            // labelStuWarningMessage
             // 
-            this.labelWarningMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelWarningMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelWarningMessage.ForeColor = System.Drawing.Color.DimGray;
-            this.labelWarningMessage.Location = new System.Drawing.Point(0, 32);
-            this.labelWarningMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelWarningMessage.Name = "labelWarningMessage";
-            this.labelWarningMessage.Size = new System.Drawing.Size(335, 51);
-            this.labelWarningMessage.TabIndex = 35;
-            this.labelWarningMessage.Text = "Once you delete the student, there is no going back. Please be certain.";
-            this.labelWarningMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelStuWarningMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelStuWarningMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelStuWarningMessage.ForeColor = System.Drawing.Color.DimGray;
+            this.labelStuWarningMessage.Location = new System.Drawing.Point(0, 32);
+            this.labelStuWarningMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStuWarningMessage.Name = "labelStuWarningMessage";
+            this.labelStuWarningMessage.Size = new System.Drawing.Size(335, 51);
+            this.labelStuWarningMessage.TabIndex = 35;
+            this.labelStuWarningMessage.Text = "Once you delete the student, there is no going back. Please be certain.";
+            this.labelStuWarningMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnDeleteStudent
             // 
@@ -409,10 +412,11 @@
             this.btnDeleteStudent.TabIndex = 37;
             this.btnDeleteStudent.Text = "Delete Student";
             this.btnDeleteStudent.UseVisualStyleBackColor = false;
+            this.btnDeleteStudent.Click += new System.EventHandler(this.btnDeleteStudent_Click);
             // 
             // grBoxCertificate
             // 
-            this.grBoxCertificate.Controls.Add(this.dataGridView1);
+            this.grBoxCertificate.Controls.Add(this.gridViewCertificate);
             this.grBoxCertificate.Controls.Add(this.btnCreate);
             this.grBoxCertificate.Controls.Add(this.btnImport);
             this.grBoxCertificate.Controls.Add(this.btnExport);
@@ -446,6 +450,146 @@
             this.grBoxCertificate.TabIndex = 4;
             this.grBoxCertificate.TabStop = false;
             this.grBoxCertificate.Text = "Certificate";
+            // 
+            // gridViewCertificate
+            // 
+            this.gridViewCertificate.AllowUserToAddRows = false;
+            this.gridViewCertificate.AllowUserToDeleteRows = false;
+            this.gridViewCertificate.AutoGenerateColumns = false;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridViewCertificate.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            this.gridViewCertificate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewCertificate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.titleDataGridViewTextBoxColumn,
+            this.organizationnameDataGridViewTextBoxColumn,
+            this.isValidDataGridViewTextBoxColumn,
+            this.issue_date,
+            this.expiry_date});
+            this.gridViewCertificate.DataSource = this.certificateBindingSource;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridViewCertificate.DefaultCellStyle = dataGridViewCellStyle27;
+            this.gridViewCertificate.Location = new System.Drawing.Point(29, 460);
+            this.gridViewCertificate.Name = "gridViewCertificate";
+            this.gridViewCertificate.ReadOnly = true;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridViewCertificate.RowHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            this.gridViewCertificate.Size = new System.Drawing.Size(717, 336);
+            this.gridViewCertificate.TabIndex = 70;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.titleDataGridViewTextBoxColumn.Width = 139;
+            // 
+            // organizationnameDataGridViewTextBoxColumn
+            // 
+            this.organizationnameDataGridViewTextBoxColumn.DataPropertyName = "organization_name";
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.organizationnameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
+            this.organizationnameDataGridViewTextBoxColumn.HeaderText = "Organization";
+            this.organizationnameDataGridViewTextBoxColumn.Name = "organizationnameDataGridViewTextBoxColumn";
+            this.organizationnameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.organizationnameDataGridViewTextBoxColumn.Width = 175;
+            // 
+            // isValidDataGridViewTextBoxColumn
+            // 
+            this.isValidDataGridViewTextBoxColumn.DataPropertyName = "isValid";
+            this.isValidDataGridViewTextBoxColumn.HeaderText = "Valid";
+            this.isValidDataGridViewTextBoxColumn.Name = "isValidDataGridViewTextBoxColumn";
+            this.isValidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.isValidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isValidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isValidDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // issue_date
+            // 
+            this.issue_date.DataPropertyName = "issue_date";
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.issue_date.DefaultCellStyle = dataGridViewCellStyle25;
+            this.issue_date.HeaderText = "Issue Date";
+            this.issue_date.Name = "issue_date";
+            this.issue_date.ReadOnly = true;
+            this.issue_date.Width = 145;
+            // 
+            // expiry_date
+            // 
+            this.expiry_date.DataPropertyName = "expiry_date";
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.expiry_date.DefaultCellStyle = dataGridViewCellStyle26;
+            this.expiry_date.HeaderText = "Expired Date";
+            this.expiry_date.Name = "expiry_date";
+            this.expiry_date.ReadOnly = true;
+            this.expiry_date.Width = 145;
+            // 
+            // certificateBindingSource
+            // 
+            this.certificateBindingSource.DataSource = typeof(Student_Management_System.Database.certificate);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnCreate.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnCreate.FlatAppearance.BorderSize = 0;
+            this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnCreate.Location = new System.Drawing.Point(629, 395);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(117, 41);
+            this.btnCreate.TabIndex = 69;
+            this.btnCreate.Text = "Create";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            // 
+            // btnImport
+            // 
+            this.btnImport.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnImport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImport.ForeColor = System.Drawing.Color.DimGray;
+            this.btnImport.Location = new System.Drawing.Point(494, 395);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(117, 41);
+            this.btnImport.TabIndex = 68;
+            this.btnImport.Text = "Import";
+            this.btnImport.UseVisualStyleBackColor = false;
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.DimGray;
+            this.btnExport.Location = new System.Drawing.Point(360, 395);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(117, 41);
+            this.btnExport.TabIndex = 67;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = false;
             // 
             // btnCertReset
             // 
@@ -568,40 +712,40 @@
             this.labelIssueDate.TabIndex = 57;
             this.labelIssueDate.Text = "ISSUE DATE";
             // 
-            // groupBox1
+            // grBoxDeleteCertificate
             // 
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.groupBox1.Location = new System.Drawing.Point(509, 450);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(463, 194);
-            this.groupBox1.TabIndex = 39;
-            this.groupBox1.TabStop = false;
+            this.grBoxDeleteCertificate.Controls.Add(this.panelDeleteCertificate);
+            this.grBoxDeleteCertificate.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grBoxDeleteCertificate.ForeColor = System.Drawing.Color.DimGray;
+            this.grBoxDeleteCertificate.Location = new System.Drawing.Point(509, 450);
+            this.grBoxDeleteCertificate.Name = "grBoxDeleteCertificate";
+            this.grBoxDeleteCertificate.Size = new System.Drawing.Size(463, 194);
+            this.grBoxDeleteCertificate.TabIndex = 39;
+            this.grBoxDeleteCertificate.TabStop = false;
             // 
-            // panel1
+            // panelDeleteCertificate
             // 
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.input3);
-            this.panel1.Controls.Add(this.btnDeleteCertificate);
-            this.panel1.Location = new System.Drawing.Point(54, 45);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(362, 119);
-            this.panel1.TabIndex = 38;
+            this.panelDeleteCertificate.Controls.Add(this.labelCertWarningMessage);
+            this.panelDeleteCertificate.Controls.Add(this.labelDeleteCertificate);
+            this.panelDeleteCertificate.Controls.Add(this.btnDeleteCertificate);
+            this.panelDeleteCertificate.Location = new System.Drawing.Point(54, 45);
+            this.panelDeleteCertificate.Name = "panelDeleteCertificate";
+            this.panelDeleteCertificate.Size = new System.Drawing.Size(362, 119);
+            this.panelDeleteCertificate.TabIndex = 38;
             // 
-            // label3
+            // labelCertWarningMessage
             // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(0, 32);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(362, 51);
-            this.label3.TabIndex = 35;
-            this.label3.Text = "This will delete selected certificated permanently, there is no going back. Pleas" +
+            this.labelCertWarningMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelCertWarningMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelCertWarningMessage.ForeColor = System.Drawing.Color.DimGray;
+            this.labelCertWarningMessage.Location = new System.Drawing.Point(0, 32);
+            this.labelCertWarningMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCertWarningMessage.Name = "labelCertWarningMessage";
+            this.labelCertWarningMessage.Size = new System.Drawing.Size(362, 51);
+            this.labelCertWarningMessage.TabIndex = 35;
+            this.labelCertWarningMessage.Text = "This will delete selected certificated permanently, there is no going back. Pleas" +
     "e be certain.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelCertWarningMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnDeleteCertificate
             // 
@@ -619,26 +763,26 @@
             this.btnDeleteCertificate.Text = "Delete Certificate";
             this.btnDeleteCertificate.UseVisualStyleBackColor = false;
             // 
-            // input3
+            // labelDeleteCertificate
             // 
-            this.input3.BorderColor = System.Drawing.Color.DimGray;
-            this.input3.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.input3.BorderSize = 1;
-            this.input3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.input3.Enabled = false;
-            this.input3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.input3.ForeColor = System.Drawing.Color.Red;
-            this.input3.Location = new System.Drawing.Point(0, 0);
-            this.input3.Margin = new System.Windows.Forms.Padding(5);
-            this.input3.Multiline = false;
-            this.input3.Name = "input3";
-            this.input3.Padding = new System.Windows.Forms.Padding(5);
-            this.input3.PasswordChar = false;
-            this.input3.ReadOnly = true;
-            this.input3.Size = new System.Drawing.Size(362, 32);
-            this.input3.TabIndex = 36;
-            this.input3.Texts = "Delete Certificate";
-            this.input3.Underlined = true;
+            this.labelDeleteCertificate.BorderColor = System.Drawing.Color.DimGray;
+            this.labelDeleteCertificate.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.labelDeleteCertificate.BorderSize = 1;
+            this.labelDeleteCertificate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelDeleteCertificate.Enabled = false;
+            this.labelDeleteCertificate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDeleteCertificate.ForeColor = System.Drawing.Color.Red;
+            this.labelDeleteCertificate.Location = new System.Drawing.Point(0, 0);
+            this.labelDeleteCertificate.Margin = new System.Windows.Forms.Padding(5);
+            this.labelDeleteCertificate.Multiline = false;
+            this.labelDeleteCertificate.Name = "labelDeleteCertificate";
+            this.labelDeleteCertificate.Padding = new System.Windows.Forms.Padding(5);
+            this.labelDeleteCertificate.PasswordChar = false;
+            this.labelDeleteCertificate.ReadOnly = true;
+            this.labelDeleteCertificate.Size = new System.Drawing.Size(362, 32);
+            this.labelDeleteCertificate.TabIndex = 36;
+            this.labelDeleteCertificate.Texts = "Delete Certificate";
+            this.labelDeleteCertificate.Underlined = true;
             // 
             // inputCertDescription
             // 
@@ -708,7 +852,7 @@
             this.inputCertCreatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertCreatedAt.PasswordChar = false;
             this.inputCertCreatedAt.ReadOnly = true;
-            this.inputCertCreatedAt.Size = new System.Drawing.Size(89, 25);
+            this.inputCertCreatedAt.Size = new System.Drawing.Size(73, 25);
             this.inputCertCreatedAt.TabIndex = 27;
             this.inputCertCreatedAt.Texts = "29-10-2023";
             this.inputCertCreatedAt.Underlined = false;
@@ -747,7 +891,7 @@
             this.inputCertUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertUpdatedAt.PasswordChar = false;
             this.inputCertUpdatedAt.ReadOnly = true;
-            this.inputCertUpdatedAt.Size = new System.Drawing.Size(89, 25);
+            this.inputCertUpdatedAt.Size = new System.Drawing.Size(73, 25);
             this.inputCertUpdatedAt.TabIndex = 28;
             this.inputCertUpdatedAt.Texts = "29-10-2023";
             this.inputCertUpdatedAt.Underlined = false;
@@ -812,6 +956,7 @@
             this.inputStuID.BorderColor = System.Drawing.Color.DimGray;
             this.inputStuID.BorderFocusColor = System.Drawing.Color.DodgerBlue;
             this.inputStuID.BorderSize = 1;
+            this.inputStuID.Enabled = false;
             this.inputStuID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputStuID.ForeColor = System.Drawing.SystemColors.GrayText;
             this.inputStuID.Location = new System.Drawing.Point(162, 75);
@@ -826,45 +971,45 @@
             this.inputStuID.Texts = "521H0350";
             this.inputStuID.Underlined = false;
             // 
-            // input1
+            // inputStuCreatedAt
             // 
-            this.input1.BorderColor = System.Drawing.SystemColors.Control;
-            this.input1.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.input1.BorderSize = 1;
-            this.input1.Enabled = false;
-            this.input1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.input1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.input1.Location = new System.Drawing.Point(112, 305);
-            this.input1.Margin = new System.Windows.Forms.Padding(5);
-            this.input1.Multiline = false;
-            this.input1.Name = "input1";
-            this.input1.Padding = new System.Windows.Forms.Padding(5);
-            this.input1.PasswordChar = false;
-            this.input1.ReadOnly = true;
-            this.input1.Size = new System.Drawing.Size(89, 25);
-            this.input1.TabIndex = 68;
-            this.input1.Texts = "29-10-2023";
-            this.input1.Underlined = false;
+            this.inputStuCreatedAt.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputStuCreatedAt.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputStuCreatedAt.BorderSize = 1;
+            this.inputStuCreatedAt.Enabled = false;
+            this.inputStuCreatedAt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputStuCreatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputStuCreatedAt.Location = new System.Drawing.Point(112, 305);
+            this.inputStuCreatedAt.Margin = new System.Windows.Forms.Padding(5);
+            this.inputStuCreatedAt.Multiline = false;
+            this.inputStuCreatedAt.Name = "inputStuCreatedAt";
+            this.inputStuCreatedAt.Padding = new System.Windows.Forms.Padding(5);
+            this.inputStuCreatedAt.PasswordChar = false;
+            this.inputStuCreatedAt.ReadOnly = true;
+            this.inputStuCreatedAt.Size = new System.Drawing.Size(73, 25);
+            this.inputStuCreatedAt.TabIndex = 68;
+            this.inputStuCreatedAt.Texts = "29-10-2023";
+            this.inputStuCreatedAt.Underlined = false;
             // 
-            // input2
+            // inputStuUpdatedAt
             // 
-            this.input2.BorderColor = System.Drawing.SystemColors.Control;
-            this.input2.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.input2.BorderSize = 1;
-            this.input2.Enabled = false;
-            this.input2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.input2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.input2.Location = new System.Drawing.Point(112, 330);
-            this.input2.Margin = new System.Windows.Forms.Padding(5);
-            this.input2.Multiline = false;
-            this.input2.Name = "input2";
-            this.input2.Padding = new System.Windows.Forms.Padding(5);
-            this.input2.PasswordChar = false;
-            this.input2.ReadOnly = true;
-            this.input2.Size = new System.Drawing.Size(89, 25);
-            this.input2.TabIndex = 69;
-            this.input2.Texts = "29-10-2023";
-            this.input2.Underlined = false;
+            this.inputStuUpdatedAt.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputStuUpdatedAt.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputStuUpdatedAt.BorderSize = 1;
+            this.inputStuUpdatedAt.Enabled = false;
+            this.inputStuUpdatedAt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputStuUpdatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputStuUpdatedAt.Location = new System.Drawing.Point(112, 330);
+            this.inputStuUpdatedAt.Margin = new System.Windows.Forms.Padding(5);
+            this.inputStuUpdatedAt.Multiline = false;
+            this.inputStuUpdatedAt.Name = "inputStuUpdatedAt";
+            this.inputStuUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
+            this.inputStuUpdatedAt.PasswordChar = false;
+            this.inputStuUpdatedAt.ReadOnly = true;
+            this.inputStuUpdatedAt.Size = new System.Drawing.Size(73, 25);
+            this.inputStuUpdatedAt.TabIndex = 69;
+            this.inputStuUpdatedAt.Texts = "29-10-2023";
+            this.inputStuUpdatedAt.Underlined = false;
             // 
             // inputCourseYear
             // 
@@ -947,6 +1092,7 @@
             this.inputDepartment.Size = new System.Drawing.Size(302, 32);
             this.inputDepartment.TabIndex = 7;
             this.inputDepartment.Texts = "";
+            this.inputDepartment.OnSelectedIndexChanged += new System.EventHandler(this.inputDepartment_OnSelectedIndexChanged);
             // 
             // inputEduType
             // 
@@ -959,6 +1105,9 @@
             this.inputEduType.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputEduType.ForeColor = System.Drawing.Color.DimGray;
             this.inputEduType.IconColor = System.Drawing.Color.DimGray;
+            this.inputEduType.Items.AddRange(new object[] {
+            "Standard",
+            "High Quality"});
             this.inputEduType.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.inputEduType.ListTextColor = System.Drawing.Color.DimGray;
             this.inputEduType.Location = new System.Drawing.Point(614, 205);
@@ -1003,153 +1152,30 @@
             this.inputName.Texts = "Nguyen Hoang Duy";
             this.inputName.Underlined = false;
             // 
-            // btnCreate
-            // 
-            this.btnCreate.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnCreate.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnCreate.FlatAppearance.BorderSize = 0;
-            this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnCreate.Location = new System.Drawing.Point(629, 395);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(117, 41);
-            this.btnCreate.TabIndex = 69;
-            this.btnCreate.Text = "Create";
-            this.btnCreate.UseVisualStyleBackColor = false;
-            // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnImport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.ForeColor = System.Drawing.Color.DimGray;
-            this.btnImport.Location = new System.Drawing.Point(494, 395);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(117, 41);
-            this.btnImport.TabIndex = 68;
-            this.btnImport.Text = "Import";
-            this.btnImport.UseVisualStyleBackColor = false;
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.ForeColor = System.Drawing.Color.DimGray;
-            this.btnExport.Location = new System.Drawing.Point(360, 395);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(117, 41);
-            this.btnExport.TabIndex = 67;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.titleDataGridViewTextBoxColumn,
-            this.organizationnameDataGridViewTextBoxColumn,
-            this.isValidDataGridViewTextBoxColumn,
-            this.issue_date,
-            this.expiry_date});
-            this.dataGridView1.DataSource = this.certificateBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 460);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(717, 336);
-            this.dataGridView1.TabIndex = 70;
-            // 
-            // certificateBindingSource
-            // 
-            this.certificateBindingSource.DataSource = typeof(Student_Management_System.Database.certificate);
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            this.titleDataGridViewTextBoxColumn.Width = 139;
-            // 
-            // organizationnameDataGridViewTextBoxColumn
-            // 
-            this.organizationnameDataGridViewTextBoxColumn.DataPropertyName = "organization_name";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.organizationnameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
-            this.organizationnameDataGridViewTextBoxColumn.HeaderText = "Organization";
-            this.organizationnameDataGridViewTextBoxColumn.Name = "organizationnameDataGridViewTextBoxColumn";
-            this.organizationnameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.organizationnameDataGridViewTextBoxColumn.Width = 175;
-            // 
-            // isValidDataGridViewTextBoxColumn
-            // 
-            this.isValidDataGridViewTextBoxColumn.DataPropertyName = "isValid";
-            this.isValidDataGridViewTextBoxColumn.HeaderText = "Valid";
-            this.isValidDataGridViewTextBoxColumn.Name = "isValidDataGridViewTextBoxColumn";
-            this.isValidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.isValidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isValidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isValidDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // issue_date
-            // 
-            this.issue_date.DataPropertyName = "issue_date";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.issue_date.DefaultCellStyle = dataGridViewCellStyle14;
-            this.issue_date.HeaderText = "Issue Date";
-            this.issue_date.Name = "issue_date";
-            this.issue_date.ReadOnly = true;
-            this.issue_date.Width = 145;
-            // 
-            // expiry_date
-            // 
-            this.expiry_date.DataPropertyName = "expiry_date";
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.expiry_date.DefaultCellStyle = dataGridViewCellStyle15;
-            this.expiry_date.HeaderText = "Expired Date";
-            this.expiry_date.Name = "expiry_date";
-            this.expiry_date.ReadOnly = true;
-            this.expiry_date.Width = 145;
-            // 
             // StudentDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1826, 887);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grBoxDeleteCertificate);
             this.Controls.Add(this.grBoxCertificate);
-            this.Controls.Add(this.grBoxSercurity);
+            this.Controls.Add(this.grBoxDeleteStudent);
             this.Controls.Add(this.grBoxProfile);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "StudentDetailForm";
             this.Text = "Student Detail";
+            this.Load += new System.EventHandler(this.StudentDetailForm_Load);
             this.grBoxProfile.ResumeLayout(false);
             this.grBoxProfile.PerformLayout();
-            this.grBoxSercurity.ResumeLayout(false);
+            this.grBoxDeleteStudent.ResumeLayout(false);
             this.panelDeleteAccount.ResumeLayout(false);
             this.grBoxCertificate.ResumeLayout(false);
             this.grBoxCertificate.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCertificate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.certificateBindingSource)).EndInit();
+            this.grBoxDeleteCertificate.ResumeLayout(false);
+            this.panelDeleteCertificate.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1180,9 +1206,9 @@
         private System.Windows.Forms.Label labelDoB;
         private CustomControls.Input inputName;
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.GroupBox grBoxSercurity;
+        private System.Windows.Forms.GroupBox grBoxDeleteStudent;
         private System.Windows.Forms.Panel panelDeleteAccount;
-        private System.Windows.Forms.Label labelWarningMessage;
+        private System.Windows.Forms.Label labelStuWarningMessage;
         private CustomControls.Input labelDeleteStudent;
         private System.Windows.Forms.Button btnDeleteStudent;
         private CustomControls.Input inputStuID;
@@ -1204,16 +1230,16 @@
         private CustomControls.Input inputCertDescription;
         private System.Windows.Forms.Button btnCertReset;
         private System.Windows.Forms.Button btnCertEdit;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private CustomControls.Input input1;
-        private CustomControls.Input input2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
-        private CustomControls.Input input3;
+        private System.Windows.Forms.Label labelStuUpdatedAt;
+        private System.Windows.Forms.Label labelStuCreatedAt;
+        private CustomControls.Input inputStuCreatedAt;
+        private CustomControls.Input inputStuUpdatedAt;
+        private System.Windows.Forms.GroupBox grBoxDeleteCertificate;
+        private System.Windows.Forms.Panel panelDeleteCertificate;
+        private System.Windows.Forms.Label labelCertWarningMessage;
+        private CustomControls.Input labelDeleteCertificate;
         private System.Windows.Forms.Button btnDeleteCertificate;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridViewCertificate;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnExport;
