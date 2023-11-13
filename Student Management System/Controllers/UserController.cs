@@ -85,9 +85,15 @@ namespace Student_Management_System.Controllers
                     bool isDeletedAllLoginHistory = new LoginHistoryController().DeleteAllSameEmail(entity.email);
                     if (isDeletedAllLoginHistory)
                     {
-                        db.users.DeleteOnSubmit(entity);
-                        db.SubmitChanges();
-                        return true;
+                        var entityToDelete = db.users.FirstOrDefault(u => u.email.Equals(entity.email));
+
+                        if (entityToDelete != null)
+                        {
+                            db.users.DeleteOnSubmit(entity);
+                            db.SubmitChanges();
+                            return true;
+
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -191,7 +197,7 @@ namespace Student_Management_System.Controllers
             {
                 try
                 {
-                    var userToUpdate = Get(entity.email);
+                    var userToUpdate = db.users.FirstOrDefault(u => u.email.Equals(entity.email));
                     if (userToUpdate != null)
                     {
                         if (!string.IsNullOrEmpty(entity.email))

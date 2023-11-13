@@ -31,6 +31,7 @@ namespace Student_Management_System
         private void AddStudentForm_Load(object sender, EventArgs e)
         {
             rbtnMale.Checked = true;
+
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
                 DepartmentController departController = new DepartmentController();
@@ -44,6 +45,7 @@ namespace Student_Management_System
 
             inputDepartment.ValueMember = "departId";
             inputDepartment.DisplayMember = "departName";
+
 
             inputClass.ValueMember = "classId";
             inputClass.DisplayMember = "classId";

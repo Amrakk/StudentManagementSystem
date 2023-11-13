@@ -75,18 +75,19 @@ namespace Student_Management_System.Controllers
 
             using (ExcelPackage package = new ExcelPackage(file))
             {
+
                 if (package.Workbook.Worksheets["Sheet1"] != null)
                     package.Workbook.Worksheets.Delete("Sheet1");
 
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
                 Type type = typeof(T);
-
                 var properties = type.GetProperties();
+
                 // Set headers
                 for (int col = 1; col <= properties.Length; col++)
                 {
-                    worksheet.Cells[1, col].Value = properties[col - 1].Name;
+                    newWorksheet.Cells[1, col].Value = properties[col - 1].Name;
                 }
 
                 // Set values
@@ -95,7 +96,7 @@ namespace Student_Management_System.Controllers
                     for (int col = 1; col <= properties.Length; col++)
                     {
                         var propertyValue = properties[col - 1].GetValue(list[row - 2], null);
-                        worksheet.Cells[row, col].Value = propertyValue;
+                        newWorksheet.Cells[row, col].Value = propertyValue;
                     }
                 }
 

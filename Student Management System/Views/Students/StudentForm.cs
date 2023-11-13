@@ -249,5 +249,33 @@ namespace Student_Management_System.Views.Students
                 }
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string userRole = _user.role.ToLower() ?? "";
+            if (!userRole.Equals("admin") && !userRole.Equals("manager"))
+            {
+                MessageBox.Show("You have no priority");
+                return;
+            }
+
+            string selectedId = dataGridView1.SelectedCells[0].Value?.ToString();
+
+            if (string.IsNullOrEmpty(selectedId))
+            {
+                MessageBox.Show("The selected cell does not contain a valid Student ID", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var studentToUpdate = stdController.Get(selectedId);
+            if (studentToUpdate == null)
+            {
+                MessageBox.Show("There is no student");
+                return;
+            }
+
+            UpdateStudentForm updateStudentForm = new UpdateStudentForm(studentToUpdate);
+            updateStudentForm.Show();
+        }
     }
 }
