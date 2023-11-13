@@ -109,6 +109,7 @@ namespace Student_Management_System.Views.Students
                 {
                     stdController.Delete(_student);
                     MessageBox.Show("Delete student successfully!");
+                    StudentForm_Reload();
                     this.Close();
                 }
                 catch (Exception ex)

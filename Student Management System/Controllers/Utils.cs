@@ -87,7 +87,7 @@ namespace Student_Management_System.Controllers
                 // Set headers
                 for (int col = 1; col <= properties.Length; col++)
                 {
-                    newWorksheet.Cells[1, col].Value = properties[col - 1].Name;
+                    worksheet.Cells[1, col].Value = properties[col - 1].Name;
                 }
 
                 // Set values
@@ -96,7 +96,7 @@ namespace Student_Management_System.Controllers
                     for (int col = 1; col <= properties.Length; col++)
                     {
                         var propertyValue = properties[col - 1].GetValue(list[row - 2], null);
-                        newWorksheet.Cells[row, col].Value = propertyValue;
+                        worksheet.Cells[row, col].Value = propertyValue;
                     }
                 }
 
