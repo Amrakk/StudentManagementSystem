@@ -49,6 +49,7 @@ namespace Student_Management_System.Views.CustomControls
             txtInput.Leave += txtInput_Leave;
             txtInput.MouseEnter += txtInput_MouseEnter;
             txtInput.MouseLeave += txtInput_MouseLeave;
+            txtInput.KeyDown += txtInput_KeyDown;
             // 
             // Input
             // 
@@ -63,7 +64,6 @@ namespace Student_Management_System.Views.CustomControls
             ResumeLayout(false);
             PerformLayout();
         }
-
         #endregion
 
         private TextBox txtInput;

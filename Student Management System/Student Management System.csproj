@@ -230,6 +230,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Student_Management_System.Database.certificate.datasource" />
+    <None Include="Properties\DataSources\Student_Management_System.Database.loginhistory.datasource" />
     <None Include="Properties\DataSources\Student_Management_System.Database.Major.datasource" />
     <None Include="Properties\DataSources\Student_Management_System.Database.student.datasource" />
     <None Include="Properties\DataSources\Student_Management_System.Database.user.datasource" />

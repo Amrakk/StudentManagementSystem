@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Text;
@@ -33,83 +34,54 @@ namespace Student_Management_System.Views.Students
 
         private void StudentForm_Load(object sender, EventArgs e)
         {
-            RefreshGridView();
-            // Test export
-            // SystemStudentUtils.ExportCsvFile("exported_students.csv", gettedStudents);
-            // End test
+            RefreshGridView("");
 
-            // Test import
-            // var importedStudents = SystemStudentUtils.ImportCsvFile<student>("exported_students.csv");
-            // dataGridView1.DataSource = importedStudents;
-            // End test
-
-            //Test excel
-            //SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", studentData);
-
-        }
-        // Template 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            string userRole = _user.role.ToLower() ?? "";
-            if (!userRole.Equals("admin") && !userRole.Equals("manager")) 
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
-                MessageBox.Show("You have no priority");
-                return;
-            }
+                DepartmentController departController = new DepartmentController();
 
-            if (gridViewStudent.SelectedCells.Count == 0)
-            {
-                MessageBox.Show("No cell is selected", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                var departments = departController.GetAll();
+                inputDepartment.DataSource = departments;
+                inputDepartment.ValueMember = "departId";
+                inputDepartment.DisplayMember = "departName";
 
-            string selectedId = gridViewStudent.SelectedCells[0].Value?.ToString();
-
-            if (string.IsNullOrEmpty(selectedId))
-            {
-                MessageBox.Show("The selected cell does not contain a valid Student ID", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var studentToDel = stdController.Get(selectedId);
-            if (studentToDel == null)
-            {
-                MessageBox.Show("There is no student");
-                return;
-            }
-
-            var confirmResult = MessageBox.Show("Are you sure you want to delete this student?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirmResult == DialogResult.Yes)
-            {
-                bool isDeleted = stdController.Delete(studentToDel);
-
-                if (isDeleted)
-                {
-                    MessageBox.Show("Deleted");
-                }
-                else
-                {
-                    MessageBox.Show("Failed to delete");
-                }
+                inputDepartment.SelectedIndex = -1; 
             }
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             AddStudentForm addStudentForm = new AddStudentForm(_user);
             addStudentForm.Show();
         }
 
-        public void RefreshGridView()
+        public void RefreshGridView(string text = "")
         {
-            var students = stdController.GetAll();
+            ICollection<student> students = null;
+
+            if (string.IsNullOrEmpty(text)) students = stdController.GetAll();
+            else students = stdController.GetStudentByName(text);
+
+            gridViewStudent.DataSource = students;
+        }
+        
+        public void RefreshGridView(string gender = "", string eduType = "", string department = "", string major = "")
+        {
+            MessageBox.Show(gender + ", " + eduType + ", " + department + ", " + major);
+            ICollection<student> students = stdController.GetStudentByCriteria(gender, eduType, department, major);
             gridViewStudent.DataSource = students;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            if (panelFilter.Visible == true) panelFilter.Hide();
-            else panelFilter.Show();
+            panelFilter.Visible = !panelFilter.Visible;
         }
 
         private void inputSearch_Enter(object sender, EventArgs e)
@@ -130,22 +102,86 @@ namespace Student_Management_System.Views.Students
             }
         }
 
-
-
-        // TODO: Export and Import (Find)
         private void btnExport_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+            saveFileDialog.Title = "Export to";
+            saveFileDialog.ShowDialog();
 
+            if (saveFileDialog.FileName != "")
+            {
+                string extension = Path.GetExtension(saveFileDialog.FileName);
+                using (var db = new MidTermDBDataContext(Program.ConnectionString))
+                {
+                    var students = db.students.ToList();
+
+                    // TODO: Remove unnecessary data
+
+
+                    if (extension.Equals(".xlsx"))
+                    {
+                        SystemStudentUtils.ExportToExcel<student>(saveFileDialog.FileName, students);
+                    }
+                    else if (extension.Equals(".csv"))
+                    {
+                        SystemStudentUtils.ExportCsvFile<student>(saveFileDialog.FileName, students);
+                    }
+                }
+
+                MessageBox.Show("Export successfully", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
+        // TODO: Import (duplicate key error when import)
         private void btnImport_Click(object sender, EventArgs e)
         {
+            //if (MessageBox.Show("Are you sure to import?\nThis will remove all students from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            //    return;
 
+            //using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            //{
+            //    openFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+            //    openFileDialog.Title = "Import from";
+            //    openFileDialog.ShowDialog();
+
+            //    if (openFileDialog.FileName != "")
+            //    {
+            //        string extension = Path.GetExtension(openFileDialog.FileName);
+            //        using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            //        {
+
+            //            //if (extension.Equals(".xlsx"))
+            //            //{
+            //            //    var users = SystemStudentUtils.ImportExcelFile<user>(openFileDialog.FileName);
+            //            //    users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
+            //            //    db.users.InsertAllOnSubmit(users);
+            //            //    db.SubmitChanges();
+            //            //}
+            //            if (extension.Equals(".csv"))
+            //            {
+            //                db.students.DeleteAllOnSubmit(db.students);
+            //                var students = SystemStudentUtils.ImportCsvFile<student>(openFileDialog.FileName);
+            //                db.students.InsertAllOnSubmit(students);
+            //                db.SubmitChanges();
+            //            }
+            //        }
+
+            //        MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+
+            MessageBox.Show("This function is not available yet", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            var text = inputSearch.Texts;
 
+            if (string.IsNullOrEmpty(text) || text.Equals("Search by Name"))
+                RefreshGridView("");
+            else
+                RefreshGridView(text);
         }
 
         private void inputSearch_KeyDown(object sender, KeyEventArgs e)
@@ -164,6 +200,54 @@ namespace Student_Management_System.Views.Students
             string SID = gridViewStudent.Rows[e.RowIndex].Cells[0].Value.ToString();
             StudentDetailForm studentDetailForm = new StudentDetailForm(_user, SID);
             studentDetailForm.Show();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            inputGender.Texts = "";
+            inputEduType.Texts = "";
+            inputDepartment.Texts = "";
+            inputMajor.Texts = "";
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            var gender = inputGender.SelectedItem as string;
+            var eduType = inputEduType.SelectedItem as string;
+            var department = inputDepartment.SelectedItem as Department;
+            var major = inputMajor.SelectedItem as Major;
+
+            var departId = department?.departId; 
+            var majorId = major?.majorId;
+
+            if(string.IsNullOrEmpty(departId))
+            {
+                departId = "";
+                majorId = "";
+            }
+
+            if(string.IsNullOrEmpty(majorId)) majorId = "";
+
+            RefreshGridView(gender, eduType, departId, majorId);    
+            panelFilter.Visible = false;
+        }
+
+        private void inputDepartment_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                MajorController majorController = new MajorController();
+                if (inputDepartment.SelectedItem != null)
+                {
+                    Department department = inputDepartment.SelectedItem as Department;
+                    var majors = majorController.GetAllByDepartment(department.departId);
+
+                    inputMajor.ValueMember = "majorId";
+                    inputMajor.DisplayMember = "majorName";
+                    inputMajor.DataSource = majors;
+                    inputMajor.SelectedIndex = -1;
+                }
+            }
         }
     }
 }

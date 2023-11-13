@@ -20,27 +20,21 @@ namespace Student_Management_System
     {
         private user _user;
         StudentController stdController;
-        DepartmentController departController;
-        ClassController classController;
-        MajorController majorController;
+        
         public AddStudentForm(user user)
         {
             InitializeComponent();
             _user = user;
             stdController = new StudentController();
-            departController = new DepartmentController();
-            classController = new ClassController();
-            majorController = new MajorController();
         }
 
         private void AddStudentForm_Load(object sender, EventArgs e)
         {
             rbtnMale.Checked = true;
-            inputEduType.Items.Add("Standard");
-            inputEduType.Items.Add("High Quality");
-
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
+                DepartmentController departController = new DepartmentController();
+                ClassController classController = new ClassController();
                 var departments = departController.GetAll();
                 inputDepartment.DataSource = departments;
                 
@@ -59,13 +53,6 @@ namespace Student_Management_System
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string userRole = _user.role;
-            if (userRole.Equals("Employee"))
-            {
-                MessageBox.Show("You are not authorized");
-                return;
-            }
-
             string StudentName = inputName.Texts;
             string EduType = inputEduType.SelectedItem as string;
             Department Department = inputDepartment.SelectedItem as Department;
@@ -78,23 +65,37 @@ namespace Student_Management_System
             DateTime Dob = inputDoB.Value.Date;
 
             int.TryParse(CourseYear, out int parsedYear);
-
+            
             if (Dob == null||
-                Major == null||
-                ClassName == null ||
-                Department == null ||
                 string.IsNullOrEmpty(EduType) ||
                 string.IsNullOrEmpty(StudentName) ||
                 string.IsNullOrEmpty(parsedYear.ToString()) )
             {
-                MessageBox.Show("Please fill all fields");
+                MessageBox.Show("Please fill in all fields", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            if(Department == null)
+            {
+                MessageBox.Show("Please select a valid department", "Invalid department", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (ClassName == null)
+            {
+                MessageBox.Show("Please select a valid class", "Invalid class", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (Major == null)
+            {
+                MessageBox.Show("Please select a valid major", "Invalid major", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (!yearRegEx.IsMatch(CourseYear) || parsedYear > DateTime.Now.Year)
             {
-                MessageBox.Show("Invalid course year");
+                MessageBox.Show("Please enter a valid course year", "Invalid course year", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -113,8 +114,8 @@ namespace Student_Management_System
 
             bool isAdded = stdController.Add(student);
 
-            if (isAdded) { MessageBox.Show("Student Added"); StudentForm_Reload(); this.Close(); }
-            else MessageBox.Show("Failed to add");
+            if (isAdded) { MessageBox.Show("Student Added", "", MessageBoxButtons.OK, MessageBoxIcon.Information); StudentForm_Reload(); this.Close(); }
+            else MessageBox.Show("Failed to add", "" , MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void inputDepartment_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -123,6 +124,7 @@ namespace Student_Management_System
             {
                 if (inputDepartment.SelectedItem != null)
                 {
+                    MajorController majorController = new MajorController();
                     Department department = inputDepartment.SelectedItem as Department;
                     var majors = majorController.GetAllByDepartment(department.departId);
                     inputMajor.Texts = "";
@@ -149,7 +151,7 @@ namespace Student_Management_System
         private void StudentForm_Reload()
         {
             if (Application.OpenForms["StudentForm"] is StudentForm studentForm)
-                studentForm.RefreshGridView();
+                studentForm.RefreshGridView("");
         }
     }
 }

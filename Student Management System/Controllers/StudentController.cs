@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq.Dynamic.Core;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data;
 
 namespace Student_Management_System.Controllers
 {
@@ -84,6 +86,60 @@ namespace Student_Management_System.Controllers
                 try
                 {
                     return db.students.FirstOrDefault(s => s.id == id);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        public ICollection<student> GetStudentByName(string text)
+        {
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    return db.students.Where(u => u.name.Contains(text)).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        public ICollection<student> GetStudentByCriteria(string gender = "", string eduType = "", string department = "", string major = "")
+        {
+            MessageBox.Show(gender + ", " + eduType + ", " + department + ", " + major);
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    var students = db.students.AsQueryable();
+                    if (!string.IsNullOrEmpty(gender))
+                    {
+                        students = students.Where(s => s.gender.Equals(gender)); 
+                    }
+
+                    if (!string.IsNullOrEmpty(eduType))
+                    {
+                        students = students.Where(s => s.eduType.Equals(eduType));
+                    }
+
+                    if (!string.IsNullOrEmpty(department))
+                    {
+                        students = students.Where(s => s.department.Equals(department));
+                    }
+
+                    if (!string.IsNullOrEmpty(major))
+                    {
+                        students = students.Where(s => s.major.Equals(major));
+                    }
+
+                    return students.ToList();
                 }
                 catch (Exception ex)
                 {

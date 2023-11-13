@@ -53,7 +53,11 @@ namespace Student_Management_System.Controllers
                 var records = csv.GetRecords<T>().ToList();
                 return records;
             }
+        }
 
+        public static string EncryptPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password,10);
         }
 
         public static void ExportCsvFile<T>(string filePath, List<T> list)
@@ -71,6 +75,9 @@ namespace Student_Management_System.Controllers
 
             using (ExcelPackage package = new ExcelPackage(file))
             {
+                if (package.Workbook.Worksheets["Sheet1"] != null)
+                    package.Workbook.Worksheets.Delete("Sheet1");
+
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
                 Type type = typeof(T);
