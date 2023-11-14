@@ -303,7 +303,6 @@ namespace Student_Management_System.Views.Admin
                 selectedUser.role = role;
                 selectedUser.status = status;
                 selectedUser.dob = dob;
-                selectedUser.age = DateTime.Now.Year - dob.Year;
                 selectedUser.updatedAt = DateTime.Now;
 
                 try
