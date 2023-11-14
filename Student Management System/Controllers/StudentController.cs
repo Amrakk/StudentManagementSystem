@@ -23,8 +23,8 @@ namespace Student_Management_System.Controllers
                 string.IsNullOrEmpty(entity.gender) ||
                 string.IsNullOrEmpty(entity.eduType) ||
                 string.IsNullOrEmpty(entity.className) ||
-                string.IsNullOrEmpty(entity.courseYear) ||
-                string.IsNullOrEmpty(entity.department))
+                string.IsNullOrEmpty(entity.courseYear)||
+                string.IsNullOrEmpty(entity.department) )
             {
                 return false;
             }
@@ -131,7 +131,7 @@ namespace Student_Management_System.Controllers
                     var students = db.students.AsQueryable();
                     if (!string.IsNullOrEmpty(gender))
                     {
-                        students = students.Where(s => s.gender.Equals(gender));
+                        students = students.Where(s => s.gender.Equals(gender)); 
                     }
 
                     if (!string.IsNullOrEmpty(eduType))

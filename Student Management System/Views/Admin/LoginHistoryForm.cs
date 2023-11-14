@@ -25,22 +25,14 @@ namespace Student_Management_System.Views.Admin
 
         private void LoginHistoryForm_Load(object sender, EventArgs e)
         {
-            string userRole = _user.role?.ToLower() ?? "";
-            if (!userRole.Equals("admin"))
+            if (!_user.role.Equals("Admin"))
             {
                 MessageBox.Show("You have no priority");
                 return;
             }
 
-            var histories = _controller.GetAll();
-            var selectedColumns = histories.Select(h => new
-            {
-                ID = h.id,
-                Email = h.email,
-                Accessed = h.history
-            }).ToList();
-
-            dataGridView1.DataSource = selectedColumns;
+            dataGridView1.DataSource = _controller.GetAll();
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         }
     }
 }
