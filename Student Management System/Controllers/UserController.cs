@@ -233,7 +233,7 @@ namespace Student_Management_System.Controllers
                         if (entity.dob != null)
                         {
                             userToUpdate.dob = entity.dob.Value.Date;
-                            int age = entity.dob.Value.Year - DateTime.Now.Year;
+                            int age = DateTime.Now.Year - entity.dob.Value.Year;
                             userToUpdate.age = age;
                         }
 

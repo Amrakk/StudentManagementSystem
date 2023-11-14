@@ -115,6 +115,13 @@ namespace Student_Management_System.Views.Students
 
         private void btnDeleteStudent_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var confirmResult = MessageBox.Show("Are you sure you want to delete this student?", "Confirm Deletion", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {   
@@ -135,6 +142,13 @@ namespace Student_Management_System.Views.Students
 
         private void btnStuAdd_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var id = inputStuID.Texts;
             var name = inputName.Texts;
             var dob = inputDoB.Value.Date;
@@ -226,10 +240,16 @@ namespace Student_Management_System.Views.Students
         #region Certificate
         private void btnCertSave_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             var certID = inputCertID.Texts;
             var title = inputCertTitle.Texts;
-            var description = inputCertDescription.Texts;
+            var description = inputDescription.Texts;
             var issueDate = inputCertIssueDate.Value.Date;
             var expiredDate = inputCertExpiredDate.Value.Date;
             var organization = inputCertOrganization.Texts;
@@ -323,7 +343,7 @@ namespace Student_Management_System.Views.Students
                 inputCertID.Enabled = true;
                 inputCertID.Texts = "";
                 inputCertTitle.Texts = "";
-                inputCertDescription.Texts = "";
+                inputDescription.Texts = "";
                 inputCertIssueDate.Value = DateTime.Now;
                 inputCertExpiredDate.Value = DateTime.Now;
                 inputCertOrganization.Texts = "";
@@ -339,7 +359,7 @@ namespace Student_Management_System.Views.Students
                 inputCertID.Enabled = false;
                 inputCertID.Texts = _selectedCert.id;
                 inputCertTitle.Texts = _selectedCert.title;
-                inputCertDescription.Texts = _selectedCert.description;
+                inputDescription.Texts = _selectedCert.description;
                 inputCertIssueDate.Value = _selectedCert.issue_date.Value.Date;
                 inputCertExpiredDate.Value = _selectedCert.expiry_date.Value.Date;
                 inputCertOrganization.Texts = _selectedCert.organization_name;
@@ -351,6 +371,13 @@ namespace Student_Management_System.Views.Students
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             inputCertID.Focus();
             _selectedCert = null;
             btnCertReset_Click(sender, e);
@@ -366,6 +393,13 @@ namespace Student_Management_System.Views.Students
 
         private void btnDeleteCertificate_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var confirmResult = MessageBox.Show("Are you sure you want to delete this certificate?", "Confirm Deletion", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
@@ -382,6 +416,7 @@ namespace Student_Management_System.Views.Students
                 }
             }
         }
+
         private void btnExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -395,17 +430,27 @@ namespace Student_Management_System.Views.Students
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
                     var certificates = db.certificates.ToList();
-
-                    // TODO: Remove unnecessary data
-
+                    var certificatesToExport = certificates.Select(s => new CertificateExport
+                    {
+                        CertificateID = s.id,
+                        Title = s.title,
+                        Description = s.description,
+                        IssueDate = s.issue_date?.ToString("dd-MM-yyyy"),
+                        ExpiryDate = s.expiry_date?.ToString("dd-MM-yyyy"),
+                        OrganizationName = s.organization_name,
+                        IsValid = s.isValid,
+                        SID = s.sid,
+                        CreatedAt = s.createdAt?.ToString("dd-MM-yyyy"),
+                        UpdatedAt = s.updatedAt?.ToString("dd-MM-yyyy")
+                    }).ToList();
 
                     if (extension.Equals(".xlsx"))
                     {
-                        SystemStudentUtils.ExportToExcel<certificate>(saveFileDialog.FileName, certificates);
+                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, certificatesToExport);
                     }
                     else if (extension.Equals(".csv"))
                     {
-                        SystemStudentUtils.ExportCsvFile<certificate>(saveFileDialog.FileName, certificates);
+                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, certificatesToExport);
                     }
                 }
 
@@ -413,43 +458,94 @@ namespace Student_Management_System.Views.Students
             }
         }
 
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure to import?\nThis will remove all certificates from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+                openFileDialog.Title = "Import from";
+                openFileDialog.ShowDialog();
+
+                if (openFileDialog.FileName != "")
+                {
+                    string extension = Path.GetExtension(openFileDialog.FileName);
+                    using (var db = new MidTermDBDataContext(Program.ConnectionString))
+                    {
+                        Func<CertificateExport, certificate> certConvertFunction = record => new certificate
+                        {
+                            id = record.CertificateID,
+                            title = record.Title,
+                            description = record.Description,
+                            issue_date = SystemStudentUtils.ParseDate(record.IssueDate),
+                            expiry_date = SystemStudentUtils.ParseDate(record.ExpiryDate),
+                            organization_name = record.OrganizationName,
+                            isValid = record.IsValid,
+                            sid = record.SID,
+                            createdAt = SystemStudentUtils.ParseDate(record.CreatedAt),
+                            updatedAt = SystemStudentUtils.ParseDate(record.UpdatedAt)
+                        };
+                        
+                        db.certificates.DeleteAllOnSubmit(db.certificates);
+                        if (extension.Equals(".csv"))
+                        {
+                            try
+                            {
+                                var certificates = SystemStudentUtils.ImportCsvFile<certificate, CertificateExport>(openFileDialog.FileName, certConvertFunction);
+                                if (certificates.Count == 0)
+                                {
+                                    MessageBox.Show("No record found");
+                                    return;
+                                }
+
+                                db.certificates.InsertAllOnSubmit(certificates);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                return;
+                            }
+                        }
+                        else if (extension.Equals(".xlsx"))
+                        {
+                            try
+                            {
+                                var certificates = SystemStudentUtils.ImportExcelFile<certificate, CertificateExport>(openFileDialog.FileName, certConvertFunction);
+                                if (certificates.Count == 0)
+                                {
+                                    MessageBox.Show("No record found");
+                                    return;
+                                }
+
+                                db.certificates.InsertAllOnSubmit(certificates);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                return;
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshGridView();
+                }
+            }
+        }
 
         #endregion
 
 
-        // TODO: Import
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            //if (MessageBox.Show("Are you sure to import?\nThis will remove all students from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            //    return;
-
-            //using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            //{
-            //    openFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
-            //    openFileDialog.Title = "Import from";
-            //    openFileDialog.ShowDialog();
-
-            //    if (openFileDialog.FileName != "")
-            //    {
-            //        string extension = Path.GetExtension(openFileDialog.FileName);
-            //        using (var db = new MidTermDBDataContext(Program.ConnectionString))
-            //        {
-            //            if (extension.Equals(".xlsx"))
-            //            {
-            //                //    var users = SystemStudentUtils.ImportExcelFile<user>(openFileDialog.FileName);
-            //                //    users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
-            //                //    db.users.InsertAllOnSubmit(users);
-            //                //    db.SubmitChanges();
-            //            }
-            //            if (extension.Equals(".csv"))
-            //            {
-                            
-            //            }
-            //        }
-            //    }
-            //}
-
-            MessageBox.Show("this feature is not available yet!");
-        }
     }
 }

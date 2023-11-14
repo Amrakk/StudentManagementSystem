@@ -495,8 +495,6 @@ namespace Student_Management_System.Views.Students
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.idDataGridViewTextBoxColumn.HeaderText = "Student ID";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
@@ -505,8 +503,6 @@ namespace Student_Management_System.Views.Students
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle18;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
@@ -515,8 +511,6 @@ namespace Student_Management_System.Views.Students
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "dob";
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle19;
             this.dobDataGridViewTextBoxColumn.HeaderText = "Date of Birth";
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -525,8 +519,6 @@ namespace Student_Management_System.Views.Students
             // gender
             // 
             this.gender.DataPropertyName = "gender";
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.gender.DefaultCellStyle = dataGridViewCellStyle20;
             this.gender.HeaderText = "Gender";
             this.gender.Name = "gender";
             this.gender.ReadOnly = true;
@@ -535,8 +527,6 @@ namespace Student_Management_System.Views.Students
             // departmentDataGridViewTextBoxColumn
             // 
             this.departmentDataGridViewTextBoxColumn.DataPropertyName = "department";
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.departmentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle21;
             this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
             this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
             this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
@@ -545,8 +535,6 @@ namespace Student_Management_System.Views.Students
             // majorDataGridViewTextBoxColumn
             // 
             this.majorDataGridViewTextBoxColumn.DataPropertyName = "major";
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.majorDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
             this.majorDataGridViewTextBoxColumn.HeaderText = "Major";
             this.majorDataGridViewTextBoxColumn.Name = "majorDataGridViewTextBoxColumn";
             this.majorDataGridViewTextBoxColumn.ReadOnly = true;
@@ -555,8 +543,6 @@ namespace Student_Management_System.Views.Students
             // eduType
             // 
             this.eduType.DataPropertyName = "eduType";
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eduType.DefaultCellStyle = dataGridViewCellStyle23;
             this.eduType.HeaderText = "Edu Type";
             this.eduType.Name = "eduType";
             this.eduType.ReadOnly = true;
@@ -565,8 +551,6 @@ namespace Student_Management_System.Views.Students
             // courseYearDataGridViewTextBoxColumn
             // 
             this.courseYearDataGridViewTextBoxColumn.DataPropertyName = "courseYear";
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.courseYearDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
             this.courseYearDataGridViewTextBoxColumn.HeaderText = "Course Year";
             this.courseYearDataGridViewTextBoxColumn.Name = "courseYearDataGridViewTextBoxColumn";
             this.courseYearDataGridViewTextBoxColumn.ReadOnly = true;
