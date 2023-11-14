@@ -28,7 +28,7 @@ namespace Student_Management_System.Views.Students
         private void StudentForm_Load(object sender, EventArgs e)
         {
             var gettedStudents = stdController.GetAll().ToList();
-            var studentData = gettedStudents.Select(s => new
+            var studentData = gettedStudents.Select(s => new Student
             {
                 SID = s.id,
                 Name = s.name,
@@ -44,16 +44,24 @@ namespace Student_Management_System.Views.Students
             }).ToList();
 
             // Test export
-            // SystemStudentUtils.ExportCsvFile("exported_students.csv", gettedStudents);
+            // SystemStudentUtils.ExportCsvFile<Student>("exported_students.csv", studentData);
             // End test
 
+            // Import should be stored to db
             // Test import
-            // var importedStudents = SystemStudentUtils.ImportCsvFile<student>("exported_students.csv");
+            var importedStudents = SystemStudentUtils.ImportCsvFile("exported_students.csv");
+            foreach (var st in importedStudents)
+            {
+                MessageBox.Show(st.id + st.name + st.className + st.department);
+            }
+
+            // var excelImport = SystemStudentUtils.ImportExcelFile("exported_excel_students.xlsx");
+            // var data = importedStudents;
             // dataGridView1.DataSource = importedStudents;
             // End test
 
             // Test excel
-            // SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", studentData);
+            // SystemStudentUtils.ExportToExcel("exported_excel_students.xlsx", data);
 
             dataGridView1.DataSource = studentData;
             dataGridView1.Columns["courseYear"].HeaderText = "Course Year";

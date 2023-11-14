@@ -113,6 +113,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\MajorController.cs" />
     <Compile Include="Controllers\Utils.cs" />
+    <Compile Include="Database\Student.cs" />
     <Compile Include="Views\Students\AddStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -81,11 +81,11 @@ namespace Student_Management_System.Controllers
 
                     if (isDeletedAllLoginHistory)
                     {
-                        var entityToDelete = Get(entity.email);
+                        var entityToDelete = db.users.FirstOrDefault(u => u.email.Equals(entity.email));
 
                         if (entityToDelete != null)
                         {
-                            db.users.DeleteOnSubmit(entity);
+                            db.users.DeleteOnSubmit(entityToDelete);
                             db.SubmitChanges();
                             return true;
 
