@@ -89,7 +89,7 @@ namespace Student_Management_System.Controllers
 
                         if (entityToDelete != null)
                         {
-                            db.users.DeleteOnSubmit(entity);
+                            db.users.DeleteOnSubmit(entityToDelete);
                             db.SubmitChanges();
                             return true;
 

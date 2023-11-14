@@ -18,7 +18,7 @@ namespace Student_Management_System.Controllers
     {
         private static readonly string workingDir = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.FullName ?? "";
         private static string rootDirectory = "Resources";
-        
+
         public static string SaveAvatars(string email, string selectedPath)
         {
             string imagePath = "";
@@ -45,14 +45,66 @@ namespace Student_Management_System.Controllers
             return imagePath;
         }
 
-        public static List<T> ImportCsvFile<T>(string filePath)
+        public static List<T> ImportCsvFile<T, K>(string filePath, Func<K, T> convertFunction)
         {
+            var resultList = new List<T>();
+
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
             {
-                var records = csv.GetRecords<T>().ToList();
-                return records;
+                var records = csv.GetRecords<K>().ToList();
+
+                foreach (var record in records)
+                {
+                    T convertedRecord = convertFunction(record);
+                    resultList.Add(convertedRecord);
+                }
             }
+
+            return resultList;
+        }
+
+        public static List<T> ImportExcelFile<T, K>(string filePath, Func<K, T> convertFunction)
+        {
+            var resultList = new List<T>();
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            using (ExcelPackage package = new ExcelPackage(fileInfo))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+
+                int rowCount = worksheet.Dimension.Rows;
+                int colCount = worksheet.Dimension.Columns;
+
+                var columnNames = Enumerable.Range(1, colCount)
+                                    .Select(col => worksheet.Cells[1, col].Value.ToString())
+                                    .ToList();
+
+                for (int row = 2; row <= rowCount; row++)
+                {
+                    K obj = Activator.CreateInstance<K>();
+
+                    try
+                    {
+                        for (int col = 1; col <= colCount; col++)
+                        {
+                            string columnName = columnNames[col - 1];
+                            object cellValue = worksheet.Cells[row, col].Value;
+                            typeof(K).GetProperty(columnName)?.SetValue(obj, cellValue);
+                        }
+
+                        T targetObj = convertFunction(obj);
+
+                        resultList.Add(targetObj);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error at row {row}: {ex.Message}");
+                    }
+                }
+            }
+
+            return resultList;
         }
 
         public static string EncryptPassword(string password)
@@ -60,7 +112,7 @@ namespace Student_Management_System.Controllers
             return BCrypt.Net.BCrypt.HashPassword(password,10);
         }
 
-        public static void ExportCsvFile<T>(string filePath, List<T> list)
+        public static void ExportCsvFile<T>(string filePath, List<T> list, Dictionary<string, string> columnMappings = null)
         {
             using (var writer = new StreamWriter(filePath))
             using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)))
@@ -79,7 +131,7 @@ namespace Student_Management_System.Controllers
                 if (package.Workbook.Worksheets["Sheet1"] != null)
                     package.Workbook.Worksheets.Delete("Sheet1");
 
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+                ExcelWorksheet newWorksheet = package.Workbook.Worksheets.Add("Sheet1");
 
                 Type type = typeof(T);
                 var properties = type.GetProperties();
@@ -104,5 +156,40 @@ namespace Student_Management_System.Controllers
             }
         }
 
+        public static DateTime? ParseDate(string dateString)
+        {
+            if (DateTime.TryParseExact(dateString, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            {
+                return parsedDate;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static List<T> ReadWorksheet<T>(ExcelWorksheet worksheet, Func<ExcelRange, T> mapFunction)
+        {
+            var resultList = new List<T>();
+
+            if (worksheet != null)
+            {
+                int startRow = worksheet.Dimension.Start.Row;
+                int endRow = worksheet.Dimension.End.Row;
+
+                for (int row = startRow + 1; row <= endRow; row++)
+                {
+                    var rowRange = worksheet.Cells[row, worksheet.Dimension.Start.Column, row, worksheet.Dimension.End.Column];
+                    T mappedRow = mapFunction(rowRange);
+                    resultList.Add(mappedRow);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Worksheet is null.");
+            }
+
+            return resultList;
+        }
     }
 }

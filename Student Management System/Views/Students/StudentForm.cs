@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -45,7 +46,7 @@ namespace Student_Management_System.Views.Students
                 inputDepartment.ValueMember = "departId";
                 inputDepartment.DisplayMember = "departName";
 
-                inputDepartment.SelectedIndex = -1; 
+                inputDepartment.SelectedIndex = -1;
             }
         }
 
@@ -71,7 +72,7 @@ namespace Student_Management_System.Views.Students
 
             gridViewStudent.DataSource = students;
         }
-        
+
         public void RefreshGridView(string gender = "", string eduType = "", string department = "", string major = "")
         {
             MessageBox.Show(gender + ", " + eduType + ", " + department + ", " + major);
@@ -116,16 +117,29 @@ namespace Student_Management_System.Views.Students
                 {
                     var students = db.students.ToList();
 
-                    // TODO: Remove unnecessary data
-
+                    // TODO: Remove unnecessary data (DONE)
+                    var studentsToExport = students.Select(s => new StudentExport
+                    {
+                        StudentID = s.id,
+                        FullName = s.name,
+                        DateOfBirth = s.dob?.ToString("dd-MM-yyyy") ?? "",
+                        Gender = s.gender,
+                        Class = s.className,
+                        Department = s.department,
+                        Major = s.major,
+                        CourseYear = s.courseYear,
+                        CreatedAt = s.createdAt?.ToString("dd-MM-yyyy") ?? "",
+                        UpdatedAt = s.updatedAt?.ToString("dd-MM-yyyy") ?? "",
+                        EducationType = s.eduType
+                    }).ToList();
 
                     if (extension.Equals(".xlsx"))
                     {
-                        SystemStudentUtils.ExportToExcel<student>(saveFileDialog.FileName, students);
+                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, studentsToExport);
                     }
                     else if (extension.Equals(".csv"))
                     {
-                        SystemStudentUtils.ExportCsvFile<student>(saveFileDialog.FileName, students);
+                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, studentsToExport);
                     }
                 }
 
@@ -136,40 +150,72 @@ namespace Student_Management_System.Views.Students
         // TODO: Import (duplicate key error when import)
         private void btnImport_Click(object sender, EventArgs e)
         {
-            //if (MessageBox.Show("Are you sure to import?\nThis will remove all students from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            //    return;
+            if (MessageBox.Show("Are you sure to import?\nThis will remove all students from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
 
-            //using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            //{
-            //    openFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
-            //    openFileDialog.Title = "Import from";
-            //    openFileDialog.ShowDialog();
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+                openFileDialog.Title = "Import from";
+                openFileDialog.ShowDialog();
 
-            //    if (openFileDialog.FileName != "")
-            //    {
-            //        string extension = Path.GetExtension(openFileDialog.FileName);
-            //        using (var db = new MidTermDBDataContext(Program.ConnectionString))
-            //        {
+                if (openFileDialog.FileName != "")
+                {
+                    string extension = Path.GetExtension(openFileDialog.FileName);
+                    using (var db = new MidTermDBDataContext(Program.ConnectionString))
+                    {
+                        Func<StudentExport, student> studentConvertFunction = record => new student
+                        {
+                            id = record.StudentID,
+                            name = record.FullName,
+                            dob = SystemStudentUtils.ParseDate(record.DateOfBirth),
+                            gender = record.Gender,
+                            className = record.Class,
+                            department = record.Department,
+                            major = record.Major,
+                            courseYear = record.CourseYear,
+                            createdAt = SystemStudentUtils.ParseDate(record.CreatedAt),
+                            updatedAt = SystemStudentUtils.ParseDate(record.UpdatedAt),
+                            eduType = record.EducationType
+                        };
 
-            //            //if (extension.Equals(".xlsx"))
-            //            //{
-            //            //    var users = SystemStudentUtils.ImportExcelFile<user>(openFileDialog.FileName);
-            //            //    users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
-            //            //    db.users.InsertAllOnSubmit(users);
-            //            //    db.SubmitChanges();
-            //            //}
-            //            if (extension.Equals(".csv"))
-            //            {
-            //                db.students.DeleteAllOnSubmit(db.students);
-            //                var students = SystemStudentUtils.ImportCsvFile<student>(openFileDialog.FileName);
-            //                db.students.InsertAllOnSubmit(students);
-            //                db.SubmitChanges();
-            //            }
-            //        }
+                        if (extension.Equals(".csv"))
+                        {
+                            try
+                            {
+                                db.students.DeleteAllOnSubmit(db.students);
 
-            //        MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
+                                var students = SystemStudentUtils.ImportCsvFile<student, StudentExport>(openFileDialog.FileName, studentConvertFunction);
+
+                                db.students.InsertAllOnSubmit(students);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There is something wrong");
+                            }
+                        }
+                        else if (extension.Equals(".xlsx"))
+                        {
+                            try
+                            {
+                                db.students.DeleteAllOnSubmit(db.students);
+
+                                var students = SystemStudentUtils.ImportExcelFile<student, StudentExport>(openFileDialog.FileName, studentConvertFunction);
+
+                                db.students.InsertAllOnSubmit(students);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There is something wrong");
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
 
             MessageBox.Show("This function is not available yet", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -217,18 +263,18 @@ namespace Student_Management_System.Views.Students
             var department = inputDepartment.SelectedItem as Department;
             var major = inputMajor.SelectedItem as Major;
 
-            var departId = department?.departId; 
+            var departId = department?.departId;
             var majorId = major?.majorId;
 
-            if(string.IsNullOrEmpty(departId))
+            if (string.IsNullOrEmpty(departId))
             {
                 departId = "";
                 majorId = "";
             }
 
-            if(string.IsNullOrEmpty(majorId)) majorId = "";
+            if (string.IsNullOrEmpty(majorId)) majorId = "";
 
-            RefreshGridView(gender, eduType, departId, majorId);    
+            RefreshGridView(gender, eduType, departId, majorId);
             panelFilter.Visible = false;
         }
 

@@ -1249,7 +1249,7 @@ namespace Student_Management_System.Database
 			this.SendPropertyChanging();
 			entity.student = null;
 		}
-	}
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.users")]
 	public partial class user : INotifyPropertyChanging, INotifyPropertyChanged

@@ -44,7 +44,7 @@ namespace Student_Management_System.Controllers
             {
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
-                    var entityToDelete = db.certificates.FirstOrDefault(c => c.id == entity.id);
+                    var entityToDelete = db.certificates.FirstOrDefault(c => c.id.Equals(entity.id));
 
                     if (entityToDelete != null)
                     {
@@ -130,7 +130,7 @@ namespace Student_Management_System.Controllers
             {
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
-                    certificate updatedCertificate = db.certificates.FirstOrDefault(c => c.id == entity.id);
+                    certificate updatedCertificate = db.certificates.FirstOrDefault(c => c.id.Equals(entity.id));
 
                     if (updatedCertificate == null)
                     {

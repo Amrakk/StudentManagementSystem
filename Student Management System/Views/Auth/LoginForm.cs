@@ -10,14 +10,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Student_Management_System.Database;
+using Student_Management_System.Controllers;
 
 namespace Student_Management_System.Views.Auth
 {
     public partial class LoginForm : Form
     {
+        private UserController userController;
         public LoginForm()
         {
             InitializeComponent();
+            userController = new UserController();
         }
 
         private void txtEmail_Enter(object sender, EventArgs e)
@@ -56,11 +59,7 @@ namespace Student_Management_System.Views.Auth
             user loginUser;
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
-                db.DeferredLoadingEnabled = false;
-                loginUser = (from u in db.users
-                            where u.email == email
-                            select u).FirstOrDefault();
-
+                loginUser = userController.Get(email);
                 if (loginUser == null)
                 {
                     labelErrorMessage.Text = "Invalid email or password";

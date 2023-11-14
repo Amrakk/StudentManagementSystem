@@ -207,7 +207,7 @@ namespace Student_Management_System.Controllers
                     try
                     {
                         student updatedStudent = db.students.FirstOrDefault(s => s.id.Equals(entity.id));
-                        
+
                         if (updatedStudent == null)
                         {
                             return false;
