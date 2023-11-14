@@ -32,34 +32,16 @@ namespace Student_Management_System.Views.Students
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelStudent = new System.Windows.Forms.Label();
             this.gridViewStudent = new System.Windows.Forms.DataGridView();
-            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panelFilter = new System.Windows.Forms.Panel();
-            this.btnFilter = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnCreate = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.labelGender = new System.Windows.Forms.Label();
-            this.labelEduType = new System.Windows.Forms.Label();
-            this.labelDepartment = new System.Windows.Forms.Label();
-            this.labelMajor = new System.Windows.Forms.Label();
-            this.btnApply = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.inputMajor = new Student_Management_System.Views.CustomControls.ComboBoxInput();
-            this.inputDepartment = new Student_Management_System.Views.CustomControls.ComboBoxInput();
-            this.inputEduType = new Student_Management_System.Views.CustomControls.ComboBoxInput();
-            this.inputGender = new Student_Management_System.Views.CustomControls.ComboBoxInput();
-            this.inputSearch = new Student_Management_System.Views.CustomControls.Input();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,6 +50,24 @@ namespace Student_Management_System.Views.Students
             this.majorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eduType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.courseYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panelFilter = new System.Windows.Forms.Panel();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.inputMajor = new Student_Management_System.Views.CustomControls.ComboBoxInput();
+            this.labelMajor = new System.Windows.Forms.Label();
+            this.inputDepartment = new Student_Management_System.Views.CustomControls.ComboBoxInput();
+            this.labelDepartment = new System.Windows.Forms.Label();
+            this.inputEduType = new Student_Management_System.Views.CustomControls.ComboBoxInput();
+            this.labelEduType = new System.Windows.Forms.Label();
+            this.inputGender = new Student_Management_System.Views.CustomControls.ComboBoxInput();
+            this.labelGender = new System.Windows.Forms.Label();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.inputSearch = new Student_Management_System.Views.CustomControls.Input();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
             this.panelFilter.SuspendLayout();
@@ -81,7 +81,7 @@ namespace Student_Management_System.Views.Students
             this.labelStudent.Location = new System.Drawing.Point(90, 30);
             this.labelStudent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStudent.Name = "labelStudent";
-            this.labelStudent.Size = new System.Drawing.Size(150, 47);
+            this.labelStudent.Size = new System.Drawing.Size(188, 60);
             this.labelStudent.TabIndex = 0;
             this.labelStudent.Text = "Student";
             // 
@@ -104,10 +104,100 @@ namespace Student_Management_System.Views.Students
             this.gridViewStudent.Location = new System.Drawing.Point(98, 171);
             this.gridViewStudent.Name = "gridViewStudent";
             this.gridViewStudent.ReadOnly = true;
+            this.gridViewStudent.RowHeadersWidth = 51;
             this.gridViewStudent.RowTemplate.Height = 24;
+            this.gridViewStudent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridViewStudent.Size = new System.Drawing.Size(1278, 524);
             this.gridViewStudent.TabIndex = 1;
             this.gridViewStudent.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewStudent_CellDoubleClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.idDataGridViewTextBoxColumn.HeaderText = "Student ID";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 205;
+            // 
+            // dobDataGridViewTextBoxColumn
+            // 
+            this.dobDataGridViewTextBoxColumn.DataPropertyName = "dob";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dobDataGridViewTextBoxColumn.HeaderText = "Date of Birth";
+            this.dobDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
+            this.dobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dobDataGridViewTextBoxColumn.Width = 145;
+            // 
+            // gender
+            // 
+            this.gender.DataPropertyName = "gender";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.gender.DefaultCellStyle = dataGridViewCellStyle4;
+            this.gender.HeaderText = "Gender";
+            this.gender.MinimumWidth = 6;
+            this.gender.Name = "gender";
+            this.gender.ReadOnly = true;
+            this.gender.Width = 95;
+            // 
+            // departmentDataGridViewTextBoxColumn
+            // 
+            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "department";
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.departmentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
+            this.departmentDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
+            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
+            this.departmentDataGridViewTextBoxColumn.Width = 210;
+            // 
+            // majorDataGridViewTextBoxColumn
+            // 
+            this.majorDataGridViewTextBoxColumn.DataPropertyName = "major";
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.majorDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.majorDataGridViewTextBoxColumn.HeaderText = "Major";
+            this.majorDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.majorDataGridViewTextBoxColumn.Name = "majorDataGridViewTextBoxColumn";
+            this.majorDataGridViewTextBoxColumn.ReadOnly = true;
+            this.majorDataGridViewTextBoxColumn.Width = 210;
+            // 
+            // eduType
+            // 
+            this.eduType.DataPropertyName = "eduType";
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eduType.DefaultCellStyle = dataGridViewCellStyle7;
+            this.eduType.HeaderText = "Edu Type";
+            this.eduType.MinimumWidth = 6;
+            this.eduType.Name = "eduType";
+            this.eduType.ReadOnly = true;
+            this.eduType.Width = 120;
+            // 
+            // courseYearDataGridViewTextBoxColumn
+            // 
+            this.courseYearDataGridViewTextBoxColumn.DataPropertyName = "courseYear";
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.courseYearDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.courseYearDataGridViewTextBoxColumn.HeaderText = "Course Year";
+            this.courseYearDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.courseYearDataGridViewTextBoxColumn.Name = "courseYearDataGridViewTextBoxColumn";
+            this.courseYearDataGridViewTextBoxColumn.ReadOnly = true;
+            this.courseYearDataGridViewTextBoxColumn.Width = 125;
             // 
             // studentBindingSource
             // 
@@ -129,6 +219,180 @@ namespace Student_Management_System.Views.Students
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Size = new System.Drawing.Size(283, 224);
             this.panelFilter.TabIndex = 12;
+            // 
+            // btnApply
+            // 
+            this.btnApply.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnApply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnApply.FlatAppearance.BorderSize = 0;
+            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnApply.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApply.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnApply.Location = new System.Drawing.Point(188, 179);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(72, 29);
+            this.btnApply.TabIndex = 84;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = false;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.ForeColor = System.Drawing.Color.DimGray;
+            this.btnClear.Location = new System.Drawing.Point(110, 179);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(72, 29);
+            this.btnClear.TabIndex = 83;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // inputMajor
+            // 
+            this.inputMajor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.inputMajor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.inputMajor.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.inputMajor.BorderColor = System.Drawing.Color.DimGray;
+            this.inputMajor.BorderSize = 1;
+            this.inputMajor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.inputMajor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputMajor.ForeColor = System.Drawing.Color.DimGray;
+            this.inputMajor.IconColor = System.Drawing.Color.DimGray;
+            this.inputMajor.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.inputMajor.ListTextColor = System.Drawing.Color.DimGray;
+            this.inputMajor.Location = new System.Drawing.Point(105, 137);
+            this.inputMajor.Margin = new System.Windows.Forms.Padding(0);
+            this.inputMajor.MinimumSize = new System.Drawing.Size(100, 24);
+            this.inputMajor.Name = "inputMajor";
+            this.inputMajor.Padding = new System.Windows.Forms.Padding(1);
+            this.inputMajor.Size = new System.Drawing.Size(155, 26);
+            this.inputMajor.TabIndex = 82;
+            this.inputMajor.Texts = "";
+            // 
+            // labelMajor
+            // 
+            this.labelMajor.AutoSize = true;
+            this.labelMajor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMajor.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelMajor.Location = new System.Drawing.Point(14, 141);
+            this.labelMajor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMajor.Name = "labelMajor";
+            this.labelMajor.Size = new System.Drawing.Size(57, 23);
+            this.labelMajor.TabIndex = 81;
+            this.labelMajor.Text = "Major";
+            // 
+            // inputDepartment
+            // 
+            this.inputDepartment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.inputDepartment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.inputDepartment.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.inputDepartment.BorderColor = System.Drawing.Color.DimGray;
+            this.inputDepartment.BorderSize = 1;
+            this.inputDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.inputDepartment.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputDepartment.ForeColor = System.Drawing.Color.DimGray;
+            this.inputDepartment.IconColor = System.Drawing.Color.DimGray;
+            this.inputDepartment.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.inputDepartment.ListTextColor = System.Drawing.Color.DimGray;
+            this.inputDepartment.Location = new System.Drawing.Point(105, 97);
+            this.inputDepartment.Margin = new System.Windows.Forms.Padding(0);
+            this.inputDepartment.MinimumSize = new System.Drawing.Size(100, 24);
+            this.inputDepartment.Name = "inputDepartment";
+            this.inputDepartment.Padding = new System.Windows.Forms.Padding(1);
+            this.inputDepartment.Size = new System.Drawing.Size(155, 26);
+            this.inputDepartment.TabIndex = 80;
+            this.inputDepartment.Texts = "";
+            this.inputDepartment.OnSelectedIndexChanged += new System.EventHandler(this.inputDepartment_OnSelectedIndexChanged);
+            // 
+            // labelDepartment
+            // 
+            this.labelDepartment.AutoSize = true;
+            this.labelDepartment.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDepartment.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelDepartment.Location = new System.Drawing.Point(14, 101);
+            this.labelDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDepartment.Name = "labelDepartment";
+            this.labelDepartment.Size = new System.Drawing.Size(108, 23);
+            this.labelDepartment.TabIndex = 79;
+            this.labelDepartment.Text = "Department";
+            // 
+            // inputEduType
+            // 
+            this.inputEduType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.inputEduType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.inputEduType.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.inputEduType.BorderColor = System.Drawing.Color.DimGray;
+            this.inputEduType.BorderSize = 1;
+            this.inputEduType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.inputEduType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputEduType.ForeColor = System.Drawing.Color.DimGray;
+            this.inputEduType.IconColor = System.Drawing.Color.DimGray;
+            this.inputEduType.Items.AddRange(new object[] {
+            "Standard",
+            "High Quality"});
+            this.inputEduType.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.inputEduType.ListTextColor = System.Drawing.Color.DimGray;
+            this.inputEduType.Location = new System.Drawing.Point(105, 57);
+            this.inputEduType.Margin = new System.Windows.Forms.Padding(0);
+            this.inputEduType.MinimumSize = new System.Drawing.Size(100, 24);
+            this.inputEduType.Name = "inputEduType";
+            this.inputEduType.Padding = new System.Windows.Forms.Padding(1);
+            this.inputEduType.Size = new System.Drawing.Size(155, 26);
+            this.inputEduType.TabIndex = 78;
+            this.inputEduType.Texts = "";
+            // 
+            // labelEduType
+            // 
+            this.labelEduType.AutoSize = true;
+            this.labelEduType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEduType.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelEduType.Location = new System.Drawing.Point(14, 61);
+            this.labelEduType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEduType.Name = "labelEduType";
+            this.labelEduType.Size = new System.Drawing.Size(78, 23);
+            this.labelEduType.TabIndex = 77;
+            this.labelEduType.Text = "EduType";
+            // 
+            // inputGender
+            // 
+            this.inputGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.inputGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.inputGender.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.inputGender.BorderColor = System.Drawing.Color.DimGray;
+            this.inputGender.BorderSize = 1;
+            this.inputGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.inputGender.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputGender.ForeColor = System.Drawing.Color.DimGray;
+            this.inputGender.IconColor = System.Drawing.Color.DimGray;
+            this.inputGender.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.inputGender.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.inputGender.ListTextColor = System.Drawing.Color.DimGray;
+            this.inputGender.Location = new System.Drawing.Point(105, 17);
+            this.inputGender.Margin = new System.Windows.Forms.Padding(0);
+            this.inputGender.MinimumSize = new System.Drawing.Size(100, 24);
+            this.inputGender.Name = "inputGender";
+            this.inputGender.Padding = new System.Windows.Forms.Padding(1);
+            this.inputGender.Size = new System.Drawing.Size(155, 26);
+            this.inputGender.TabIndex = 76;
+            this.inputGender.Texts = "";
+            // 
+            // labelGender
+            // 
+            this.labelGender.AutoSize = true;
+            this.labelGender.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGender.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelGender.Location = new System.Drawing.Point(14, 21);
+            this.labelGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelGender.Name = "labelGender";
+            this.labelGender.Size = new System.Drawing.Size(68, 23);
+            this.labelGender.TabIndex = 75;
+            this.labelGender.Text = "Gender";
             // 
             // btnFilter
             // 
@@ -206,180 +470,6 @@ namespace Student_Management_System.Views.Students
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // labelGender
-            // 
-            this.labelGender.AutoSize = true;
-            this.labelGender.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGender.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelGender.Location = new System.Drawing.Point(14, 21);
-            this.labelGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelGender.Name = "labelGender";
-            this.labelGender.Size = new System.Drawing.Size(52, 17);
-            this.labelGender.TabIndex = 75;
-            this.labelGender.Text = "Gender";
-            // 
-            // labelEduType
-            // 
-            this.labelEduType.AutoSize = true;
-            this.labelEduType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEduType.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelEduType.Location = new System.Drawing.Point(14, 61);
-            this.labelEduType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelEduType.Name = "labelEduType";
-            this.labelEduType.Size = new System.Drawing.Size(60, 17);
-            this.labelEduType.TabIndex = 77;
-            this.labelEduType.Text = "EduType";
-            // 
-            // labelDepartment
-            // 
-            this.labelDepartment.AutoSize = true;
-            this.labelDepartment.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDepartment.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelDepartment.Location = new System.Drawing.Point(14, 101);
-            this.labelDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDepartment.Name = "labelDepartment";
-            this.labelDepartment.Size = new System.Drawing.Size(82, 17);
-            this.labelDepartment.TabIndex = 79;
-            this.labelDepartment.Text = "Department";
-            // 
-            // labelMajor
-            // 
-            this.labelMajor.AutoSize = true;
-            this.labelMajor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMajor.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelMajor.Location = new System.Drawing.Point(14, 141);
-            this.labelMajor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelMajor.Name = "labelMajor";
-            this.labelMajor.Size = new System.Drawing.Size(44, 17);
-            this.labelMajor.TabIndex = 81;
-            this.labelMajor.Text = "Major";
-            // 
-            // btnApply
-            // 
-            this.btnApply.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnApply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnApply.FlatAppearance.BorderSize = 0;
-            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApply.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApply.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnApply.Location = new System.Drawing.Point(188, 179);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(72, 29);
-            this.btnApply.TabIndex = 84;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = false;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.ForeColor = System.Drawing.Color.DimGray;
-            this.btnClear.Location = new System.Drawing.Point(110, 179);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(72, 29);
-            this.btnClear.TabIndex = 83;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // inputMajor
-            // 
-            this.inputMajor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.inputMajor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.inputMajor.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.inputMajor.BorderColor = System.Drawing.Color.DimGray;
-            this.inputMajor.BorderSize = 1;
-            this.inputMajor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.inputMajor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputMajor.ForeColor = System.Drawing.Color.DimGray;
-            this.inputMajor.IconColor = System.Drawing.Color.DimGray;
-            this.inputMajor.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.inputMajor.ListTextColor = System.Drawing.Color.DimGray;
-            this.inputMajor.Location = new System.Drawing.Point(105, 137);
-            this.inputMajor.Margin = new System.Windows.Forms.Padding(0);
-            this.inputMajor.MinimumSize = new System.Drawing.Size(100, 24);
-            this.inputMajor.Name = "inputMajor";
-            this.inputMajor.Padding = new System.Windows.Forms.Padding(1);
-            this.inputMajor.Size = new System.Drawing.Size(155, 26);
-            this.inputMajor.TabIndex = 82;
-            this.inputMajor.Texts = "";
-            // 
-            // inputDepartment
-            // 
-            this.inputDepartment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.inputDepartment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.inputDepartment.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.inputDepartment.BorderColor = System.Drawing.Color.DimGray;
-            this.inputDepartment.BorderSize = 1;
-            this.inputDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.inputDepartment.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputDepartment.ForeColor = System.Drawing.Color.DimGray;
-            this.inputDepartment.IconColor = System.Drawing.Color.DimGray;
-            this.inputDepartment.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.inputDepartment.ListTextColor = System.Drawing.Color.DimGray;
-            this.inputDepartment.Location = new System.Drawing.Point(105, 97);
-            this.inputDepartment.Margin = new System.Windows.Forms.Padding(0);
-            this.inputDepartment.MinimumSize = new System.Drawing.Size(100, 24);
-            this.inputDepartment.Name = "inputDepartment";
-            this.inputDepartment.Padding = new System.Windows.Forms.Padding(1);
-            this.inputDepartment.Size = new System.Drawing.Size(155, 26);
-            this.inputDepartment.TabIndex = 80;
-            this.inputDepartment.Texts = "";
-            this.inputDepartment.OnSelectedIndexChanged += new System.EventHandler(this.inputDepartment_OnSelectedIndexChanged);
-            // 
-            // inputEduType
-            // 
-            this.inputEduType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.inputEduType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.inputEduType.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.inputEduType.BorderColor = System.Drawing.Color.DimGray;
-            this.inputEduType.BorderSize = 1;
-            this.inputEduType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.inputEduType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputEduType.ForeColor = System.Drawing.Color.DimGray;
-            this.inputEduType.IconColor = System.Drawing.Color.DimGray;
-            this.inputEduType.Items.AddRange(new object[] {
-            "Standard",
-            "High Quality"});
-            this.inputEduType.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.inputEduType.ListTextColor = System.Drawing.Color.DimGray;
-            this.inputEduType.Location = new System.Drawing.Point(105, 57);
-            this.inputEduType.Margin = new System.Windows.Forms.Padding(0);
-            this.inputEduType.MinimumSize = new System.Drawing.Size(100, 24);
-            this.inputEduType.Name = "inputEduType";
-            this.inputEduType.Padding = new System.Windows.Forms.Padding(1);
-            this.inputEduType.Size = new System.Drawing.Size(155, 26);
-            this.inputEduType.TabIndex = 78;
-            this.inputEduType.Texts = "";
-            // 
-            // inputGender
-            // 
-            this.inputGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.inputGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.inputGender.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.inputGender.BorderColor = System.Drawing.Color.DimGray;
-            this.inputGender.BorderSize = 1;
-            this.inputGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.inputGender.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputGender.ForeColor = System.Drawing.Color.DimGray;
-            this.inputGender.IconColor = System.Drawing.Color.DimGray;
-            this.inputGender.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
-            this.inputGender.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.inputGender.ListTextColor = System.Drawing.Color.DimGray;
-            this.inputGender.Location = new System.Drawing.Point(105, 17);
-            this.inputGender.Margin = new System.Windows.Forms.Padding(0);
-            this.inputGender.MinimumSize = new System.Drawing.Size(100, 24);
-            this.inputGender.Name = "inputGender";
-            this.inputGender.Padding = new System.Windows.Forms.Padding(1);
-            this.inputGender.Size = new System.Drawing.Size(155, 26);
-            this.inputGender.TabIndex = 76;
-            this.inputGender.Texts = "";
-            // 
             // inputSearch
             // 
             this.inputSearch.BorderColor = System.Drawing.Color.DimGray;
@@ -394,7 +484,7 @@ namespace Student_Management_System.Views.Students
             this.inputSearch.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
             this.inputSearch.PasswordChar = false;
             this.inputSearch.ReadOnly = false;
-            this.inputSearch.Size = new System.Drawing.Size(412, 32);
+            this.inputSearch.Size = new System.Drawing.Size(412, 39);
             this.inputSearch.TabIndex = 9;
             this.inputSearch.Texts = "";
             this.inputSearch.Underlined = false;
@@ -402,99 +492,9 @@ namespace Student_Management_System.Views.Students
             this.inputSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputSearch_KeyDown);
             this.inputSearch.Leave += new System.EventHandler(this.inputSearch_Leave);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
-            this.idDataGridViewTextBoxColumn.HeaderText = "Student ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle18;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 205;
-            // 
-            // dobDataGridViewTextBoxColumn
-            // 
-            this.dobDataGridViewTextBoxColumn.DataPropertyName = "dob";
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dobDataGridViewTextBoxColumn.HeaderText = "Date of Birth";
-            this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
-            this.dobDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dobDataGridViewTextBoxColumn.Width = 145;
-            // 
-            // gender
-            // 
-            this.gender.DataPropertyName = "gender";
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.gender.DefaultCellStyle = dataGridViewCellStyle20;
-            this.gender.HeaderText = "Gender";
-            this.gender.Name = "gender";
-            this.gender.ReadOnly = true;
-            this.gender.Width = 95;
-            // 
-            // departmentDataGridViewTextBoxColumn
-            // 
-            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "department";
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.departmentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle21;
-            this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
-            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
-            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
-            this.departmentDataGridViewTextBoxColumn.Width = 210;
-            // 
-            // majorDataGridViewTextBoxColumn
-            // 
-            this.majorDataGridViewTextBoxColumn.DataPropertyName = "major";
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.majorDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
-            this.majorDataGridViewTextBoxColumn.HeaderText = "Major";
-            this.majorDataGridViewTextBoxColumn.Name = "majorDataGridViewTextBoxColumn";
-            this.majorDataGridViewTextBoxColumn.ReadOnly = true;
-            this.majorDataGridViewTextBoxColumn.Width = 210;
-            // 
-            // eduType
-            // 
-            this.eduType.DataPropertyName = "eduType";
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eduType.DefaultCellStyle = dataGridViewCellStyle23;
-            this.eduType.HeaderText = "Edu Type";
-            this.eduType.Name = "eduType";
-            this.eduType.ReadOnly = true;
-            this.eduType.Width = 120;
-            // 
-            // courseYearDataGridViewTextBoxColumn
-            // 
-            this.courseYearDataGridViewTextBoxColumn.DataPropertyName = "courseYear";
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.courseYearDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
-            this.courseYearDataGridViewTextBoxColumn.HeaderText = "Course Year";
-            this.courseYearDataGridViewTextBoxColumn.Name = "courseYearDataGridViewTextBoxColumn";
-            this.courseYearDataGridViewTextBoxColumn.ReadOnly = true;
-            this.courseYearDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(170, 362);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(113, 38);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // StudentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 761);
             this.Controls.Add(this.btnCreate);

@@ -106,7 +106,9 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\MajorController.cs" />
     <Compile Include="Controllers\Utils.cs" />
-    <Compile Include="Database\Student.cs" />
+    <Compile Include="Database\CertificateExport.cs" />
+    <Compile Include="Database\StudentExport.cs" />
+    <Compile Include="Database\UserExport.cs" />
     <Compile Include="Views\Students\AddStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +272,8 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\searchIcon.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

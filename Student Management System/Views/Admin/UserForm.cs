@@ -112,18 +112,29 @@ namespace Student_Management_System.Views.Admin
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
                     var users = db.users.ToList();
+                    var userToExport = users.Select(u => new UserExport
+                    {
+                        Email = u.email,
+                        Name = u.name,
+                        Age = u.age,
+                        DateOfBirth = u.dob?.ToString("dd-MM-yyyy") ?? "",
+                        Status = u.status,
+                        Role = u.role,
+                        Phone = u.phone,
+                        CreatedAt = u.createdAt?.ToString("dd-MM-yyyy") ?? "",
+                        UpdatedAt = u.updatedAt?.ToString("dd-MM-yyyy") ?? ""
+                    }).ToList();
 
-                    // TODO: Remove unnecessary data (Include columns if possible) [modify export function]
                     users.ForEach(u => u.password = "••••••••");
                     users.ForEach(u => u.loginhistories = null);
 
                     if (extension.Equals(".xlsx"))
                     {
-                        SystemStudentUtils.ExportToExcel<user>(saveFileDialog.FileName, users);
+                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, userToExport);
                     }
                     else if (extension.Equals(".csv"))
                     {
-                        SystemStudentUtils.ExportCsvFile<user>(saveFileDialog.FileName, users);
+                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, userToExport);
                     }
                 }
 
@@ -131,7 +142,6 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-        // TODO: Import (implement Excel if possible)
         private void btnImport_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("Are you sure to import?\nThis will remove all user from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -148,21 +158,48 @@ namespace Student_Management_System.Views.Admin
                     string extension = Path.GetExtension(openFileDialog.FileName);
                     using (var db = new MidTermDBDataContext(Program.ConnectionString))
                     {
+                        Func<UserExport, user> userConvertFunction = record => new user
+                        {
+                            email = record.Email,
+                            name = record.Name,
+                            dob = SystemStudentUtils.ParseDate(record.DateOfBirth),
+                            age = record.Age,
+                            phone = record.Phone,
+                            role = record.Role,
+                            status = record.Status,
+                            createdAt = SystemStudentUtils.ParseDate(record.CreatedAt),
+                            updatedAt = SystemStudentUtils.ParseDate(record.UpdatedAt)
+                        };
 
-                        //if (extension.Equals(".xlsx"))
-                        //{
-                        //    var users = SystemStudentUtils.ImportExcelFile<user>(openFileDialog.FileName);
-                        //    users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
-                        //    db.users.InsertAllOnSubmit(users);
-                        //    db.SubmitChanges();
-                        //}
                         if (extension.Equals(".csv"))
                         {
-                            db.users.DeleteAllOnSubmit(db.users);
-                            var users = SystemStudentUtils.ImportCsvFile<user>(openFileDialog.FileName);
-                            users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
-                            db.users.InsertAllOnSubmit(users);
-                            db.SubmitChanges();
+                            try
+                            {
+                                db.users.DeleteAllOnSubmit(db.users);
+                                var users = SystemStudentUtils.ImportCsvFile<user, UserExport>(openFileDialog.FileName, userConvertFunction);
+
+                                users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
+                                db.users.InsertAllOnSubmit(users);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There is something wrong");
+                            }
+                        }
+                        else if (extension.Equals(".xlsx"))
+                        {
+                            try
+                            {
+                                var users = SystemStudentUtils.ImportExcelFile<user, UserExport>(openFileDialog.FileName, userConvertFunction);
+                                users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
+                                db.users.InsertAllOnSubmit(users);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There is something wrong");
+                            }
                         }
                     }
 
