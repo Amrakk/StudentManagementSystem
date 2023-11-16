@@ -125,13 +125,21 @@ namespace Student_Management_System.Views.Admin
                         UpdatedAt = u.updatedAt?.ToString("dd-MM-yyyy") ?? ""
                     }).ToList();
 
-                    if (extension.Equals(".xlsx"))
+                    try
                     {
-                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, userToExport);
+                        if (extension.Equals(".xlsx"))
+                        {
+                            SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, userToExport);
+                        }
+                        else if (extension.Equals(".csv"))
+                        {
+                            SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, userToExport);
+                        }
                     }
-                    else if (extension.Equals(".csv"))
+                    catch (Exception ex)
                     {
-                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, userToExport);
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
 
@@ -178,7 +186,7 @@ namespace Student_Management_System.Views.Admin
                                 var users = SystemStudentUtils.ImportCsvFile<user, UserExport>(openFileDialog.FileName, userConvertFunction);
                                 if(users.Count == 0)
                                 {
-                                    MessageBox.Show("No record found");
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                                 users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.phone));
@@ -187,7 +195,7 @@ namespace Student_Management_System.Views.Admin
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
@@ -199,7 +207,7 @@ namespace Student_Management_System.Views.Admin
 
                                 if(users.Count == 0)
                                 {
-                                    MessageBox.Show("No record found");
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                                 users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.phone));
@@ -208,7 +216,7 @@ namespace Student_Management_System.Views.Admin
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }

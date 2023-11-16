@@ -128,14 +128,14 @@ namespace Student_Management_System.Views.Students
                 try
                 {
                     stdController.Delete(_student);
-                    MessageBox.Show("Delete student successfully!");
+                    MessageBox.Show("Delete student successfully!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     StudentForm_Reload();
                     this.Close();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    MessageBox.Show("Delete student failed!");
+                    MessageBox.Show("Delete student failed!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }   
         }
@@ -218,13 +218,13 @@ namespace Student_Management_System.Views.Students
             try
             {
                 stdController.Update(_student);
-                MessageBox.Show("Update student successfully!");
+                MessageBox.Show("Update student successfully!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 StudentForm_Reload();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show("Update student failed!");
+                MessageBox.Show("Update student failed!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -235,7 +235,6 @@ namespace Student_Management_System.Views.Students
                 studentForm.RefreshGridView("");
         }
         #endregion
-
 
         #region Certificate
         private void btnCertSave_Click(object sender, EventArgs e)
@@ -301,13 +300,13 @@ namespace Student_Management_System.Views.Students
                 try
                 {
                     certController.Add(cert);
-                    MessageBox.Show("Add certificate successfully!");
+                    MessageBox.Show("Add certificate successfully!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshGridView();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    MessageBox.Show("Add certificate failed!");
+                    MessageBox.Show("Add certificate failed!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
@@ -316,13 +315,13 @@ namespace Student_Management_System.Views.Students
                 try
                 {
                     certController.Update(cert);
-                    MessageBox.Show("Update certificate successfully!");
+                    MessageBox.Show("Update certificate successfully!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshGridView();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    MessageBox.Show("Update certificate failed!");
+                    MessageBox.Show("Update certificate failed!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -406,13 +405,13 @@ namespace Student_Management_System.Views.Students
                 try
                 {
                     certController.Delete(_selectedCert);
-                    MessageBox.Show("Delete certificate successfully!");
+                    MessageBox.Show("Delete certificate successfully!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshGridView();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    MessageBox.Show("Delete certificate failed!");
+                    MessageBox.Show("Delete certificate failed!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -444,13 +443,21 @@ namespace Student_Management_System.Views.Students
                         UpdatedAt = s.updatedAt?.ToString("dd-MM-yyyy")
                     }).ToList();
 
-                    if (extension.Equals(".xlsx"))
+                    try
                     {
-                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, certificatesToExport);
+                        if (extension.Equals(".xlsx"))
+                        {
+                            SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, certificatesToExport);
+                        }
+                        else if (extension.Equals(".csv"))
+                        {
+                            SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, certificatesToExport);
+                        }
                     }
-                    else if (extension.Equals(".csv"))
+                    catch (Exception ex)
                     {
-                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, certificatesToExport);
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
 
@@ -503,7 +510,7 @@ namespace Student_Management_System.Views.Students
                                 var certificates = SystemStudentUtils.ImportCsvFile<certificate, CertificateExport>(openFileDialog.FileName, certConvertFunction);
                                 if (certificates.Count == 0)
                                 {
-                                    MessageBox.Show("No record found");
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
 
@@ -512,7 +519,7 @@ namespace Student_Management_System.Views.Students
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
@@ -523,7 +530,7 @@ namespace Student_Management_System.Views.Students
                                 var certificates = SystemStudentUtils.ImportExcelFile<certificate, CertificateExport>(openFileDialog.FileName, certConvertFunction);
                                 if (certificates.Count == 0)
                                 {
-                                    MessageBox.Show("No record found");
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
 
@@ -532,7 +539,7 @@ namespace Student_Management_System.Views.Students
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
@@ -545,7 +552,6 @@ namespace Student_Management_System.Views.Students
         }
 
         #endregion
-
 
     }
 }

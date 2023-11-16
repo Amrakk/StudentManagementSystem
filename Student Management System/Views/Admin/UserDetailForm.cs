@@ -97,7 +97,7 @@ namespace Student_Management_System.Views.Admin
 
                         MessageBox.Show("Deleted successfully", "Deleted user", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else MessageBox.Show("Failed to delete");
+                    else MessageBox.Show("Failed to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
@@ -287,7 +287,7 @@ namespace Student_Management_System.Views.Admin
                         UserForm_Reload();
                         this.Close();
                     }
-                    else MessageBox.Show("Failed to add");
+                    else MessageBox.Show("Failed to add", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
@@ -314,7 +314,7 @@ namespace Student_Management_System.Views.Admin
                         MessageBox.Show("Updated successfully", "Updated user", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         UserForm_Reload();
                     }
-                    else MessageBox.Show("Failed to update");
+                    else MessageBox.Show("Failed to update", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {

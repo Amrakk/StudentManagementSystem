@@ -32,6 +32,7 @@ namespace Student_Management_System.Views
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.btnIcon = new System.Windows.Forms.Button();
             this.btnProfile = new System.Windows.Forms.Button();
             this.labelWelcome = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@ namespace Student_Management_System.Views
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panelHeader.Controls.Add(this.btnLogout);
             this.panelHeader.Controls.Add(this.btnIcon);
             this.panelHeader.Controls.Add(this.btnProfile);
             this.panelHeader.Controls.Add(this.labelWelcome);
@@ -51,6 +53,20 @@ namespace Student_Management_System.Views
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1484, 100);
             this.panelHeader.TabIndex = 0;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Image = global::Student_Management_System.Properties.Resources.logout;
+            this.btnLogout.Location = new System.Drawing.Point(1396, 29);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(85, 50);
+            this.btnLogout.TabIndex = 5;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnIcon
             // 
@@ -121,6 +137,7 @@ namespace Student_Management_System.Views
             this.Text = "Student Management System";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.MainForm_VisibleChanged);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.ResumeLayout(false);
@@ -134,5 +151,6 @@ namespace Student_Management_System.Views
         private Panel panelMain;
         private Button btnProfile;
         private Button btnIcon;
+        private Button btnLogout;
     }
 }

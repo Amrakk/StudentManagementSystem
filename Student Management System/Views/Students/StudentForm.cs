@@ -131,13 +131,20 @@ namespace Student_Management_System.Views.Students
                         EducationType = s.eduType
                     }).ToList();
 
-                    if (extension.Equals(".xlsx"))
-                    {
-                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, studentsToExport);
+                    try { 
+                        if (extension.Equals(".xlsx"))
+                        {
+                            SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, studentsToExport);
+                        }
+                        else if (extension.Equals(".csv"))
+                        {
+                            SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, studentsToExport);
+                        }
                     }
-                    else if (extension.Equals(".csv"))
+                    catch (Exception ex)
                     {
-                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, studentsToExport);
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
 
@@ -191,7 +198,7 @@ namespace Student_Management_System.Views.Students
                                 var students = SystemStudentUtils.ImportCsvFile<student, StudentExport>(openFileDialog.FileName, studentConvertFunction);
                                 if(students.Count == 0)
                                 {
-                                    MessageBox.Show("No record found");
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
 
@@ -200,7 +207,7 @@ namespace Student_Management_System.Views.Students
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
@@ -211,7 +218,7 @@ namespace Student_Management_System.Views.Students
                                 var students = SystemStudentUtils.ImportExcelFile<student, StudentExport>(openFileDialog.FileName, studentConvertFunction);
                                 if (students.Count == 0)
                                 {
-                                    MessageBox.Show("No record found");
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
 
@@ -220,7 +227,7 @@ namespace Student_Management_System.Views.Students
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
