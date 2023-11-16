@@ -116,7 +116,11 @@ namespace Student_Management_System
 
             bool isAdded = stdController.Add(student);
 
-            if (isAdded) { MessageBox.Show("Student Added", "", MessageBoxButtons.OK, MessageBoxIcon.Information); StudentForm_Reload(); this.Close(); }
+            if (isAdded) { 
+                MessageBox.Show("Student Added", "", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                StudentForm_Reload(); 
+                this.Close(); 
+            }
             else MessageBox.Show("Failed to add", "" , MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
