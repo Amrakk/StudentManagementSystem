@@ -32,13 +32,13 @@ namespace Student_Management_System.Views.Admin
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelUser = new System.Windows.Forms.Label();
             this.gridViewUser = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,15 +54,15 @@ namespace Student_Management_System.Views.Admin
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.panelFilter = new System.Windows.Forms.Panel();
-            this.inputSearch = new Student_Management_System.Views.CustomControls.Input();
-            this.labelAge = new System.Windows.Forms.Label();
-            this.inputAge = new Student_Management_System.Views.CustomControls.Input();
-            this.labelRole = new System.Windows.Forms.Label();
-            this.inputRole = new Student_Management_System.Views.CustomControls.ComboBoxInput();
-            this.inputStatus = new Student_Management_System.Views.CustomControls.ComboBoxInput();
-            this.labelStatus = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.inputStatus = new Student_Management_System.Views.CustomControls.ComboBoxInput();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.inputRole = new Student_Management_System.Views.CustomControls.ComboBoxInput();
+            this.labelRole = new System.Windows.Forms.Label();
+            this.inputAge = new Student_Management_System.Views.CustomControls.Input();
+            this.labelAge = new System.Windows.Forms.Label();
+            this.inputSearch = new Student_Management_System.Views.CustomControls.Input();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.panelFilter.SuspendLayout();
@@ -75,7 +75,7 @@ namespace Student_Management_System.Views.Admin
             this.labelUser.Location = new System.Drawing.Point(90, 30);
             this.labelUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(93, 47);
+            this.labelUser.Size = new System.Drawing.Size(118, 60);
             this.labelUser.TabIndex = 0;
             this.labelUser.Text = "User";
             // 
@@ -83,8 +83,8 @@ namespace Student_Management_System.Views.Admin
             // 
             this.gridViewUser.AllowUserToAddRows = false;
             this.gridViewUser.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridViewUser.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewUser.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridViewUser.AutoGenerateColumns = false;
             this.gridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -98,6 +98,8 @@ namespace Student_Management_System.Views.Admin
             this.gridViewUser.Location = new System.Drawing.Point(98, 171);
             this.gridViewUser.Name = "gridViewUser";
             this.gridViewUser.ReadOnly = true;
+            this.gridViewUser.RowHeadersWidth = 51;
+            this.gridViewUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridViewUser.Size = new System.Drawing.Size(1278, 524);
             this.gridViewUser.TabIndex = 1;
             this.gridViewUser.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewUser_CellDoubleClick);
@@ -105,9 +107,10 @@ namespace Student_Management_System.Views.Admin
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 290;
@@ -115,9 +118,10 @@ namespace Student_Management_System.Views.Admin
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "dob";
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.dobDataGridViewTextBoxColumn.HeaderText = "Date of Birth";
+            this.dobDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
             this.dobDataGridViewTextBoxColumn.Width = 180;
@@ -125,9 +129,10 @@ namespace Student_Management_System.Views.Admin
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Width = 310;
@@ -135,9 +140,10 @@ namespace Student_Management_System.Views.Admin
             // phoneDataGridViewTextBoxColumn
             // 
             this.phoneDataGridViewTextBoxColumn.DataPropertyName = "phone";
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
+            this.phoneDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
             this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
             this.phoneDataGridViewTextBoxColumn.Width = 180;
@@ -145,9 +151,10 @@ namespace Student_Management_System.Views.Admin
             // statusDataGridViewTextBoxColumn
             // 
             this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
             this.statusDataGridViewTextBoxColumn.ReadOnly = true;
             this.statusDataGridViewTextBoxColumn.Width = 137;
@@ -155,9 +162,10 @@ namespace Student_Management_System.Views.Admin
             // roleDataGridViewTextBoxColumn
             // 
             this.roleDataGridViewTextBoxColumn.DataPropertyName = "role";
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.roleDataGridViewTextBoxColumn.HeaderText = "Role";
+            this.roleDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
             this.roleDataGridViewTextBoxColumn.ReadOnly = true;
             this.roleDataGridViewTextBoxColumn.Width = 138;
@@ -257,96 +265,36 @@ namespace Student_Management_System.Views.Admin
             this.panelFilter.Size = new System.Drawing.Size(224, 175);
             this.panelFilter.TabIndex = 8;
             // 
-            // inputSearch
+            // btnApply
             // 
-            this.inputSearch.BorderColor = System.Drawing.Color.DimGray;
-            this.inputSearch.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputSearch.BorderSize = 1;
-            this.inputSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputSearch.ForeColor = System.Drawing.Color.DimGray;
-            this.inputSearch.Location = new System.Drawing.Point(98, 119);
-            this.inputSearch.Margin = new System.Windows.Forms.Padding(5);
-            this.inputSearch.Multiline = false;
-            this.inputSearch.Name = "inputSearch";
-            this.inputSearch.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-            this.inputSearch.PasswordChar = false;
-            this.inputSearch.ReadOnly = false;
-            this.inputSearch.Size = new System.Drawing.Size(412, 32);
-            this.inputSearch.TabIndex = 5;
-            this.inputSearch.Texts = "";
-            this.inputSearch.Underlined = false;
-            this.inputSearch.Enter += new System.EventHandler(this.inputSearch_Enter);
-            this.inputSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputSearch_KeyDown);
-            this.inputSearch.Leave += new System.EventHandler(this.inputSearch_Leave);
+            this.btnApply.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnApply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnApply.FlatAppearance.BorderSize = 0;
+            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnApply.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApply.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnApply.Location = new System.Drawing.Point(137, 134);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(72, 29);
+            this.btnApply.TabIndex = 10;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = false;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
-            // labelAge
+            // btnClear
             // 
-            this.labelAge.AutoSize = true;
-            this.labelAge.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAge.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelAge.Location = new System.Drawing.Point(17, 20);
-            this.labelAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(45, 17);
-            this.labelAge.TabIndex = 71;
-            this.labelAge.Text = "Age ≥";
-            // 
-            // inputAge
-            // 
-            this.inputAge.BorderColor = System.Drawing.Color.DimGray;
-            this.inputAge.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputAge.BorderSize = 1;
-            this.inputAge.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputAge.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputAge.Location = new System.Drawing.Point(71, 16);
-            this.inputAge.Margin = new System.Windows.Forms.Padding(5);
-            this.inputAge.Multiline = false;
-            this.inputAge.Name = "inputAge";
-            this.inputAge.Padding = new System.Windows.Forms.Padding(4);
-            this.inputAge.PasswordChar = false;
-            this.inputAge.ReadOnly = false;
-            this.inputAge.Size = new System.Drawing.Size(70, 26);
-            this.inputAge.TabIndex = 72;
-            this.inputAge.Texts = "";
-            this.inputAge.Underlined = false;
-            // 
-            // labelRole
-            // 
-            this.labelRole.AutoSize = true;
-            this.labelRole.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRole.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelRole.Location = new System.Drawing.Point(17, 60);
-            this.labelRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(35, 17);
-            this.labelRole.TabIndex = 73;
-            this.labelRole.Text = "Role";
-            // 
-            // inputRole
-            // 
-            this.inputRole.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.inputRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.inputRole.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.inputRole.BorderColor = System.Drawing.Color.DimGray;
-            this.inputRole.BorderSize = 1;
-            this.inputRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.inputRole.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputRole.ForeColor = System.Drawing.Color.DimGray;
-            this.inputRole.IconColor = System.Drawing.Color.DimGray;
-            this.inputRole.Items.AddRange(new object[] {
-            "Admin",
-            "Manager",
-            "Employee"});
-            this.inputRole.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.inputRole.ListTextColor = System.Drawing.Color.DimGray;
-            this.inputRole.Location = new System.Drawing.Point(71, 56);
-            this.inputRole.Margin = new System.Windows.Forms.Padding(0);
-            this.inputRole.MinimumSize = new System.Drawing.Size(100, 24);
-            this.inputRole.Name = "inputRole";
-            this.inputRole.Padding = new System.Windows.Forms.Padding(1);
-            this.inputRole.Size = new System.Drawing.Size(138, 26);
-            this.inputRole.TabIndex = 74;
-            this.inputRole.Texts = "";
+            this.btnClear.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.ForeColor = System.Drawing.Color.DimGray;
+            this.btnClear.Location = new System.Drawing.Point(59, 134);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(72, 29);
+            this.btnClear.TabIndex = 9;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // inputStatus
             // 
@@ -381,44 +329,104 @@ namespace Student_Management_System.Views.Admin
             this.labelStatus.Location = new System.Drawing.Point(17, 100);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(46, 17);
+            this.labelStatus.Size = new System.Drawing.Size(60, 23);
             this.labelStatus.TabIndex = 75;
             this.labelStatus.Text = "Status";
             // 
-            // btnApply
+            // inputRole
             // 
-            this.btnApply.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnApply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnApply.FlatAppearance.BorderSize = 0;
-            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApply.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApply.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnApply.Location = new System.Drawing.Point(137, 134);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(72, 29);
-            this.btnApply.TabIndex = 10;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = false;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            this.inputRole.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.inputRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.inputRole.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.inputRole.BorderColor = System.Drawing.Color.DimGray;
+            this.inputRole.BorderSize = 1;
+            this.inputRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.inputRole.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputRole.ForeColor = System.Drawing.Color.DimGray;
+            this.inputRole.IconColor = System.Drawing.Color.DimGray;
+            this.inputRole.Items.AddRange(new object[] {
+            "Admin",
+            "Manager",
+            "Employee"});
+            this.inputRole.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.inputRole.ListTextColor = System.Drawing.Color.DimGray;
+            this.inputRole.Location = new System.Drawing.Point(71, 56);
+            this.inputRole.Margin = new System.Windows.Forms.Padding(0);
+            this.inputRole.MinimumSize = new System.Drawing.Size(100, 24);
+            this.inputRole.Name = "inputRole";
+            this.inputRole.Padding = new System.Windows.Forms.Padding(1);
+            this.inputRole.Size = new System.Drawing.Size(138, 26);
+            this.inputRole.TabIndex = 74;
+            this.inputRole.Texts = "";
             // 
-            // btnClear
+            // labelRole
             // 
-            this.btnClear.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.ForeColor = System.Drawing.Color.DimGray;
-            this.btnClear.Location = new System.Drawing.Point(59, 134);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(72, 29);
-            this.btnClear.TabIndex = 9;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.labelRole.AutoSize = true;
+            this.labelRole.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRole.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelRole.Location = new System.Drawing.Point(17, 60);
+            this.labelRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(45, 23);
+            this.labelRole.TabIndex = 73;
+            this.labelRole.Text = "Role";
+            // 
+            // inputAge
+            // 
+            this.inputAge.BorderColor = System.Drawing.Color.DimGray;
+            this.inputAge.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputAge.BorderSize = 1;
+            this.inputAge.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputAge.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputAge.Location = new System.Drawing.Point(71, 16);
+            this.inputAge.Margin = new System.Windows.Forms.Padding(5);
+            this.inputAge.Multiline = false;
+            this.inputAge.Name = "inputAge";
+            this.inputAge.Padding = new System.Windows.Forms.Padding(4);
+            this.inputAge.PasswordChar = false;
+            this.inputAge.ReadOnly = false;
+            this.inputAge.Size = new System.Drawing.Size(70, 32);
+            this.inputAge.TabIndex = 72;
+            this.inputAge.Texts = "";
+            this.inputAge.Underlined = false;
+            // 
+            // labelAge
+            // 
+            this.labelAge.AutoSize = true;
+            this.labelAge.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAge.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelAge.Location = new System.Drawing.Point(17, 20);
+            this.labelAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAge.Name = "labelAge";
+            this.labelAge.Size = new System.Drawing.Size(59, 23);
+            this.labelAge.TabIndex = 71;
+            this.labelAge.Text = "Age ≥";
+            // 
+            // inputSearch
+            // 
+            this.inputSearch.BorderColor = System.Drawing.Color.DimGray;
+            this.inputSearch.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputSearch.BorderSize = 1;
+            this.inputSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputSearch.ForeColor = System.Drawing.Color.DimGray;
+            this.inputSearch.Location = new System.Drawing.Point(98, 119);
+            this.inputSearch.Margin = new System.Windows.Forms.Padding(5);
+            this.inputSearch.Multiline = false;
+            this.inputSearch.Name = "inputSearch";
+            this.inputSearch.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            this.inputSearch.PasswordChar = false;
+            this.inputSearch.ReadOnly = false;
+            this.inputSearch.Size = new System.Drawing.Size(412, 39);
+            this.inputSearch.TabIndex = 5;
+            this.inputSearch.Texts = "";
+            this.inputSearch.Underlined = false;
+            this.inputSearch.Enter += new System.EventHandler(this.inputSearch_Enter);
+            this.inputSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputSearch_KeyDown);
+            this.inputSearch.Leave += new System.EventHandler(this.inputSearch_Leave);
             // 
             // UserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 761);
             this.Controls.Add(this.panelFilter);
