@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -205,6 +206,117 @@ namespace Student_Management_System.Views.Students
         {
             if (Application.OpenForms["StudentForm"] is StudentForm studentForm)
                 studentForm.RefreshGridView("");
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure to import?\nThis will remove all certificates from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+                openFileDialog.Title = "Import from";
+                openFileDialog.ShowDialog();
+
+                if (openFileDialog.FileName != "")
+                {
+                    string extension = Path.GetExtension(openFileDialog.FileName);
+                    using (var db = new MidTermDBDataContext(Program.ConnectionString))
+                    {
+                        Func<CertificateExport, certificate> certificateConvertFunction = record => new certificate
+                        {
+                            id = record.CertificateID,
+                            title = record.Title,
+                            description = record.Description,
+                            issue_date = SystemStudentUtils.ParseDate(record.IssueDate),
+                            expiry_date = SystemStudentUtils.ParseDate(record.ExpiryDate),
+                            isValid = record.IsValid,
+                            organization_name = record.OrganizationName,
+                            sid = record.SID,
+                            createdAt = SystemStudentUtils.ParseDate(record.CreatedAt),
+                            updatedAt = SystemStudentUtils.ParseDate(record.UpdatedAt),
+                        };
+
+                        if (extension.Equals(".csv"))
+                        {
+                            try
+                            {
+                                db.certificates.DeleteAllOnSubmit(db.certificates);
+
+                                var certificates = SystemStudentUtils.ImportCsvFile<certificate, CertificateExport>(openFileDialog.FileName, certificateConvertFunction);
+
+                                db.certificates.InsertAllOnSubmit(certificates);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There is something wrong");
+                            }
+                        }
+                        else if (extension.Equals(".xlsx"))
+                        {
+                            try
+                            {
+                                db.certificates.DeleteAllOnSubmit(db.certificates);
+
+                                var certificates = SystemStudentUtils.ImportExcelFile<certificate, CertificateExport>(openFileDialog.FileName, certificateConvertFunction);
+
+                                db.certificates.InsertAllOnSubmit(certificates);
+                                db.SubmitChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There is something wrong");
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel|*.xlsx|CSV|*.csv";
+            saveFileDialog.Title = "Export to";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+            {
+                string extension = Path.GetExtension(saveFileDialog.FileName);
+                using (var db = new MidTermDBDataContext(Program.ConnectionString))
+                {
+                    var certificates = db.certificates.ToList();
+
+                    var certificatesToExport = certificates.Select(s => new CertificateExport
+                    {
+                        CertificateID = s.id,
+                        Title = s.title,
+                        Description = s.description,
+                        IssueDate = s.issue_date?.ToString("dd-MM-yyyy") ?? "",
+                        ExpiryDate = s.expiry_date?.ToString("dd-MM-yyyy") ?? "",
+                        IsValid = s.isValid,
+                        OrganizationName = s.organization_name,
+                        SID = s.sid,
+                        CreatedAt = s.createdAt?.ToString("dd-MM-yyyy") ?? "",
+                        UpdatedAt = s.updatedAt?.ToString("dd-MM-yyyy") ?? "",
+                    }).ToList();
+
+                    if (extension.Equals(".xlsx"))
+                    {
+                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, certificatesToExport);
+                    }
+                    else if (extension.Equals(".csv"))
+                    {
+                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, certificatesToExport);
+                    }
+                }
+
+                MessageBox.Show("Export successfully", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

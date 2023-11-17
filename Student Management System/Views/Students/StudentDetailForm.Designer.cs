@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grBoxProfile = new System.Windows.Forms.GroupBox();
             this.labelStuUpdatedAt = new System.Windows.Forms.Label();
             this.inputStuID = new Student_Management_System.Views.CustomControls.Input();
@@ -693,8 +693,8 @@
             // titleDataGridViewTextBoxColumn
             // 
             this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
             this.titleDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
@@ -704,8 +704,8 @@
             // organizationnameDataGridViewTextBoxColumn
             // 
             this.organizationnameDataGridViewTextBoxColumn.DataPropertyName = "organization_name";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.organizationnameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.organizationnameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.organizationnameDataGridViewTextBoxColumn.HeaderText = "Organization";
             this.organizationnameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.organizationnameDataGridViewTextBoxColumn.Name = "organizationnameDataGridViewTextBoxColumn";
@@ -726,8 +726,8 @@
             // issue_date
             // 
             this.issue_date.DataPropertyName = "issue_date";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.issue_date.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.issue_date.DefaultCellStyle = dataGridViewCellStyle7;
             this.issue_date.HeaderText = "Issue Date";
             this.issue_date.MinimumWidth = 6;
             this.issue_date.Name = "issue_date";
@@ -737,8 +737,8 @@
             // expiry_date
             // 
             this.expiry_date.DataPropertyName = "expiry_date";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.expiry_date.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.expiry_date.DefaultCellStyle = dataGridViewCellStyle8;
             this.expiry_date.HeaderText = "Expired Date";
             this.expiry_date.MinimumWidth = 6;
             this.expiry_date.Name = "expiry_date";
@@ -777,6 +777,7 @@
             this.btnImport.TabIndex = 68;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnExport
             // 
@@ -791,6 +792,7 @@
             this.btnExport.TabIndex = 67;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnCertReset
             // 

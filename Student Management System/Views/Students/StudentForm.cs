@@ -117,7 +117,6 @@ namespace Student_Management_System.Views.Students
                 {
                     var students = db.students.ToList();
 
-                    // TODO: Remove unnecessary data (DONE)
                     var studentsToExport = students.Select(s => new StudentExport
                     {
                         StudentID = s.id,
@@ -147,7 +146,6 @@ namespace Student_Management_System.Views.Students
             }
         }
 
-        // TODO: Import (duplicate key error when import)
         private void btnImport_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure to import?\nThis will remove all students from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -216,8 +214,6 @@ namespace Student_Management_System.Views.Students
                     MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-            MessageBox.Show("This function is not available yet", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
