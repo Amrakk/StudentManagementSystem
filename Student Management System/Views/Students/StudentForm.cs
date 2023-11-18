@@ -116,6 +116,7 @@ namespace Student_Management_System.Views.Students
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
                     var students = db.students.ToList();
+
                     var studentsToExport = students.Select(s => new StudentExport
                     {
                         StudentID = s.id,

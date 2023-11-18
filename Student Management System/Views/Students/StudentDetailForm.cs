@@ -234,6 +234,7 @@ namespace Student_Management_System.Views.Students
             if (Application.OpenForms["StudentForm"] is StudentForm studentForm)
                 studentForm.RefreshGridView("");
         }
+
         #endregion
 
         #region Certificate
@@ -503,6 +504,7 @@ namespace Student_Management_System.Views.Students
                         };
                         
                         db.certificates.DeleteAllOnSubmit(db.certificates);
+
                         if (extension.Equals(".csv"))
                         {
                             try
@@ -552,6 +554,5 @@ namespace Student_Management_System.Views.Students
         }
 
         #endregion
-
     }
 }
