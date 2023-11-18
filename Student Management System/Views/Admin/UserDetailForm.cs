@@ -96,6 +96,8 @@ namespace Student_Management_System.Views.Admin
                             Directory.Delete(avtPath, true);
 
                         MessageBox.Show("Deleted successfully", "Deleted user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UserForm_Reload();
+                        this.Close();
                     }
                     else MessageBox.Show("Failed to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
