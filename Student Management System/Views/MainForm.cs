@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Student_Management_System.Database;
+using Student_Management_System.Views.Auth;
 
 namespace Student_Management_System.Views
 {
@@ -63,6 +64,37 @@ namespace Student_Management_System.Views
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MainForm_VisibleChanged(object sender, EventArgs e)
+        {
+            MainForm_Load(sender, e);
+        }
+
+        public void SetUser(user user)
+        {
+            _user = user;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = null;
+            List<Form> openForms = Application.OpenForms.Cast<Form>().ToList();
+
+            foreach (Form form in openForms)
+            {
+                if (form is MainForm)
+                    continue;
+                else if (form is LoginForm)
+                    loginForm = form as LoginForm;
+                else
+                    form.Close();
+            }
+            loginForm.Visible = true;
+            loginForm.Enabled = true;
+
+            this.Enabled = false;
+            this.Visible = false;
         }
     }
 }
