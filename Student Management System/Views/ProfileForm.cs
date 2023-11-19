@@ -65,9 +65,7 @@ namespace Student_Management_System.Views
                         using (FileStream fileStream = new FileStream(selectedFilePath, FileMode.Open, FileAccess.Read))
                         {
                             if (picBoxAvatar.Image != null)
-                            {
                                 picBoxAvatar.Image.Dispose();
-                            }
 
                             picBoxAvatar.Image = Image.FromStream(fileStream);
                             string rootDirectory = "Resources";
@@ -187,6 +185,12 @@ namespace Student_Management_System.Views
         private void inputNewPassword_Enter(object sender, EventArgs e)
         {
             labelErrorMessage.Visible = false;
+        }
+
+        private void ProfileForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            picBoxAvatar.Image.Dispose();
+            picBoxAvatar.Dispose();
         }
     }
 }

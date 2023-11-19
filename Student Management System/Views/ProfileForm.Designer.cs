@@ -39,29 +39,29 @@ namespace Student_Management_System.Views
             this.btnLoginHistory = new System.Windows.Forms.Button();
             this.btnUserManagement = new System.Windows.Forms.Button();
             this.grBoxProfile = new System.Windows.Forms.GroupBox();
-            this.inputStatus = new Student_Management_System.Views.CustomControls.Input();
-            this.inputUpdatedAt = new Student_Management_System.Views.CustomControls.Input();
             this.labelUpdatedAt = new System.Windows.Forms.Label();
-            this.inputCreatedAt = new Student_Management_System.Views.CustomControls.Input();
             this.labelCreatedAt = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
-            this.inputRole = new Student_Management_System.Views.CustomControls.Input();
             this.labelRole = new System.Windows.Forms.Label();
-            this.inputDoB = new Student_Management_System.Views.CustomControls.Input();
-            this.inputPhone = new Student_Management_System.Views.CustomControls.Input();
             this.labelPhone = new System.Windows.Forms.Label();
-            this.inputEmail = new Student_Management_System.Views.CustomControls.Input();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelDoB = new System.Windows.Forms.Label();
-            this.inputName = new Student_Management_System.Views.CustomControls.Input();
             this.labelName = new System.Windows.Forms.Label();
             this.grBoxSercurity = new System.Windows.Forms.GroupBox();
             this.labelErrorMessage = new System.Windows.Forms.Label();
             this.btnChangePassword = new System.Windows.Forms.Button();
-            this.inputConfirmPassword = new Student_Management_System.Views.CustomControls.Input();
             this.labelConfirmPassword = new System.Windows.Forms.Label();
-            this.inputNewPassword = new Student_Management_System.Views.CustomControls.Input();
             this.labelNewPassword = new System.Windows.Forms.Label();
+            this.inputConfirmPassword = new Student_Management_System.Views.CustomControls.Input();
+            this.inputNewPassword = new Student_Management_System.Views.CustomControls.Input();
+            this.inputStatus = new Student_Management_System.Views.CustomControls.Input();
+            this.inputUpdatedAt = new Student_Management_System.Views.CustomControls.Input();
+            this.inputCreatedAt = new Student_Management_System.Views.CustomControls.Input();
+            this.inputRole = new Student_Management_System.Views.CustomControls.Input();
+            this.inputDoB = new Student_Management_System.Views.CustomControls.Input();
+            this.inputPhone = new Student_Management_System.Views.CustomControls.Input();
+            this.inputEmail = new Student_Management_System.Views.CustomControls.Input();
+            this.inputName = new Student_Management_System.Views.CustomControls.Input();
             this.grBoxAvatar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).BeginInit();
             this.grBoxAdmin.SuspendLayout();
@@ -198,46 +198,6 @@ namespace Student_Management_System.Views
             this.grBoxProfile.TabStop = false;
             this.grBoxProfile.Text = "Profile";
             // 
-            // inputStatus
-            // 
-            this.inputStatus.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputStatus.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputStatus.BorderSize = 1;
-            this.inputStatus.Enabled = false;
-            this.inputStatus.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputStatus.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputStatus.Location = new System.Drawing.Point(724, 130);
-            this.inputStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.inputStatus.Multiline = false;
-            this.inputStatus.Name = "inputStatus";
-            this.inputStatus.Padding = new System.Windows.Forms.Padding(5);
-            this.inputStatus.PasswordChar = false;
-            this.inputStatus.ReadOnly = true;
-            this.inputStatus.Size = new System.Drawing.Size(170, 36);
-            this.inputStatus.TabIndex = 16;
-            this.inputStatus.Texts = "Normal";
-            this.inputStatus.Underlined = false;
-            // 
-            // inputUpdatedAt
-            // 
-            this.inputUpdatedAt.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputUpdatedAt.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputUpdatedAt.BorderSize = 1;
-            this.inputUpdatedAt.Enabled = false;
-            this.inputUpdatedAt.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputUpdatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputUpdatedAt.Location = new System.Drawing.Point(724, 260);
-            this.inputUpdatedAt.Margin = new System.Windows.Forms.Padding(5);
-            this.inputUpdatedAt.Multiline = false;
-            this.inputUpdatedAt.Name = "inputUpdatedAt";
-            this.inputUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
-            this.inputUpdatedAt.PasswordChar = false;
-            this.inputUpdatedAt.ReadOnly = true;
-            this.inputUpdatedAt.Size = new System.Drawing.Size(215, 36);
-            this.inputUpdatedAt.TabIndex = 15;
-            this.inputUpdatedAt.Texts = "10-10-2023";
-            this.inputUpdatedAt.Underlined = false;
-            // 
             // labelUpdatedAt
             // 
             this.labelUpdatedAt.AutoSize = true;
@@ -249,26 +209,6 @@ namespace Student_Management_System.Views
             this.labelUpdatedAt.Size = new System.Drawing.Size(127, 25);
             this.labelUpdatedAt.TabIndex = 14;
             this.labelUpdatedAt.Text = "UPDATED AT";
-            // 
-            // inputCreatedAt
-            // 
-            this.inputCreatedAt.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputCreatedAt.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputCreatedAt.BorderSize = 1;
-            this.inputCreatedAt.Enabled = false;
-            this.inputCreatedAt.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputCreatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputCreatedAt.Location = new System.Drawing.Point(724, 195);
-            this.inputCreatedAt.Margin = new System.Windows.Forms.Padding(5);
-            this.inputCreatedAt.Multiline = false;
-            this.inputCreatedAt.Name = "inputCreatedAt";
-            this.inputCreatedAt.Padding = new System.Windows.Forms.Padding(5);
-            this.inputCreatedAt.PasswordChar = false;
-            this.inputCreatedAt.ReadOnly = true;
-            this.inputCreatedAt.Size = new System.Drawing.Size(215, 36);
-            this.inputCreatedAt.TabIndex = 13;
-            this.inputCreatedAt.Texts = "10-10-2023";
-            this.inputCreatedAt.Underlined = false;
             // 
             // labelCreatedAt
             // 
@@ -294,26 +234,6 @@ namespace Student_Management_System.Views
             this.labelStatus.TabIndex = 11;
             this.labelStatus.Text = "STATUS";
             // 
-            // inputRole
-            // 
-            this.inputRole.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputRole.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputRole.BorderSize = 1;
-            this.inputRole.Enabled = false;
-            this.inputRole.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputRole.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputRole.Location = new System.Drawing.Point(724, 65);
-            this.inputRole.Margin = new System.Windows.Forms.Padding(5);
-            this.inputRole.Multiline = false;
-            this.inputRole.Name = "inputRole";
-            this.inputRole.Padding = new System.Windows.Forms.Padding(5);
-            this.inputRole.PasswordChar = false;
-            this.inputRole.ReadOnly = true;
-            this.inputRole.Size = new System.Drawing.Size(170, 36);
-            this.inputRole.TabIndex = 10;
-            this.inputRole.Texts = "Admin";
-            this.inputRole.Underlined = false;
-            // 
             // labelRole
             // 
             this.labelRole.AutoSize = true;
@@ -326,46 +246,6 @@ namespace Student_Management_System.Views
             this.labelRole.TabIndex = 9;
             this.labelRole.Text = "ROLE";
             // 
-            // inputDoB
-            // 
-            this.inputDoB.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputDoB.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputDoB.BorderSize = 1;
-            this.inputDoB.Enabled = false;
-            this.inputDoB.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputDoB.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputDoB.Location = new System.Drawing.Point(181, 130);
-            this.inputDoB.Margin = new System.Windows.Forms.Padding(5);
-            this.inputDoB.Multiline = false;
-            this.inputDoB.Name = "inputDoB";
-            this.inputDoB.Padding = new System.Windows.Forms.Padding(5);
-            this.inputDoB.PasswordChar = false;
-            this.inputDoB.ReadOnly = true;
-            this.inputDoB.Size = new System.Drawing.Size(246, 36);
-            this.inputDoB.TabIndex = 8;
-            this.inputDoB.Texts = "12-08-2003";
-            this.inputDoB.Underlined = false;
-            // 
-            // inputPhone
-            // 
-            this.inputPhone.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputPhone.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputPhone.BorderSize = 1;
-            this.inputPhone.Enabled = false;
-            this.inputPhone.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputPhone.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputPhone.Location = new System.Drawing.Point(181, 260);
-            this.inputPhone.Margin = new System.Windows.Forms.Padding(5);
-            this.inputPhone.Multiline = false;
-            this.inputPhone.Name = "inputPhone";
-            this.inputPhone.Padding = new System.Windows.Forms.Padding(5);
-            this.inputPhone.PasswordChar = false;
-            this.inputPhone.ReadOnly = true;
-            this.inputPhone.Size = new System.Drawing.Size(270, 36);
-            this.inputPhone.TabIndex = 7;
-            this.inputPhone.Texts = "0123456789";
-            this.inputPhone.Underlined = false;
-            // 
             // labelPhone
             // 
             this.labelPhone.AutoSize = true;
@@ -377,26 +257,6 @@ namespace Student_Management_System.Views
             this.labelPhone.Size = new System.Drawing.Size(78, 25);
             this.labelPhone.TabIndex = 6;
             this.labelPhone.Text = "PHONE";
-            // 
-            // inputEmail
-            // 
-            this.inputEmail.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputEmail.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputEmail.BorderSize = 1;
-            this.inputEmail.Enabled = false;
-            this.inputEmail.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputEmail.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputEmail.Location = new System.Drawing.Point(181, 195);
-            this.inputEmail.Margin = new System.Windows.Forms.Padding(5);
-            this.inputEmail.Multiline = false;
-            this.inputEmail.Name = "inputEmail";
-            this.inputEmail.Padding = new System.Windows.Forms.Padding(5);
-            this.inputEmail.PasswordChar = false;
-            this.inputEmail.ReadOnly = true;
-            this.inputEmail.Size = new System.Drawing.Size(270, 36);
-            this.inputEmail.TabIndex = 5;
-            this.inputEmail.Texts = "nguyenhoangduy@gmail.com";
-            this.inputEmail.Underlined = false;
             // 
             // labelEmail
             // 
@@ -421,26 +281,6 @@ namespace Student_Management_System.Views
             this.labelDoB.Size = new System.Drawing.Size(50, 25);
             this.labelDoB.TabIndex = 2;
             this.labelDoB.Text = "DoB";
-            // 
-            // inputName
-            // 
-            this.inputName.BorderColor = System.Drawing.SystemColors.Control;
-            this.inputName.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputName.BorderSize = 1;
-            this.inputName.Enabled = false;
-            this.inputName.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.inputName.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputName.Location = new System.Drawing.Point(181, 65);
-            this.inputName.Margin = new System.Windows.Forms.Padding(5);
-            this.inputName.Multiline = false;
-            this.inputName.Name = "inputName";
-            this.inputName.Padding = new System.Windows.Forms.Padding(5);
-            this.inputName.PasswordChar = false;
-            this.inputName.ReadOnly = true;
-            this.inputName.Size = new System.Drawing.Size(270, 36);
-            this.inputName.TabIndex = 1;
-            this.inputName.Texts = "Nguyen Hoang Duy";
-            this.inputName.Underlined = false;
             // 
             // labelName
             // 
@@ -499,6 +339,30 @@ namespace Student_Management_System.Views
             this.btnChangePassword.UseVisualStyleBackColor = true;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
+            // labelConfirmPassword
+            // 
+            this.labelConfirmPassword.AutoSize = true;
+            this.labelConfirmPassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelConfirmPassword.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelConfirmPassword.Location = new System.Drawing.Point(215, 140);
+            this.labelConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelConfirmPassword.Name = "labelConfirmPassword";
+            this.labelConfirmPassword.Size = new System.Drawing.Size(209, 25);
+            this.labelConfirmPassword.TabIndex = 2;
+            this.labelConfirmPassword.Text = "CONFIRM PASSWORD";
+            // 
+            // labelNewPassword
+            // 
+            this.labelNewPassword.AutoSize = true;
+            this.labelNewPassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelNewPassword.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelNewPassword.Location = new System.Drawing.Point(215, 74);
+            this.labelNewPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNewPassword.Name = "labelNewPassword";
+            this.labelNewPassword.Size = new System.Drawing.Size(166, 25);
+            this.labelNewPassword.TabIndex = 0;
+            this.labelNewPassword.Text = "NEW PASSWORD";
+            // 
             // inputConfirmPassword
             // 
             this.inputConfirmPassword.BorderColor = System.Drawing.Color.DimGray;
@@ -520,18 +384,6 @@ namespace Student_Management_System.Views
             this.inputConfirmPassword.Enter += new System.EventHandler(this.inputConfirmPassword_Enter);
             this.inputConfirmPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputConfirmPassword_KeyDown);
             // 
-            // labelConfirmPassword
-            // 
-            this.labelConfirmPassword.AutoSize = true;
-            this.labelConfirmPassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.labelConfirmPassword.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelConfirmPassword.Location = new System.Drawing.Point(215, 140);
-            this.labelConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelConfirmPassword.Name = "labelConfirmPassword";
-            this.labelConfirmPassword.Size = new System.Drawing.Size(209, 25);
-            this.labelConfirmPassword.TabIndex = 2;
-            this.labelConfirmPassword.Text = "CONFIRM PASSWORD";
-            // 
             // inputNewPassword
             // 
             this.inputNewPassword.BorderColor = System.Drawing.Color.DimGray;
@@ -552,17 +404,165 @@ namespace Student_Management_System.Views
             this.inputNewPassword.Underlined = true;
             this.inputNewPassword.Enter += new System.EventHandler(this.inputNewPassword_Enter);
             // 
-            // labelNewPassword
+            // inputStatus
             // 
-            this.labelNewPassword.AutoSize = true;
-            this.labelNewPassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.labelNewPassword.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelNewPassword.Location = new System.Drawing.Point(215, 74);
-            this.labelNewPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelNewPassword.Name = "labelNewPassword";
-            this.labelNewPassword.Size = new System.Drawing.Size(166, 25);
-            this.labelNewPassword.TabIndex = 0;
-            this.labelNewPassword.Text = "NEW PASSWORD";
+            this.inputStatus.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputStatus.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputStatus.BorderSize = 1;
+            this.inputStatus.Enabled = false;
+            this.inputStatus.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputStatus.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputStatus.Location = new System.Drawing.Point(724, 130);
+            this.inputStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.inputStatus.Multiline = false;
+            this.inputStatus.Name = "inputStatus";
+            this.inputStatus.Padding = new System.Windows.Forms.Padding(5);
+            this.inputStatus.PasswordChar = false;
+            this.inputStatus.ReadOnly = true;
+            this.inputStatus.Size = new System.Drawing.Size(170, 36);
+            this.inputStatus.TabIndex = 16;
+            this.inputStatus.Texts = "Normal";
+            this.inputStatus.Underlined = false;
+            // 
+            // inputUpdatedAt
+            // 
+            this.inputUpdatedAt.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputUpdatedAt.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputUpdatedAt.BorderSize = 1;
+            this.inputUpdatedAt.Enabled = false;
+            this.inputUpdatedAt.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputUpdatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputUpdatedAt.Location = new System.Drawing.Point(724, 260);
+            this.inputUpdatedAt.Margin = new System.Windows.Forms.Padding(5);
+            this.inputUpdatedAt.Multiline = false;
+            this.inputUpdatedAt.Name = "inputUpdatedAt";
+            this.inputUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
+            this.inputUpdatedAt.PasswordChar = false;
+            this.inputUpdatedAt.ReadOnly = true;
+            this.inputUpdatedAt.Size = new System.Drawing.Size(215, 36);
+            this.inputUpdatedAt.TabIndex = 15;
+            this.inputUpdatedAt.Texts = "10-10-2023";
+            this.inputUpdatedAt.Underlined = false;
+            // 
+            // inputCreatedAt
+            // 
+            this.inputCreatedAt.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputCreatedAt.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputCreatedAt.BorderSize = 1;
+            this.inputCreatedAt.Enabled = false;
+            this.inputCreatedAt.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputCreatedAt.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputCreatedAt.Location = new System.Drawing.Point(724, 195);
+            this.inputCreatedAt.Margin = new System.Windows.Forms.Padding(5);
+            this.inputCreatedAt.Multiline = false;
+            this.inputCreatedAt.Name = "inputCreatedAt";
+            this.inputCreatedAt.Padding = new System.Windows.Forms.Padding(5);
+            this.inputCreatedAt.PasswordChar = false;
+            this.inputCreatedAt.ReadOnly = true;
+            this.inputCreatedAt.Size = new System.Drawing.Size(215, 36);
+            this.inputCreatedAt.TabIndex = 13;
+            this.inputCreatedAt.Texts = "10-10-2023";
+            this.inputCreatedAt.Underlined = false;
+            // 
+            // inputRole
+            // 
+            this.inputRole.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputRole.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputRole.BorderSize = 1;
+            this.inputRole.Enabled = false;
+            this.inputRole.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputRole.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputRole.Location = new System.Drawing.Point(724, 65);
+            this.inputRole.Margin = new System.Windows.Forms.Padding(5);
+            this.inputRole.Multiline = false;
+            this.inputRole.Name = "inputRole";
+            this.inputRole.Padding = new System.Windows.Forms.Padding(5);
+            this.inputRole.PasswordChar = false;
+            this.inputRole.ReadOnly = true;
+            this.inputRole.Size = new System.Drawing.Size(170, 36);
+            this.inputRole.TabIndex = 10;
+            this.inputRole.Texts = "Admin";
+            this.inputRole.Underlined = false;
+            // 
+            // inputDoB
+            // 
+            this.inputDoB.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputDoB.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputDoB.BorderSize = 1;
+            this.inputDoB.Enabled = false;
+            this.inputDoB.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputDoB.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputDoB.Location = new System.Drawing.Point(181, 130);
+            this.inputDoB.Margin = new System.Windows.Forms.Padding(5);
+            this.inputDoB.Multiline = false;
+            this.inputDoB.Name = "inputDoB";
+            this.inputDoB.Padding = new System.Windows.Forms.Padding(5);
+            this.inputDoB.PasswordChar = false;
+            this.inputDoB.ReadOnly = true;
+            this.inputDoB.Size = new System.Drawing.Size(246, 36);
+            this.inputDoB.TabIndex = 8;
+            this.inputDoB.Texts = "12-08-2003";
+            this.inputDoB.Underlined = false;
+            // 
+            // inputPhone
+            // 
+            this.inputPhone.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputPhone.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputPhone.BorderSize = 1;
+            this.inputPhone.Enabled = false;
+            this.inputPhone.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputPhone.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputPhone.Location = new System.Drawing.Point(181, 260);
+            this.inputPhone.Margin = new System.Windows.Forms.Padding(5);
+            this.inputPhone.Multiline = false;
+            this.inputPhone.Name = "inputPhone";
+            this.inputPhone.Padding = new System.Windows.Forms.Padding(5);
+            this.inputPhone.PasswordChar = false;
+            this.inputPhone.ReadOnly = true;
+            this.inputPhone.Size = new System.Drawing.Size(270, 36);
+            this.inputPhone.TabIndex = 7;
+            this.inputPhone.Texts = "0123456789";
+            this.inputPhone.Underlined = false;
+            // 
+            // inputEmail
+            // 
+            this.inputEmail.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputEmail.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputEmail.BorderSize = 1;
+            this.inputEmail.Enabled = false;
+            this.inputEmail.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputEmail.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputEmail.Location = new System.Drawing.Point(181, 195);
+            this.inputEmail.Margin = new System.Windows.Forms.Padding(5);
+            this.inputEmail.Multiline = false;
+            this.inputEmail.Name = "inputEmail";
+            this.inputEmail.Padding = new System.Windows.Forms.Padding(5);
+            this.inputEmail.PasswordChar = false;
+            this.inputEmail.ReadOnly = true;
+            this.inputEmail.Size = new System.Drawing.Size(270, 36);
+            this.inputEmail.TabIndex = 5;
+            this.inputEmail.Texts = "nguyenhoangduy@gmail.com";
+            this.inputEmail.Underlined = false;
+            // 
+            // inputName
+            // 
+            this.inputName.BorderColor = System.Drawing.SystemColors.Control;
+            this.inputName.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputName.BorderSize = 1;
+            this.inputName.Enabled = false;
+            this.inputName.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.inputName.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputName.Location = new System.Drawing.Point(181, 65);
+            this.inputName.Margin = new System.Windows.Forms.Padding(5);
+            this.inputName.Multiline = false;
+            this.inputName.Name = "inputName";
+            this.inputName.Padding = new System.Windows.Forms.Padding(5);
+            this.inputName.PasswordChar = false;
+            this.inputName.ReadOnly = true;
+            this.inputName.Size = new System.Drawing.Size(270, 36);
+            this.inputName.TabIndex = 1;
+            this.inputName.Texts = "Nguyen Hoang Duy";
+            this.inputName.Underlined = false;
             // 
             // ProfileForm
             // 
@@ -579,6 +579,7 @@ namespace Student_Management_System.Views
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ProfileForm";
             this.Text = "ProfileForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileForm_FormClosing);
             this.Load += new System.EventHandler(this.ProfileForm_Load);
             this.grBoxAvatar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).EndInit();
