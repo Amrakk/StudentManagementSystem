@@ -31,7 +31,7 @@ namespace Student_Management_System.Controllers
             {
                 try
                 {
-                    var loginHistoryRecordsToDelete = db.loginhistories.Where(lh => lh.email == email);
+                    var loginHistoryRecordsToDelete = db.loginhistories.Where(lh => lh.email.Equals(email));
                     db.loginhistories.DeleteAllOnSubmit(loginHistoryRecordsToDelete);
                     db.SubmitChanges();
                     return true;
