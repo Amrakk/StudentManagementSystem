@@ -56,20 +56,19 @@ namespace Student_Management_System.Views.Admin
             labelErrorMessage.Visible = false;
 
             string rootDirectory = "Resources";
-            string avatarPath = Path.Combine(rootDirectory, _user.email);
-            string folderPath = Path.Combine(workingDir, avatarPath);
-
-            if (!Directory.Exists(folderPath))
+            if(selectedUser != null)
             {
-                string defaultAvatar = Path.Combine(workingDir, rootDirectory, "defaultAvatar.png");
-                picBoxAvatar.Image = Image.FromFile(defaultAvatar);
-                return;
-            }
+                string avatarPath = Path.Combine(rootDirectory, selectedUser.email);
+                string folderPath = Path.Combine(workingDir, avatarPath);
 
-            string[] matchingFiles = Directory.GetFiles(folderPath, "avatar.*");
+                if (!Directory.Exists(folderPath))
+                {
+                    string defaultAvatar = Path.Combine(workingDir, rootDirectory, "defaultAvatar.png");
+                    picBoxAvatar.Image = Image.FromFile(defaultAvatar);
+                    return;
+                }
 
-            if (matchingFiles.Length > 0)
-            {
+                string[] matchingFiles = Directory.GetFiles(folderPath, "avatar.*");
                 picBoxAvatar.Image = Image.FromFile(matchingFiles[0]);
             }
             else
@@ -91,11 +90,14 @@ namespace Student_Management_System.Views.Admin
                     if (isDeleted)
                     {
                         string avtPath = Path.Combine(workingDir, "Resources", selectedUser.email);
+                        picBoxAvatar.Image.Dispose();
 
                         if (Directory.Exists(avtPath))
                             Directory.Delete(avtPath, true);
 
                         MessageBox.Show("Deleted successfully", "Deleted user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UserForm_Reload();
+                        this.Close();
                     }
                     else MessageBox.Show("Failed to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -157,17 +159,12 @@ namespace Student_Management_System.Views.Admin
         {
             if(MessageBox.Show("Are you sure want to reset avatar?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                string rootDirectory = "Resources";
-                string defaultAvatar = Path.Combine(workingDir, rootDirectory, "defaultAvatar.png");
-
-                using (FileStream fileStream = new FileStream(defaultAvatar, FileMode.Open, FileAccess.Read))
+                try
                 {
-                    if (picBoxAvatar.Image != null)
-                        picBoxAvatar.Image.Dispose();
-                    picBoxAvatar.Image = Image.FromStream(fileStream);
-
-                    string imagePath = SystemStudentUtils.SaveAvatars(selectedUser.email, "defaultAvatar.png");
-                    picBoxAvatar.Image.Save(imagePath);
+                    SetDefaultAvatar();
+                } catch(Exception ex)
+                {
+                    MessageBox.Show("An error occurred while changing avatar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -275,7 +272,7 @@ namespace Student_Management_System.Views.Admin
                     updatedAt = DateTime.Now
                 };
 
-                SystemStudentUtils.SaveAvatars(email, "defaultAvatar.png");
+                SetDefaultAvatar(email);
 
                 try
                 {
@@ -327,6 +324,31 @@ namespace Student_Management_System.Views.Admin
         {
             if (Application.OpenForms["UserForm"] is UserForm userForm)
                 userForm.RefreshGridView("");
+        }
+
+        private void SetDefaultAvatar(string email = "")
+        {
+            string rootDirectory = "Resources";
+            string defaultAvatar = Path.Combine(workingDir, rootDirectory, "defaultAvatar.png");
+
+            using (FileStream fileStream = new FileStream(defaultAvatar, FileMode.Open, FileAccess.Read))
+            {
+                if (picBoxAvatar.Image != null)
+                    picBoxAvatar.Image.Dispose();
+                picBoxAvatar.Image = Image.FromStream(fileStream);
+
+                if (string.IsNullOrEmpty(email))
+                    email = selectedUser.email;
+
+                string imagePath = SystemStudentUtils.SaveAvatars(email, defaultAvatar);
+                picBoxAvatar.Image.Save(imagePath);
+            }
+        }
+
+        private void UserDetailForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            picBoxAvatar.Image.Dispose();
+            picBoxAvatar.Dispose();
         }
     }
 }

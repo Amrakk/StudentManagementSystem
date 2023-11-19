@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Student_Management_System.Controllers
 {
@@ -32,11 +33,12 @@ namespace Student_Management_System.Controllers
                 {
                     var loginHistoryRecordsToDelete = db.loginhistories.Where(lh => lh.email == email);
                     db.loginhistories.DeleteAllOnSubmit(loginHistoryRecordsToDelete);
+                    db.SubmitChanges();
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
                     return false;
                 }
             }
