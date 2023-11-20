@@ -480,23 +480,24 @@ namespace Student_Management_System.Views
             this.labelErrorMessage.Location = new System.Drawing.Point(215, 190);
             this.labelErrorMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelErrorMessage.Name = "labelErrorMessage";
-            this.labelErrorMessage.Size = new System.Drawing.Size(514, 17);
+            this.labelErrorMessage.Size = new System.Drawing.Size(514, 32);
             this.labelErrorMessage.TabIndex = 5;
-            this.labelErrorMessage.Text = "Error Message";
-            this.labelErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelErrorMessage.Text = "Password only include (A-Z), (a-z), (1-9) and must be at least 8 characters";
+            this.labelErrorMessage.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnChangePassword
             // 
             this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnChangePassword.ForeColor = System.Drawing.Color.DimGray;
-            this.btnChangePassword.Location = new System.Drawing.Point(215, 215);
+            this.btnChangePassword.Location = new System.Drawing.Point(215, 225);
             this.btnChangePassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(514, 45);
             this.btnChangePassword.TabIndex = 4;
             this.btnChangePassword.Text = "CHANGE PASSWORD";
             this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // inputConfirmPassword
             // 
@@ -516,6 +517,8 @@ namespace Student_Management_System.Views
             this.inputConfirmPassword.TabIndex = 3;
             this.inputConfirmPassword.Texts = "";
             this.inputConfirmPassword.Underlined = true;
+            this.inputConfirmPassword.Enter += new System.EventHandler(this.inputConfirmPassword_Enter);
+            this.inputConfirmPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputConfirmPassword_KeyDown);
             // 
             // labelConfirmPassword
             // 
@@ -547,6 +550,7 @@ namespace Student_Management_System.Views
             this.inputNewPassword.TabIndex = 1;
             this.inputNewPassword.Texts = "";
             this.inputNewPassword.Underlined = true;
+            this.inputNewPassword.Enter += new System.EventHandler(this.inputNewPassword_Enter);
             // 
             // labelNewPassword
             // 

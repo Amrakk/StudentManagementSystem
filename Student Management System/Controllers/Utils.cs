@@ -90,6 +90,10 @@ namespace Student_Management_System.Controllers
                         {
                             string columnName = columnNames[col - 1];
                             object cellValue = worksheet.Cells[row, col].Value;
+
+                            if(typeof(K).GetProperty(columnName).ToString().Contains("Int32") && cellValue.GetType().ToString().Contains("Double"))
+                                cellValue = Convert.ToInt32(cellValue);
+
                             typeof(K).GetProperty(columnName)?.SetValue(obj, cellValue);
                         }
 
@@ -99,7 +103,7 @@ namespace Student_Management_System.Controllers
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error at row {row}: {ex.Message}");
+                        MessageBox.Show($"Error at row {row}: {ex.Message}");
                     }
                 }
             }
@@ -152,7 +156,10 @@ namespace Student_Management_System.Controllers
                     }
                 }
 
-                package.Save();
+                try { package.Save(); }
+                catch (Exception ex) { 
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

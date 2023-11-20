@@ -125,16 +125,21 @@ namespace Student_Management_System.Views.Admin
                         UpdatedAt = u.updatedAt?.ToString("dd-MM-yyyy") ?? ""
                     }).ToList();
 
-                    users.ForEach(u => u.password = "••••••••");
-                    users.ForEach(u => u.loginhistories = null);
-
-                    if (extension.Equals(".xlsx"))
+                    try
                     {
-                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, userToExport);
+                        if (extension.Equals(".xlsx"))
+                        {
+                            SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, userToExport);
+                        }
+                        else if (extension.Equals(".csv"))
+                        {
+                            SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, userToExport);
+                        }
                     }
-                    else if (extension.Equals(".csv"))
+                    catch (Exception ex)
                     {
-                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, userToExport);
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
 
@@ -171,20 +176,27 @@ namespace Student_Management_System.Views.Admin
                             updatedAt = SystemStudentUtils.ParseDate(record.UpdatedAt)
                         };
 
+                        db.loginhistories.DeleteAllOnSubmit(db.loginhistories);
+                        db.users.DeleteAllOnSubmit(db.users);
+
                         if (extension.Equals(".csv"))
                         {
                             try
                             {
-                                db.users.DeleteAllOnSubmit(db.users);
                                 var users = SystemStudentUtils.ImportCsvFile<user, UserExport>(openFileDialog.FileName, userConvertFunction);
-
-                                users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
+                                if(users.Count == 0)
+                                {
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+                                users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.phone));
                                 db.users.InsertAllOnSubmit(users);
                                 db.SubmitChanges();
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("There is something wrong");
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
                             }
                         }
                         else if (extension.Equals(".xlsx"))
@@ -192,18 +204,26 @@ namespace Student_Management_System.Views.Admin
                             try
                             {
                                 var users = SystemStudentUtils.ImportExcelFile<user, UserExport>(openFileDialog.FileName, userConvertFunction);
-                                users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.password));
+
+                                if(users.Count == 0)
+                                {
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+                                users.ForEach(u => u.password = SystemStudentUtils.EncryptPassword(u.phone));
                                 db.users.InsertAllOnSubmit(users);
                                 db.SubmitChanges();
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("There is something wrong");
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
                             }
                         }
                     }
 
-                    MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Import successfully!\nAccounts password will be their phone number", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshGridView("");
                 }
             }
 

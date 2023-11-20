@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Student_Management_System.Controllers;
@@ -93,6 +94,8 @@ namespace Student_Management_System.Views
                 grBoxAdmin.Visible = false;
             }
 
+            labelErrorMessage.Visible = false;
+
             inputName.Texts = _user.name;
             inputDoB.Texts = string.Format("{0:dd-MM-yyyy}", _user.dob);
             inputEmail.Texts = _user.email;
@@ -125,6 +128,65 @@ namespace Student_Management_System.Views
             }
         }
 
-        // TODO: Implement change password
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            Regex passEx = new Regex("^[a-zA-Z0-9]{8,}$");
+            string newPassword = inputNewPassword.Texts;
+            string confirmPassword = inputConfirmPassword.Texts;    
+
+            if(!passEx.IsMatch(newPassword))
+            {
+                labelErrorMessage.Text = "Password must be at least 8 characters long and contain only letters and numbers";    
+                labelErrorMessage.Visible = true;
+                return;
+            }
+
+            if (!newPassword.Equals(confirmPassword))
+            {
+                labelErrorMessage.Text = "New password and confirm password do not match";
+                labelErrorMessage.Visible = true;
+                return;
+            }
+            try
+            {
+                _user.password = SystemStudentUtils.EncryptPassword(newPassword);
+                _user.updatedAt = DateTime.Now;
+
+                var userController = new UserController();
+                bool isUpdated = userController.Update(_user);
+
+                if (isUpdated)
+                {
+                    MessageBox.Show("Password changed successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    inputNewPassword.Texts = "";
+                    inputConfirmPassword.Texts = "";
+                }
+                else MessageBox.Show("Failed to change password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            } catch(Exception ex)
+            {
+                MessageBox.Show("An error occurred while changing password: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void inputConfirmPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnChangePassword_Click(sender, e);
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
+
+        private void inputConfirmPassword_Enter(object sender, EventArgs e)
+        {
+            labelErrorMessage.Visible = false;
+        }
+
+        private void inputNewPassword_Enter(object sender, EventArgs e)
+        {
+            labelErrorMessage.Visible = false;
+        }
     }
 }

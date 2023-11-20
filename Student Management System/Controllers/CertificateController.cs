@@ -44,17 +44,14 @@ namespace Student_Management_System.Controllers
             {
                 using (var db = new MidTermDBDataContext(Program.ConnectionString))
                 {
-                    var entityToDel = db.certificates.FirstOrDefault(c => c.id.Equals(entity.id));
+                    var entityToDelete = db.certificates.FirstOrDefault(c => c.id.Equals(entity.id));
 
-                    if (entityToDel == null)
+                    if (entityToDelete != null)
                     {
-                        return false;
+                        db.certificates.DeleteOnSubmit(entityToDelete);
+                        db.SubmitChanges();
+                        return true;
                     }
-
-                    db.certificates.DeleteOnSubmit(entityToDel);
-                    db.SubmitChanges();
-
-                    return true;
                 }
             }
             catch (Exception ex)

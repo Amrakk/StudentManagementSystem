@@ -186,12 +186,6 @@
     <Compile Include="Views\Students\StudentForm.Designer.cs">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Students\UpdateStudentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Students\UpdateStudentForm.Designer.cs">
-      <DependentUpon>UpdateStudentForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Views\Students\AddStudentForm.resx">
       <DependentUpon>AddStudentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -228,9 +222,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Students\StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Students\UpdateStudentForm.resx">
-      <DependentUpon>UpdateStudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Database\MidTermDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -273,7 +264,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\searchIcon.jpg" />
+    <None Include="Resources\logout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -132,13 +132,20 @@ namespace Student_Management_System.Views.Students
                         EducationType = s.eduType
                     }).ToList();
 
-                    if (extension.Equals(".xlsx"))
-                    {
-                        SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, studentsToExport);
+                    try { 
+                        if (extension.Equals(".xlsx"))
+                        {
+                            SystemStudentUtils.ExportToExcel(saveFileDialog.FileName, studentsToExport);
+                        }
+                        else if (extension.Equals(".csv"))
+                        {
+                            SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, studentsToExport);
+                        }
                     }
-                    else if (extension.Equals(".csv"))
+                    catch (Exception ex)
                     {
-                        SystemStudentUtils.ExportCsvFile(saveFileDialog.FileName, studentsToExport);
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
 
@@ -148,6 +155,13 @@ namespace Student_Management_System.Views.Students
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            string userRole = _user.role;
+            if (userRole.Equals("Employee"))
+            {
+                MessageBox.Show("You are not authorized to do this operation", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (MessageBox.Show("Are you sure to import?\nThis will remove all students from the database. Please be certain!", "Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
@@ -177,41 +191,51 @@ namespace Student_Management_System.Views.Students
                             eduType = record.EducationType
                         };
 
+                        db.students.DeleteAllOnSubmit(db.students);
                         if (extension.Equals(".csv"))
                         {
                             try
                             {
-                                db.students.DeleteAllOnSubmit(db.students);
-
                                 var students = SystemStudentUtils.ImportCsvFile<student, StudentExport>(openFileDialog.FileName, studentConvertFunction);
+                                if(students.Count == 0)
+                                {
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
 
                                 db.students.InsertAllOnSubmit(students);
                                 db.SubmitChanges();
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("There is something wrong");
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
                             }
                         }
                         else if (extension.Equals(".xlsx"))
                         {
                             try
                             {
-                                db.students.DeleteAllOnSubmit(db.students);
-
                                 var students = SystemStudentUtils.ImportExcelFile<student, StudentExport>(openFileDialog.FileName, studentConvertFunction);
+                                if (students.Count == 0)
+                                {
+                                    MessageBox.Show("No record found", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
 
                                 db.students.InsertAllOnSubmit(students);
                                 db.SubmitChanges();
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("There is something wrong");
+                                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
                             }
                         }
                     }
 
                     MessageBox.Show("Import successfully", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshGridView("");
                 }
             }
         }
@@ -246,10 +270,15 @@ namespace Student_Management_System.Views.Students
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            inputMajor.SelectedIndex = -1;
+            inputGender.SelectedIndex = -1;
+            inputEduType.SelectedIndex = -1;
+            inputDepartment.SelectedIndex = -1;
+
+            inputMajor.Texts = "";
             inputGender.Texts = "";
             inputEduType.Texts = "";
             inputDepartment.Texts = "";
-            inputMajor.Texts = "";
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -290,34 +319,6 @@ namespace Student_Management_System.Views.Students
                     inputMajor.SelectedIndex = -1;
                 }
             }
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            string userRole = _user.role.ToLower() ?? "";
-            if (!userRole.Equals("admin") && !userRole.Equals("manager"))
-            {
-                MessageBox.Show("You have no priority");
-                return;
-            }
-
-            string selectedId = gridViewStudent.SelectedCells[0].Value?.ToString();
-
-            if (string.IsNullOrEmpty(selectedId))
-            {
-                MessageBox.Show("The selected cell does not contain a valid Student ID", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var studentToUpdate = stdController.Get(selectedId);
-            if (studentToUpdate == null)
-            {
-                MessageBox.Show("There is no student");
-                return;
-            }
-
-            UpdateStudentForm updateStudentForm = new UpdateStudentForm(studentToUpdate);
-            updateStudentForm.Show();
         }
     }
 }

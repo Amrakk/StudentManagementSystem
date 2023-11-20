@@ -89,9 +89,32 @@ namespace Student_Management_System.Views.Auth
                 db.SubmitChanges();
             }
 
-            var mainForm = new MainForm(loginUser);
-            mainForm.Show();
-            this.Hide();
+            MainForm form = null;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is MainForm)
+                {
+                    form = f as MainForm;
+                    break;
+                }
+            }
+
+            if (form != null)
+            {
+                form.SetUser(loginUser);
+                form.Visible = true;
+                form.Enabled = true;
+                
+                this.Visible = false;
+                this.Enabled = false;
+                return;
+            }
+
+            form = new MainForm(loginUser);
+            form.Show();
+
+            this.Visible = false;
+            this.Enabled = false;   
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

@@ -67,19 +67,20 @@
             this.labelDeleteStudent = new Student_Management_System.Views.CustomControls.Input();
             this.btnDeleteStudent = new System.Windows.Forms.Button();
             this.grBoxCertificate = new System.Windows.Forms.GroupBox();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.gridViewCertificate = new System.Windows.Forms.DataGridView();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.organizationnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isValidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.issue_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expiry_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.certificateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnCertReset = new System.Windows.Forms.Button();
-            this.inputCertDescription = new Student_Management_System.Views.CustomControls.Input();
-            this.btnCertEdit = new System.Windows.Forms.Button();
+            this.btnCertSave = new System.Windows.Forms.Button();
             this.labelDescription = new System.Windows.Forms.Label();
             this.inputCertIsValid = new System.Windows.Forms.CheckBox();
             this.labelIsValid = new System.Windows.Forms.Label();
@@ -100,6 +101,7 @@
             this.labelCertWarningMessage = new System.Windows.Forms.Label();
             this.labelDeleteCertificate = new Student_Management_System.Views.CustomControls.Input();
             this.btnDeleteCertificate = new System.Windows.Forms.Button();
+            this.inputDescription = new Student_Management_System.Views.CustomControls.Input();
             this.grBoxProfile.SuspendLayout();
             this.grBoxDeleteStudent.SuspendLayout();
             this.panelDeleteAccount.SuspendLayout();
@@ -156,7 +158,7 @@
             this.labelStuUpdatedAt.Location = new System.Drawing.Point(33, 335);
             this.labelStuUpdatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStuUpdatedAt.Name = "labelStuUpdatedAt";
-            this.labelStuUpdatedAt.Size = new System.Drawing.Size(93, 19);
+            this.labelStuUpdatedAt.Size = new System.Drawing.Size(73, 13);
             this.labelStuUpdatedAt.TabIndex = 71;
             this.labelStuUpdatedAt.Text = "UPDATED AT";
             // 
@@ -175,7 +177,7 @@
             this.inputStuID.Padding = new System.Windows.Forms.Padding(5);
             this.inputStuID.PasswordChar = false;
             this.inputStuID.ReadOnly = false;
-            this.inputStuID.Size = new System.Drawing.Size(178, 39);
+            this.inputStuID.Size = new System.Drawing.Size(178, 32);
             this.inputStuID.TabIndex = 1;
             this.inputStuID.Texts = "521H0350";
             this.inputStuID.Underlined = false;
@@ -188,7 +190,7 @@
             this.labelStuCreatedAt.Location = new System.Drawing.Point(33, 310);
             this.labelStuCreatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStuCreatedAt.Name = "labelStuCreatedAt";
-            this.labelStuCreatedAt.Size = new System.Drawing.Size(89, 19);
+            this.labelStuCreatedAt.Size = new System.Drawing.Size(70, 13);
             this.labelStuCreatedAt.TabIndex = 70;
             this.labelStuCreatedAt.Text = "CREATED AT";
             // 
@@ -207,7 +209,7 @@
             this.inputStuCreatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputStuCreatedAt.PasswordChar = false;
             this.inputStuCreatedAt.ReadOnly = true;
-            this.inputStuCreatedAt.Size = new System.Drawing.Size(73, 30);
+            this.inputStuCreatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputStuCreatedAt.TabIndex = 68;
             this.inputStuCreatedAt.Texts = "29-10-2023";
             this.inputStuCreatedAt.Underlined = false;
@@ -220,7 +222,7 @@
             this.labelStuID.Location = new System.Drawing.Point(32, 80);
             this.labelStuID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStuID.Name = "labelStuID";
-            this.labelStuID.Size = new System.Drawing.Size(33, 28);
+            this.labelStuID.Size = new System.Drawing.Size(27, 21);
             this.labelStuID.TabIndex = 53;
             this.labelStuID.Text = "ID";
             // 
@@ -239,7 +241,7 @@
             this.inputStuUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputStuUpdatedAt.PasswordChar = false;
             this.inputStuUpdatedAt.ReadOnly = true;
-            this.inputStuUpdatedAt.Size = new System.Drawing.Size(73, 30);
+            this.inputStuUpdatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputStuUpdatedAt.TabIndex = 69;
             this.inputStuUpdatedAt.Texts = "29-10-2023";
             this.inputStuUpdatedAt.Underlined = false;
@@ -288,7 +290,7 @@
             this.inputCourseYear.Padding = new System.Windows.Forms.Padding(5);
             this.inputCourseYear.PasswordChar = false;
             this.inputCourseYear.ReadOnly = false;
-            this.inputCourseYear.Size = new System.Drawing.Size(178, 39);
+            this.inputCourseYear.Size = new System.Drawing.Size(178, 32);
             this.inputCourseYear.TabIndex = 6;
             this.inputCourseYear.Texts = "2021";
             this.inputCourseYear.Underlined = false;
@@ -301,7 +303,7 @@
             this.labelCourseYear.Location = new System.Drawing.Point(32, 245);
             this.labelCourseYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCourseYear.Name = "labelCourseYear";
-            this.labelCourseYear.Size = new System.Drawing.Size(122, 28);
+            this.labelCourseYear.Size = new System.Drawing.Size(99, 21);
             this.labelCourseYear.TabIndex = 51;
             this.labelCourseYear.Text = "Course Year";
             // 
@@ -334,7 +336,7 @@
             this.labelMajor.Location = new System.Drawing.Point(444, 170);
             this.labelMajor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMajor.Name = "labelMajor";
-            this.labelMajor.Size = new System.Drawing.Size(68, 28);
+            this.labelMajor.Size = new System.Drawing.Size(55, 21);
             this.labelMajor.TabIndex = 50;
             this.labelMajor.Text = "Major";
             // 
@@ -367,7 +369,7 @@
             this.labelClass.Location = new System.Drawing.Point(444, 250);
             this.labelClass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelClass.Name = "labelClass";
-            this.labelClass.Size = new System.Drawing.Size(59, 28);
+            this.labelClass.Size = new System.Drawing.Size(48, 21);
             this.labelClass.TabIndex = 49;
             this.labelClass.Text = "Class";
             // 
@@ -401,7 +403,7 @@
             this.labelDepartment.Location = new System.Drawing.Point(444, 125);
             this.labelDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDepartment.Name = "labelDepartment";
-            this.labelDepartment.Size = new System.Drawing.Size(127, 28);
+            this.labelDepartment.Size = new System.Drawing.Size(102, 21);
             this.labelDepartment.TabIndex = 48;
             this.labelDepartment.Text = "Department";
             // 
@@ -417,6 +419,8 @@
             this.inputEduType.ForeColor = System.Drawing.Color.DimGray;
             this.inputEduType.IconColor = System.Drawing.Color.DimGray;
             this.inputEduType.Items.AddRange(new object[] {
+            "Standard",
+            "High Quality",
             "Standard",
             "High Quality"});
             this.inputEduType.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
@@ -437,7 +441,7 @@
             this.labelEduType.Location = new System.Drawing.Point(444, 210);
             this.labelEduType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEduType.Name = "labelEduType";
-            this.labelEduType.Size = new System.Drawing.Size(157, 28);
+            this.labelEduType.Size = new System.Drawing.Size(127, 21);
             this.labelEduType.TabIndex = 47;
             this.labelEduType.Text = "Education Type";
             // 
@@ -448,7 +452,7 @@
             this.rbtnFemale.ForeColor = System.Drawing.SystemColors.GrayText;
             this.rbtnFemale.Location = new System.Drawing.Point(247, 205);
             this.rbtnFemale.Name = "rbtnFemale";
-            this.rbtnFemale.Size = new System.Drawing.Size(95, 32);
+            this.rbtnFemale.Size = new System.Drawing.Size(78, 25);
             this.rbtnFemale.TabIndex = 5;
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Female";
@@ -462,7 +466,7 @@
             this.labelGender.Location = new System.Drawing.Point(32, 205);
             this.labelGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGender.Name = "labelGender";
-            this.labelGender.Size = new System.Drawing.Size(80, 28);
+            this.labelGender.Size = new System.Drawing.Size(65, 21);
             this.labelGender.TabIndex = 46;
             this.labelGender.Text = "Gender";
             // 
@@ -473,7 +477,7 @@
             this.rbtnMale.ForeColor = System.Drawing.SystemColors.GrayText;
             this.rbtnMale.Location = new System.Drawing.Point(162, 205);
             this.rbtnMale.Name = "rbtnMale";
-            this.rbtnMale.Size = new System.Drawing.Size(76, 32);
+            this.rbtnMale.Size = new System.Drawing.Size(62, 25);
             this.rbtnMale.TabIndex = 4;
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Male";
@@ -489,7 +493,7 @@
             this.inputDoB.Location = new System.Drawing.Point(162, 160);
             this.inputDoB.MinimumSize = new System.Drawing.Size(4, 32);
             this.inputDoB.Name = "inputDoB";
-            this.inputDoB.Size = new System.Drawing.Size(225, 34);
+            this.inputDoB.Size = new System.Drawing.Size(225, 32);
             this.inputDoB.SkinColor = System.Drawing.SystemColors.Control;
             this.inputDoB.TabIndex = 3;
             this.inputDoB.TextColor = System.Drawing.Color.DimGray;
@@ -502,7 +506,7 @@
             this.labelDoB.Location = new System.Drawing.Point(32, 165);
             this.labelDoB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDoB.Name = "labelDoB";
-            this.labelDoB.Size = new System.Drawing.Size(52, 28);
+            this.labelDoB.Size = new System.Drawing.Size(42, 21);
             this.labelDoB.TabIndex = 45;
             this.labelDoB.Text = "DoB";
             // 
@@ -520,7 +524,7 @@
             this.inputName.Padding = new System.Windows.Forms.Padding(5);
             this.inputName.PasswordChar = false;
             this.inputName.ReadOnly = false;
-            this.inputName.Size = new System.Drawing.Size(225, 39);
+            this.inputName.Size = new System.Drawing.Size(225, 32);
             this.inputName.TabIndex = 2;
             this.inputName.Texts = "Nguyen Hoang Duy";
             this.inputName.Underlined = false;
@@ -533,7 +537,7 @@
             this.labelName.Location = new System.Drawing.Point(32, 125);
             this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(72, 28);
+            this.labelName.Size = new System.Drawing.Size(58, 21);
             this.labelName.TabIndex = 44;
             this.labelName.Text = "NAME";
             // 
@@ -545,7 +549,7 @@
             this.labelCertUpdatedAt.Location = new System.Drawing.Point(26, 294);
             this.labelCertUpdatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCertUpdatedAt.Name = "labelCertUpdatedAt";
-            this.labelCertUpdatedAt.Size = new System.Drawing.Size(93, 19);
+            this.labelCertUpdatedAt.Size = new System.Drawing.Size(73, 13);
             this.labelCertUpdatedAt.TabIndex = 30;
             this.labelCertUpdatedAt.Text = "UPDATED AT";
             // 
@@ -557,7 +561,7 @@
             this.labelCertCreatedAt.Location = new System.Drawing.Point(26, 269);
             this.labelCertCreatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCertCreatedAt.Name = "labelCertCreatedAt";
-            this.labelCertCreatedAt.Size = new System.Drawing.Size(89, 19);
+            this.labelCertCreatedAt.Size = new System.Drawing.Size(70, 13);
             this.labelCertCreatedAt.TabIndex = 29;
             this.labelCertCreatedAt.Text = "CREATED AT";
             // 
@@ -587,10 +591,10 @@
             this.labelStuWarningMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelStuWarningMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.labelStuWarningMessage.ForeColor = System.Drawing.Color.DimGray;
-            this.labelStuWarningMessage.Location = new System.Drawing.Point(0, 39);
+            this.labelStuWarningMessage.Location = new System.Drawing.Point(0, 32);
             this.labelStuWarningMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStuWarningMessage.Name = "labelStuWarningMessage";
-            this.labelStuWarningMessage.Size = new System.Drawing.Size(335, 44);
+            this.labelStuWarningMessage.Size = new System.Drawing.Size(335, 51);
             this.labelStuWarningMessage.TabIndex = 35;
             this.labelStuWarningMessage.Text = "Once you delete the student, there is no going back. Please be certain.";
             this.labelStuWarningMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -611,7 +615,7 @@
             this.labelDeleteStudent.Padding = new System.Windows.Forms.Padding(5);
             this.labelDeleteStudent.PasswordChar = false;
             this.labelDeleteStudent.ReadOnly = true;
-            this.labelDeleteStudent.Size = new System.Drawing.Size(335, 39);
+            this.labelDeleteStudent.Size = new System.Drawing.Size(335, 32);
             this.labelDeleteStudent.TabIndex = 36;
             this.labelDeleteStudent.Texts = "Delete Student";
             this.labelDeleteStudent.Underlined = true;
@@ -635,13 +639,14 @@
             // 
             // grBoxCertificate
             // 
+            this.grBoxCertificate.Controls.Add(this.inputDescription);
+            this.grBoxCertificate.Controls.Add(this.labelStatus);
             this.grBoxCertificate.Controls.Add(this.gridViewCertificate);
             this.grBoxCertificate.Controls.Add(this.btnCreate);
             this.grBoxCertificate.Controls.Add(this.btnImport);
             this.grBoxCertificate.Controls.Add(this.btnExport);
             this.grBoxCertificate.Controls.Add(this.btnCertReset);
-            this.grBoxCertificate.Controls.Add(this.inputCertDescription);
-            this.grBoxCertificate.Controls.Add(this.btnCertEdit);
+            this.grBoxCertificate.Controls.Add(this.btnCertSave);
             this.grBoxCertificate.Controls.Add(this.labelDescription);
             this.grBoxCertificate.Controls.Add(this.inputCertIsValid);
             this.grBoxCertificate.Controls.Add(this.labelIsValid);
@@ -670,6 +675,19 @@
             this.grBoxCertificate.TabStop = false;
             this.grBoxCertificate.Text = "Certificate";
             // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.labelStatus.Location = new System.Drawing.Point(656, 43);
+            this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(90, 25);
+            this.labelStatus.TabIndex = 71;
+            this.labelStatus.Text = "Editing...";
+            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // gridViewCertificate
             // 
             this.gridViewCertificate.AllowUserToAddRows = false;
@@ -681,14 +699,15 @@
             this.organizationnameDataGridViewTextBoxColumn,
             this.isValidDataGridViewTextBoxColumn,
             this.issue_date,
-            this.expiry_date});
+            this.expiry_date,
+            this.id});
             this.gridViewCertificate.DataSource = this.certificateBindingSource;
             this.gridViewCertificate.Location = new System.Drawing.Point(29, 460);
             this.gridViewCertificate.Name = "gridViewCertificate";
             this.gridViewCertificate.ReadOnly = true;
-            this.gridViewCertificate.RowHeadersWidth = 51;
             this.gridViewCertificate.Size = new System.Drawing.Size(717, 336);
             this.gridViewCertificate.TabIndex = 70;
+            this.gridViewCertificate.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewCertificate_CellClick);
             // 
             // titleDataGridViewTextBoxColumn
             // 
@@ -696,7 +715,6 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
             this.titleDataGridViewTextBoxColumn.ReadOnly = true;
             this.titleDataGridViewTextBoxColumn.Width = 139;
@@ -707,7 +725,6 @@
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.organizationnameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.organizationnameDataGridViewTextBoxColumn.HeaderText = "Organization";
-            this.organizationnameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.organizationnameDataGridViewTextBoxColumn.Name = "organizationnameDataGridViewTextBoxColumn";
             this.organizationnameDataGridViewTextBoxColumn.ReadOnly = true;
             this.organizationnameDataGridViewTextBoxColumn.Width = 175;
@@ -716,7 +733,6 @@
             // 
             this.isValidDataGridViewTextBoxColumn.DataPropertyName = "isValid";
             this.isValidDataGridViewTextBoxColumn.HeaderText = "Valid";
-            this.isValidDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.isValidDataGridViewTextBoxColumn.Name = "isValidDataGridViewTextBoxColumn";
             this.isValidDataGridViewTextBoxColumn.ReadOnly = true;
             this.isValidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -729,7 +745,6 @@
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.issue_date.DefaultCellStyle = dataGridViewCellStyle7;
             this.issue_date.HeaderText = "Issue Date";
-            this.issue_date.MinimumWidth = 6;
             this.issue_date.Name = "issue_date";
             this.issue_date.ReadOnly = true;
             this.issue_date.Width = 145;
@@ -740,10 +755,17 @@
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.expiry_date.DefaultCellStyle = dataGridViewCellStyle8;
             this.expiry_date.HeaderText = "Expired Date";
-            this.expiry_date.MinimumWidth = 6;
             this.expiry_date.Name = "expiry_date";
             this.expiry_date.ReadOnly = true;
             this.expiry_date.Width = 145;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // certificateBindingSource
             // 
@@ -763,6 +785,7 @@
             this.btnCreate.TabIndex = 69;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnImport
             // 
@@ -806,40 +829,23 @@
             this.btnCertReset.TabIndex = 55;
             this.btnCertReset.Text = "RESET";
             this.btnCertReset.UseVisualStyleBackColor = false;
+            this.btnCertReset.Click += new System.EventHandler(this.btnCertReset_Click);
             // 
-            // inputCertDescription
+            // btnCertSave
             // 
-            this.inputCertDescription.BorderColor = System.Drawing.Color.DimGray;
-            this.inputCertDescription.BorderFocusColor = System.Drawing.Color.DodgerBlue;
-            this.inputCertDescription.BorderSize = 1;
-            this.inputCertDescription.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputCertDescription.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.inputCertDescription.Location = new System.Drawing.Point(29, 205);
-            this.inputCertDescription.Margin = new System.Windows.Forms.Padding(5);
-            this.inputCertDescription.Multiline = true;
-            this.inputCertDescription.Name = "inputCertDescription";
-            this.inputCertDescription.Padding = new System.Windows.Forms.Padding(5);
-            this.inputCertDescription.PasswordChar = false;
-            this.inputCertDescription.ReadOnly = false;
-            this.inputCertDescription.Size = new System.Drawing.Size(303, 32);
-            this.inputCertDescription.TabIndex = 3;
-            this.inputCertDescription.Texts = "Overall 6.5";
-            this.inputCertDescription.Underlined = false;
-            // 
-            // btnCertEdit
-            // 
-            this.btnCertEdit.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnCertEdit.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnCertEdit.FlatAppearance.BorderSize = 0;
-            this.btnCertEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCertEdit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCertEdit.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCertEdit.Location = new System.Drawing.Point(616, 280);
-            this.btnCertEdit.Name = "btnCertEdit";
-            this.btnCertEdit.Size = new System.Drawing.Size(130, 36);
-            this.btnCertEdit.TabIndex = 8;
-            this.btnCertEdit.Text = "EDIT";
-            this.btnCertEdit.UseVisualStyleBackColor = false;
+            this.btnCertSave.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnCertSave.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnCertSave.FlatAppearance.BorderSize = 0;
+            this.btnCertSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCertSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCertSave.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCertSave.Location = new System.Drawing.Point(616, 280);
+            this.btnCertSave.Name = "btnCertSave";
+            this.btnCertSave.Size = new System.Drawing.Size(130, 36);
+            this.btnCertSave.TabIndex = 8;
+            this.btnCertSave.Text = "EDIT";
+            this.btnCertSave.UseVisualStyleBackColor = false;
+            this.btnCertSave.Click += new System.EventHandler(this.btnCertSave_Click);
             // 
             // labelDescription
             // 
@@ -849,7 +855,7 @@
             this.labelDescription.Location = new System.Drawing.Point(25, 170);
             this.labelDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(141, 28);
+            this.labelDescription.Size = new System.Drawing.Size(114, 21);
             this.labelDescription.TabIndex = 66;
             this.labelDescription.Text = "DESCRIPTION";
             // 
@@ -858,7 +864,7 @@
             this.inputCertIsValid.AutoSize = true;
             this.inputCertIsValid.Location = new System.Drawing.Point(521, 87);
             this.inputCertIsValid.Name = "inputCertIsValid";
-            this.inputCertIsValid.Size = new System.Drawing.Size(18, 17);
+            this.inputCertIsValid.Size = new System.Drawing.Size(15, 14);
             this.inputCertIsValid.TabIndex = 3;
             this.inputCertIsValid.UseVisualStyleBackColor = true;
             // 
@@ -870,7 +876,7 @@
             this.labelIsValid.Location = new System.Drawing.Point(373, 80);
             this.labelIsValid.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelIsValid.Name = "labelIsValid";
-            this.labelIsValid.Size = new System.Drawing.Size(92, 28);
+            this.labelIsValid.Size = new System.Drawing.Size(74, 21);
             this.labelIsValid.TabIndex = 64;
             this.labelIsValid.Text = "IS VALID";
             // 
@@ -888,7 +894,7 @@
             this.inputCertOrganization.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertOrganization.PasswordChar = false;
             this.inputCertOrganization.ReadOnly = false;
-            this.inputCertOrganization.Size = new System.Drawing.Size(225, 39);
+            this.inputCertOrganization.Size = new System.Drawing.Size(225, 32);
             this.inputCertOrganization.TabIndex = 7;
             this.inputCertOrganization.Texts = "British Council";
             this.inputCertOrganization.Underlined = false;
@@ -901,7 +907,7 @@
             this.labelOrganization.Location = new System.Drawing.Point(373, 207);
             this.labelOrganization.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOrganization.Name = "labelOrganization";
-            this.labelOrganization.Size = new System.Drawing.Size(164, 28);
+            this.labelOrganization.Size = new System.Drawing.Size(131, 21);
             this.labelOrganization.TabIndex = 63;
             this.labelOrganization.Text = "ORGANIZATION";
             // 
@@ -915,7 +921,7 @@
             this.inputCertExpiredDate.Location = new System.Drawing.Point(521, 156);
             this.inputCertExpiredDate.MinimumSize = new System.Drawing.Size(4, 32);
             this.inputCertExpiredDate.Name = "inputCertExpiredDate";
-            this.inputCertExpiredDate.Size = new System.Drawing.Size(225, 34);
+            this.inputCertExpiredDate.Size = new System.Drawing.Size(225, 32);
             this.inputCertExpiredDate.SkinColor = System.Drawing.SystemColors.Control;
             this.inputCertExpiredDate.TabIndex = 6;
             this.inputCertExpiredDate.TextColor = System.Drawing.Color.DimGray;
@@ -935,7 +941,7 @@
             this.inputCertCreatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertCreatedAt.PasswordChar = false;
             this.inputCertCreatedAt.ReadOnly = true;
-            this.inputCertCreatedAt.Size = new System.Drawing.Size(73, 30);
+            this.inputCertCreatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputCertCreatedAt.TabIndex = 27;
             this.inputCertCreatedAt.Texts = "29-10-2023";
             this.inputCertCreatedAt.Underlined = false;
@@ -948,7 +954,7 @@
             this.labelExpiredDate.Location = new System.Drawing.Point(373, 164);
             this.labelExpiredDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelExpiredDate.Name = "labelExpiredDate";
-            this.labelExpiredDate.Size = new System.Drawing.Size(150, 28);
+            this.labelExpiredDate.Size = new System.Drawing.Size(119, 21);
             this.labelExpiredDate.TabIndex = 61;
             this.labelExpiredDate.Text = "EXPIRED DATE";
             // 
@@ -966,7 +972,7 @@
             this.inputCertID.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertID.PasswordChar = false;
             this.inputCertID.ReadOnly = false;
-            this.inputCertID.Size = new System.Drawing.Size(178, 39);
+            this.inputCertID.Size = new System.Drawing.Size(178, 32);
             this.inputCertID.TabIndex = 1;
             this.inputCertID.Texts = "CERT001";
             this.inputCertID.Underlined = false;
@@ -986,7 +992,7 @@
             this.inputCertUpdatedAt.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertUpdatedAt.PasswordChar = false;
             this.inputCertUpdatedAt.ReadOnly = true;
-            this.inputCertUpdatedAt.Size = new System.Drawing.Size(73, 30);
+            this.inputCertUpdatedAt.Size = new System.Drawing.Size(65, 25);
             this.inputCertUpdatedAt.TabIndex = 28;
             this.inputCertUpdatedAt.Texts = "29-10-2023";
             this.inputCertUpdatedAt.Underlined = false;
@@ -1005,7 +1011,7 @@
             this.inputCertTitle.Padding = new System.Windows.Forms.Padding(5);
             this.inputCertTitle.PasswordChar = false;
             this.inputCertTitle.ReadOnly = false;
-            this.inputCertTitle.Size = new System.Drawing.Size(225, 39);
+            this.inputCertTitle.Size = new System.Drawing.Size(225, 32);
             this.inputCertTitle.TabIndex = 2;
             this.inputCertTitle.Texts = "IELTS";
             this.inputCertTitle.Underlined = false;
@@ -1018,7 +1024,7 @@
             this.labelCertID.Location = new System.Drawing.Point(25, 80);
             this.labelCertID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCertID.Name = "labelCertID";
-            this.labelCertID.Size = new System.Drawing.Size(33, 28);
+            this.labelCertID.Size = new System.Drawing.Size(27, 21);
             this.labelCertID.TabIndex = 59;
             this.labelCertID.Text = "ID";
             // 
@@ -1030,7 +1036,7 @@
             this.labelTitle.Location = new System.Drawing.Point(25, 125);
             this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(63, 28);
+            this.labelTitle.Size = new System.Drawing.Size(50, 21);
             this.labelTitle.TabIndex = 56;
             this.labelTitle.Text = "TITLE";
             // 
@@ -1044,7 +1050,7 @@
             this.inputCertIssueDate.Location = new System.Drawing.Point(521, 114);
             this.inputCertIssueDate.MinimumSize = new System.Drawing.Size(4, 32);
             this.inputCertIssueDate.Name = "inputCertIssueDate";
-            this.inputCertIssueDate.Size = new System.Drawing.Size(225, 34);
+            this.inputCertIssueDate.Size = new System.Drawing.Size(225, 32);
             this.inputCertIssueDate.SkinColor = System.Drawing.SystemColors.Control;
             this.inputCertIssueDate.TabIndex = 5;
             this.inputCertIssueDate.TextColor = System.Drawing.Color.DimGray;
@@ -1057,7 +1063,7 @@
             this.labelIssueDate.Location = new System.Drawing.Point(373, 122);
             this.labelIssueDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelIssueDate.Name = "labelIssueDate";
-            this.labelIssueDate.Size = new System.Drawing.Size(122, 28);
+            this.labelIssueDate.Size = new System.Drawing.Size(98, 21);
             this.labelIssueDate.TabIndex = 57;
             this.labelIssueDate.Text = "ISSUE DATE";
             // 
@@ -1087,10 +1093,10 @@
             this.labelCertWarningMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelCertWarningMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.labelCertWarningMessage.ForeColor = System.Drawing.Color.DimGray;
-            this.labelCertWarningMessage.Location = new System.Drawing.Point(0, 39);
+            this.labelCertWarningMessage.Location = new System.Drawing.Point(0, 32);
             this.labelCertWarningMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCertWarningMessage.Name = "labelCertWarningMessage";
-            this.labelCertWarningMessage.Size = new System.Drawing.Size(362, 44);
+            this.labelCertWarningMessage.Size = new System.Drawing.Size(362, 51);
             this.labelCertWarningMessage.TabIndex = 35;
             this.labelCertWarningMessage.Text = "This will delete selected certificated permanently, there is no going back. Pleas" +
     "e be certain.";
@@ -1112,7 +1118,7 @@
             this.labelDeleteCertificate.Padding = new System.Windows.Forms.Padding(5);
             this.labelDeleteCertificate.PasswordChar = false;
             this.labelDeleteCertificate.ReadOnly = true;
-            this.labelDeleteCertificate.Size = new System.Drawing.Size(362, 39);
+            this.labelDeleteCertificate.Size = new System.Drawing.Size(362, 32);
             this.labelDeleteCertificate.TabIndex = 36;
             this.labelDeleteCertificate.Texts = "Delete Certificate";
             this.labelDeleteCertificate.Underlined = true;
@@ -1132,10 +1138,30 @@
             this.btnDeleteCertificate.TabIndex = 37;
             this.btnDeleteCertificate.Text = "Delete Certificate";
             this.btnDeleteCertificate.UseVisualStyleBackColor = false;
+            this.btnDeleteCertificate.Click += new System.EventHandler(this.btnDeleteCertificate_Click);
+            // 
+            // inputDescription
+            // 
+            this.inputDescription.BorderColor = System.Drawing.Color.DimGray;
+            this.inputDescription.BorderFocusColor = System.Drawing.Color.DodgerBlue;
+            this.inputDescription.BorderSize = 1;
+            this.inputDescription.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputDescription.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.inputDescription.Location = new System.Drawing.Point(29, 199);
+            this.inputDescription.Margin = new System.Windows.Forms.Padding(5);
+            this.inputDescription.Multiline = true;
+            this.inputDescription.Name = "inputDescription";
+            this.inputDescription.Padding = new System.Windows.Forms.Padding(5);
+            this.inputDescription.PasswordChar = false;
+            this.inputDescription.ReadOnly = false;
+            this.inputDescription.Size = new System.Drawing.Size(303, 32);
+            this.inputDescription.TabIndex = 72;
+            this.inputDescription.Texts = "Overall 6.5";
+            this.inputDescription.Underlined = false;
             // 
             // StudentDetailForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1826, 887);
             this.Controls.Add(this.grBoxDeleteCertificate);
@@ -1208,9 +1234,8 @@
         private System.Windows.Forms.Label labelIsValid;
         private System.Windows.Forms.CheckBox inputCertIsValid;
         private System.Windows.Forms.Label labelDescription;
-        private CustomControls.Input inputCertDescription;
         private System.Windows.Forms.Button btnCertReset;
-        private System.Windows.Forms.Button btnCertEdit;
+        private System.Windows.Forms.Button btnCertSave;
         private System.Windows.Forms.Label labelStuUpdatedAt;
         private System.Windows.Forms.Label labelStuCreatedAt;
         private CustomControls.Input inputStuCreatedAt;
@@ -1225,10 +1250,13 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.BindingSource certificateBindingSource;
+        private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn organizationnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isValidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn issue_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn expiry_date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private CustomControls.Input inputDescription;
     }
 }

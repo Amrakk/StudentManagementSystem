@@ -79,7 +79,6 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-        //TODO: Test delete button (not working) (detail: cause "Cannot remove an entity that not been attached")
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure you want to delete this user?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -98,7 +97,7 @@ namespace Student_Management_System.Views.Admin
 
                         MessageBox.Show("Deleted successfully", "Deleted user", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else MessageBox.Show("Failed to delete");
+                    else MessageBox.Show("Failed to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
@@ -107,8 +106,6 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-
-        // TODO: Test change password button (not working) (detail: return change password successfully but not change password in database)
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
             string newPassword = inputNewPassword.Texts;
@@ -116,14 +113,14 @@ namespace Student_Management_System.Views.Admin
 
             if (!passEx.IsMatch(newPassword))
             {
-                labelErrorMessage.Text = "Password must contain at least 8 characters, including (A-Z), (a-z), (1-9)";
+                labelErrorMessage.Text = "Password must be at least 8 characters long and contain only letters and numbers";
                 labelErrorMessage.Visible = true;
                 return;
             }
 
             try
             {
-                selectedUser.password = BCrypt.Net.BCrypt.HashPassword(newPassword, 10);
+                selectedUser.password = SystemStudentUtils.EncryptPassword(newPassword);
                 selectedUser.updatedAt = DateTime.Now;
 
                 bool isUpdated = userController.Update(selectedUser);
@@ -133,7 +130,7 @@ namespace Student_Management_System.Views.Admin
                     MessageBox.Show("Password changed successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     inputNewPassword.Texts = "";
                 }
-                else MessageBox.Show("Failed to change password");
+                else MessageBox.Show("Failed to change password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -201,7 +198,6 @@ namespace Student_Management_System.Views.Admin
             }
         }
 
-        // TODO: implement save button (edit, add features) (edit not working) (detail: not update user in database)
         private void btnSave_Click(object sender, EventArgs e)
         {
             Regex phoneEx = new Regex("^[0-9]{10,}$");
@@ -291,7 +287,7 @@ namespace Student_Management_System.Views.Admin
                         UserForm_Reload();
                         this.Close();
                     }
-                    else MessageBox.Show("Failed to add");
+                    else MessageBox.Show("Failed to add", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
@@ -307,7 +303,6 @@ namespace Student_Management_System.Views.Admin
                 selectedUser.role = role;
                 selectedUser.status = status;
                 selectedUser.dob = dob;
-                selectedUser.age = DateTime.Now.Year - dob.Year;
                 selectedUser.updatedAt = DateTime.Now;
 
                 try
@@ -319,7 +314,7 @@ namespace Student_Management_System.Views.Admin
                         MessageBox.Show("Updated successfully", "Updated user", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         UserForm_Reload();
                     }
-                    else MessageBox.Show("Failed to update");
+                    else MessageBox.Show("Failed to update", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
