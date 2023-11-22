@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OfficeOpenXml;
+using System.Reflection;
 
 namespace Student_Management_System.Controllers
 {
@@ -91,12 +92,39 @@ namespace Student_Management_System.Controllers
                             string columnName = columnNames[col - 1];
                             object cellValue = worksheet.Cells[row, col].Value;
 
-                            if(typeof(K).GetProperty(columnName).ToString().Contains("Int32") && cellValue.GetType().ToString().Contains("Double"))
-                                cellValue = Convert.ToInt32(cellValue);
+                            PropertyInfo property = typeof(K).GetProperty(columnName);
 
-                            typeof(K).GetProperty(columnName)?.SetValue(obj, cellValue);
+                            if (property != null)
+                            {
+                                Type propertyType = property.PropertyType;
+
+                                if (propertyType == typeof(int) || (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                                {
+                                    // Convert double to int or nullable int
+                                    if (cellValue != null)
+                                    {
+                                        if (propertyType == typeof(int))
+                                            cellValue = Convert.ToInt32(cellValue);
+                                        else if (propertyType == typeof(int?))
+                                            cellValue = (int?)Convert.ToInt32(cellValue);
+                                    }
+                                    else
+                                    {
+                                        // Handle null values here if needed
+                                        cellValue = null;
+                                    }
+                                }
+                                else if (propertyType == typeof(string))
+                                {
+                                    // Convert other types to string
+                                    cellValue = cellValue?.ToString();
+                                }
+
+                                // Set the property value
+                                property.SetValue(obj, cellValue);
+                            }
                         }
-
+                        
                         T targetObj = convertFunction(obj);
 
                         resultList.Add(targetObj);
