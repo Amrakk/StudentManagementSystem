@@ -37,6 +37,7 @@ namespace Student_Management_System.Views.Students
         {
             RefreshGridView("");
 
+            // Load for filter feature
             using (var db = new MidTermDBDataContext(Program.ConnectionString))
             {
                 DepartmentController departController = new DepartmentController();
