@@ -38,22 +38,19 @@ namespace Student_Management_System.Views.Students
 
         private void StudentDetailForm_Load(object sender, EventArgs e)
         {
-            using (var db = new MidTermDBDataContext(Program.ConnectionString))
-            {
-                DepartmentController departController = new DepartmentController();
-                ClassController classController = new ClassController();
-                var departments = departController.GetAll();
-                inputDepartment.DataSource = departments;
+            DepartmentController departController = new DepartmentController();
+            ClassController classController = new ClassController();
+            var departments = departController.GetAll();
+            inputDepartment.DataSource = departments;
 
-                var classes = classController.GetAll();
-                inputClass.DataSource = classes;
+            var classes = classController.GetAll();
+            inputClass.DataSource = classes;
 
-                inputDepartment.ValueMember = "departId";
-                inputDepartment.DisplayMember = "departName";
+            inputDepartment.ValueMember = "departId";
+            inputDepartment.DisplayMember = "departName";
 
-                inputClass.ValueMember = "classId";
-                inputClass.DisplayMember = "classId";
-            }
+            inputClass.ValueMember = "classId";
+            inputClass.DisplayMember = "classId";
 
             RefreshGridView();
             btnStuReset_Click(sender, e);
