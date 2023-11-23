@@ -66,14 +66,17 @@ namespace Student_Management_System.Controllers
                 {
                     try
                     {
-                        var entityToDelete = db.students.FirstOrDefault(s => s.id.Equals(entity.id));
-                        if (entityToDelete != null)
+                        bool isAllRelatedCertificateDeleted = new CertificateController().DeleteCertificateBySID(entity.id);
+                        if (isAllRelatedCertificateDeleted)
                         {
-                            db.students.DeleteOnSubmit(entityToDelete);
-                            db.SubmitChanges();
-                            return true;
+                            var entityToDelete = db.students.FirstOrDefault(s => s.id.Equals(entity.id));
+                            if (entityToDelete != null)
+                            {
+                                db.students.DeleteOnSubmit(entityToDelete);
+                                db.SubmitChanges();
+                                return true;
+                            }
                         }
-
                     }
                     catch (Exception ex)
                     {
@@ -85,7 +88,6 @@ namespace Student_Management_System.Controllers
             {
                 MessageBox.Show(ex.Message);
             }
-
             return false;
         }
 
