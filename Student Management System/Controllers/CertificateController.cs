@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Windows.Forms;
 
 namespace Student_Management_System.Controllers
 {
@@ -182,8 +184,31 @@ namespace Student_Management_System.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-
             return false;
+        }
+
+        public bool DeleteCertificateBySID(string sid)
+        {
+            if (string.IsNullOrEmpty(sid))
+            {
+                return false;
+            }
+
+            using (var db = new MidTermDBDataContext(Program.ConnectionString))
+            {
+                try
+                {
+                    var certificatesToDelete = db.certificates.Where(c => c.sid.Equals(sid));
+                    db.certificates.DeleteAllOnSubmit(certificatesToDelete);
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
         }
     }
 }

@@ -192,6 +192,7 @@ namespace Student_Management_System.Views.Students
                             eduType = record.EducationType
                         };
 
+                        db.certificates.DeleteAllOnSubmit(db.certificates);
                         db.students.DeleteAllOnSubmit(db.students);
                         if (extension.Equals(".csv"))
                         {
